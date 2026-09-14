@@ -89,6 +89,14 @@ Each session:
 
 Run **OFA: Disconnect** to release the GPU allocation when you're done. If a previous allocation is still alive, the extension reconnects to it automatically on the next launch.
 
+**Using a frontier model (LiteLLM) from VS Code.** The extension can drive the same opt-in [LiteLLM gateway](#using-a-frontier-model-via-the-internal-litellm-gateway-optional) instead of a local model, while still applying ofa's local RAG. In VS Code settings (on the Kestrel-remote side) set:
+
+* `ofa.backend` &rarr; `litellm`
+* `ofa.litellm.baseUrl` &rarr; `https://litellm.nlr.gov/v1`
+* `ofa.litellmModel` &rarr; a gateway model id (e.g. `gemini-3.7-flash`; see the LiteLLM web UI for the list)
+
+Then set your per-user key via the Command Palette command **OFA: Set LiteLLM API Key** &mdash; it writes `$OFA_SCRATCH/.ofa_litellm_key` (chmod 600) on the node and is never stored in VS Code settings. Run **OFA: Disconnect** then **OFA: Connect** to apply. As with CLI use, this sends your prompt and retrieved context to the gateway; leave `ofa.backend` at `ollama` (the default) to stay fully local.
+
 ### 3. Python (`ofa_client`)
 
 `ofa_client` is a stdlib-only Python module (no extra packages to install) that talks to a running `ofa --serve` over HTTP. Start the server once in your allocation, then call it from any Python process on the same node:
@@ -161,6 +169,53 @@ ofa --forget-private lit-review              # remove one (or 'all')
 Then just ask `ofa` a question &mdash; from the command line, from VS Code, or through any of the other access methods above &mdash; and answers will draw on your indexed material where relevant.
 
 Supported inputs are text and code files, `.pdf`, and Office `.docx`/`.xlsx`. For scanned or equation-dense PDFs, `ofa` automatically re-reads hard-to-parse pages with the local vision model (rendering each page to an image and transcribing it, including equations) &mdash; on by default, using a vision-capable model such as the default Gemma 4. Your indexed data is stored per-user under `$OFA_SCRATCH` with owner-only permissions and never written to the shared install. Everything stays on Kestrel; as with any `ofa` use, keep in mind that answers (which may quote your indexed content) are returned to whichever client you're using.
+
+### Offline models
+
+By default `ofa` runs one of the following open-weight models locally via Ollama on your GPU allocation &mdash; nothing leaves Kestrel. The deployment default is **`gemma4:31b-it-q8_0`**. Switch models per run with `ofa --model <id>`, per session with the `/models` slash command, or globally with the `OFA_MODEL` environment variable; run `ofa --list-models` to see the live list (no GPU needed).
+
+| Model (`--model` id) | Params / notes | Vision | Tools |
+| --- | --- | --- | --- |
+| `gemma4:31b-it-q8_0` | Google Gemma 4, 31B, Q8_0 (~34 GB). **Default.** | ✅ | ✅ |
+| `gemma4:31b` | Google Gemma 4, 31B, Q4_K_M (~19 GB, lighter). | ✅ | ✅ |
+| `gemma4:26b` | Google Gemma 4, 26B. | ✅ | ✅ |
+| `muse-glimmer:30b` | Meta Muse Glimmer, 30B, agentic + vision + thinking (Apache 2.0). | ✅ | ✅ |
+| `nemotron-3.5-lightning:30b-a3b-q8_0` | NVIDIA Nemotron 3.5 Lightning, 30B MoE (3B active), fast agentic + thinking. | ❌ | ✅ |
+| `llama4:scout` | Meta Llama 4 Scout (MoE). | ✅ | ✅ |
+| `llama3.3:70b` | Meta Llama 3.3, 70B dense. | ❌ | ✅ |
+| `granite4:32b-a9b-h` | IBM Granite 4, ~19 GB MoE. | ❌ | ✅ |
+| `gpt-oss:120b` | OpenAI gpt-oss, 116.8B MoE (~5B active, ~65 GB). | ❌ | ✅ |
+| `phi4:14b` | Microsoft phi-4, strong small reasoning model (no tool-calling). | ❌ | ❌ |
+
+All of these fit within a single 80 GB H100. `ofa`'s destructive-command safety guards are validated against the two Gemma 4 defaults; other models work but trigger a one-time "untested model" warning at startup.
+
+### Using a frontier model via the internal LiteLLM gateway (optional)
+
+By default `ofa` runs **fully locally** (see [Offline models](#offline-models) above) and no data leaves the node. For hard cases you can optionally route the model call to NLR's internal **LiteLLM** gateway (`https://litellm.nlr.gov`) instead of the local model, while `ofa` still applies its local RAG, prompts, and agent loop. This is **opt-in** and needs a per-user key.
+
+!!! warning
+    Unlike normal (local-only) use, this sends your prompt **and the retrieved RAG context** to the gateway. Don't use it for data you need to keep on-node.
+
+Run `ofa --litellm` once and it prints the one-time setup steps (base URL + your key). Following what it prints:
+
+```bash
+# 1. Base URL (must include /v1)
+export OFA_LITELLM_BASE_URL=https://litellm.nlr.gov/v1
+
+# 2. Your per-user API key — write it to a private file
+umask 077; printf %s 'YOUR_KEY' > $OFA_SCRATCH/.ofa_litellm_key
+chmod 600 $OFA_SCRATCH/.ofa_litellm_key
+#    (or, per-shell: export OFA_LITELLM_API_KEY=YOUR_KEY)
+
+# 3. Pick a model (see the LiteLLM web UI for the list)
+export OFA_MODEL=gemini-3.7-flash
+
+# 4. Launch in LiteLLM mode — --litellm composes with any mode
+ofa --litellm
+ofa --litellm --amrex
+```
+
+`--litellm` is equivalent to `export OFA_BACKEND=litellm`. Because compute nodes can reach the gateway, it works inside a normal GPU allocation. Running `ofa --litellm` again once configured shows the current base URL, model, and key source.
 
 ## OpenCode
 
