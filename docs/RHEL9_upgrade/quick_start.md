@@ -108,7 +108,7 @@ Please refer to the non-exhaustive translation table below to note how to load t
 | Can't find a module | `module spider <name>` |
 | Won't load (deps missing) | `module spider <name>/<version>` then load listed prereqs first |
 | Mixed/conflicting toolchains | `module reset`, then reload one workflow only |
-| Weird broken shell state | `module reset` (NOT `module purge`) |
+| Weird broken shell state | `module reset` NOT `module purge`) |
 
 
 ### Quick Reference Table 
