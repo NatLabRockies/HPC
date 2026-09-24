@@ -9,13 +9,13 @@ hide:
 
 # About Vermilion
 
-Vermilion is an OpenHPC-based cluster running on Dual AMD EPYC 7532 Rome CPUs and nVidia A100 GPUs. The nodes run as virtual machines in a local virtual private cloud (OpenStack). Vermilion is allocated for NREL workloads and intended for LDRD, SPP or Office of Science workloads. Allocation decisions are made by the IACAC through the annual allocation request process. Check back regularly as the configuration and capabilities for Vermilion are augmented over time.
+Vermilion is an OpenHPC-based cluster running on Dual AMD EPYC 7532 Rome CPUs and nVidia A100 GPUs. The nodes run as virtual machines in a local virtual private cloud (OpenStack). Vermilion is allocated for NLR workloads and intended for LDRD, SPP or Office of Science workloads. Allocation decisions are made by the IACAC through the annual allocation request process. Check back regularly as the configuration and capabilities for Vermilion are augmented over time.
 
 ## Accessing Vermilion
-Access to Vermilion requires an NREL HPC account and permission to join an existing allocation. Please see the [System Access](https://www.nrel.gov/hpc/system-access.html) page for more information on accounts and allocations.
+Access to Vermilion requires an NLR HPC account and permission to join an existing allocation. Please see the [System Access](https://www.nlr.gov/hpc/system-access.html) page for more information on accounts and allocations.
 
-#### For NREL Employees:
-To access vermilion, log into the NREL network and connect via ssh:
+#### For NLR Employees:
+To access vermilion, log into the NLR network and connect via ssh:
 
     ssh vs.hpc.nrel.gov
     ssh vermilion.hpc.nrel.gov
@@ -23,8 +23,8 @@ To access vermilion, log into the NREL network and connect via ssh:
 #### For External Collaborators:
 There are currently no external-facing login nodes for Vermilion. There are two options to connect:
 
-1. Connect to the [SSH gateway host](https://www.nrel.gov/hpc/ssh-gateway-connection.html) and log in with your username, password, and OTP code. Once connected, ssh to the login nodes as above.
-1. Connect to the [HPC VPN](https://www.nrel.gov/hpc/vpn-connection.html) and ssh to the login nodes as above.
+1. Connect to the [SSH gateway host](https://www.nlr.gov/hpc/ssh-gateway-connection.html) and log in with your username, password, and OTP code. Once connected, ssh to the login nodes as above.
+1. Connect to the [HPC VPN](https://www.nlr.gov/hpc/vpn-connection.html) and ssh to the login nodes as above.
 
 There are currently two login nodes. They share the same home directory so work done on one will appear on the other. They are:
 
@@ -35,7 +35,7 @@ You may connect directly to a login node, but they may be cycled in and out of t
 
 ## Get Help with Vermilion 
 
-Please see the [Help and Support Page](../../help.md) for further information on how to seek assistance with Vermilion or your NREL HPC account. 
+Please see the [Help and Support Page](../../help.md) for further information on how to seek assistance with Vermilion or your NLR HPC account. 
 
 ## Building code
 

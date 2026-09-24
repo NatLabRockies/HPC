@@ -11,24 +11,24 @@
 There are three types of module-based Toolchains available on Kestrel:
 
 1. "PrgEnv-" Environments, shipped with Kestrel
-2. NREL-built Environments
-3. NREL-built Environments with `cray-mpich-abi`
+2. NLR-built Environments
+3. NLR-built Environments with `cray-mpich-abi`
 
 The "PrgEnv-" environments are new on Kestrel. PrgEnv stands for "programming environment," and Kestrel ships with several of these. There are advantages to using a PrgEnv environment, as these environments are tailored for some of the Cray-specific features of Kestrel. For example, Cray MPICH utilizes Kestrel's Cray Slingshot network more effectively than OpenMPI or Intel MPI, so it runs noticeably faster than the other two for jobs that require two or more nodes. All `PrgEnv-` environments utilize Cray MPICH by default.
 
-The NREL-built environments function similarly to those on Eagle, and it is up to the user to load all necessary modules to build and run their applications.
+The NLR-built environments function similarly to those on Eagle, and it is up to the user to load all necessary modules to build and run their applications.
 
-NREL-built environments can make use of Cray MPICH via the `cray-mpich-abi`. As long as program is compiled with an MPICH-based MPI (e.g., Intel MPI but *not* Open MPI), the `cray-mpich-abi` can be loaded at runtime, which causes the program to use Cray MPICH for dynamically built binaries.
+NLR-built environments can make use of Cray MPICH via the `cray-mpich-abi`. As long as program is compiled with an MPICH-based MPI (e.g., Intel MPI but *not* Open MPI), the `cray-mpich-abi` can be loaded at runtime, which causes the program to use Cray MPICH for dynamically built binaries.
 
 
 ## A note on OpenMPI
 
-Currently, OpenMPI does not run performantly or stably on Kestrel. You should do your best to avoid using OpenMPI. Please reach out to hpc-help@nrel.gov if you need help working around OpenMPI.
+Currently, OpenMPI does not run performantly or stably on Kestrel. You should do your best to avoid using OpenMPI. Please reach out to hpc-help@nlr.gov if you need help working around OpenMPI.
 
 ## Summary of available compiler environments
 
 * (Cray) denotes that the module belongs to the default Cray module set.
-* (NREL) denotes that the module belongs to the NREL-built module set. If a compiler module is denoted (NREL), then the corresponding MPI module is also (NREL).
+* (NLR) denotes that the module belongs to the NLR-built module set. If a compiler module is denoted (NLR), then the corresponding MPI module is also (NLR).
 
 ### GNU
 
@@ -37,9 +37,9 @@ Currently, OpenMPI does not run performantly or stably on Kestrel. You should do
 | gnu   | gcc (Cray)    | cray-mpich | Fortran| ftn   |gfortran| Cray MPICH |
 | gnu   | gcc (Cray)    | cray-mpich | C      | cc    | gcc    | Cray MPICH |
 | gnu   | gcc (Cray)    | cray-mpich | C++    | CC    | g++    | Cray MPICH |
-| n/a   | gcc (NREL)   | openmpi/4.1.5-gcc | Fortran| mpifort| gfortran| Open MPI|
-| n/a   | gcc (NREL)   | openmpi/4.1.5-gcc | C      | mpicc | gcc | Open MPI|
-| n/a   | gcc (NREL)   | openmpi/4.1.5-gcc | C++    | mpic++ | g++ | Open MPI|
+| n/a   | gcc (NLR)   | openmpi/4.1.5-gcc | Fortran| mpifort| gfortran| Open MPI|
+| n/a   | gcc (NLR)   | openmpi/4.1.5-gcc | C      | mpicc | gcc | Open MPI|
+| n/a   | gcc (NLR)   | openmpi/4.1.5-gcc | C++    | mpic++ | g++ | Open MPI|
 
 ### Cray 
 
@@ -56,9 +56,9 @@ Currently, OpenMPI does not run performantly or stably on Kestrel. You should do
 | intel | intel (Cray)  | cray-mpich    | Fortran| ftn   | ifort  | Cray MPICH |
 | intel | intel (Cray)  | cray-mpich    | C      | cc    | icc    | Cray MPICH |
 | intel | intel (Cray)  | cray-mpich    | C++    | CC    | icpc    | Cray MPICH |
-| n/a   | intel-oneapi (NREL) |intel-oneapi-mpi  | Fortran| mpiifort | ifort  | intel MPI|
-| n/a   | intel-oneapi (NREL) |intel-oneapi-mpi  | C      | mpiicc   | icc    | intel MPI|
-| n/a   | intel-oneapi (NREL) |intel-oneapi-mpi  | C++    | mpiicpc  | icpc   | intel MPI|
+| n/a   | intel-oneapi (NLR) |intel-oneapi-mpi  | Fortran| mpiifort | ifort  | intel MPI|
+| n/a   | intel-oneapi (NLR) |intel-oneapi-mpi  | C      | mpiicc   | icc    | intel MPI|
+| n/a   | intel-oneapi (NLR) |intel-oneapi-mpi  | C++    | mpiicpc  | icpc   | intel MPI|
 
 Note: 
 
@@ -195,16 +195,16 @@ We swap from `PrgEnv-cray` because this is the default PrgEnv that is loaded whe
 Depending on the software you're trying to run, you may need to load additional modules like `cray-hdf5` or `cray-fftw`.
 
 
-## NREL-built environments
+## NLR-built environments
 
-The NREL build modules are similar to Eagle, where the module are separate and no dependecy is created between modules. 
+The NLR build modules are similar to Eagle, where the module are separate and no dependecy is created between modules. 
 
 The modules are grouped by type `compilers_mpis` `utilities_libraries` and `applications`, and a module can be loaded using `module load $module_name`.
 
-The modules are optimized for Kestrel architecture and will be updated/upgraded every 6/12months or upon request. If there is a module you need but is not available, email hpc-help@nrel.gov
+The modules are optimized for Kestrel architecture and will be updated/upgraded every 6/12months or upon request. If there is a module you need but is not available, email hpc-help@nlr.gov
 
 
-## NREL-built environments with cray-mpich-abi
+## NLR-built environments with cray-mpich-abi
 
 For binaries dyanamically built with an MPICH-based MPI such as intel-mpi, the user can choose to use `cray-mpich-abi` at runtime to leverage its optimization for Kestrel. To check if your executable was dynamically built with intel MPI, you can `ldd [your program name] | grep mpi`.
 

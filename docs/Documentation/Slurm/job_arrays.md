@@ -6,7 +6,7 @@ has_children: false
 # Job Arrays
 Job arrays are typically used when a user wants to submit many similar jobs with different inputs. Job arrays are capable of submitting hundreds, and even thousands, of similar jobs together. Here, we will describe how to submit job arrays on Slurm. More details on job arrays can be found in the [Slurm documentation](https://slurm.schedmd.com/job_array.html).
 
-An example of a job array submission script can be found in our [NREL HPC Slurm Examples](https://github.com/NREL/HPC/tree/master/slurm) directory. The job array example is titled [uselist.sh](https://github.com/NREL/HPC/blob/master/slurm/uselist.sh), and requires [doarray.py](https://github.com/NREL/HPC/blob/master/slurm/source/doarray.py) and [invertc.c](https://github.com/NREL/HPC/blob/master/slurm/source/invertc.c) from the source folder.
+An example of a job array submission script can be found in our [NLR HPC Slurm Examples](https://github.com/NatLabRockies/HPC/tree/master/slurm) directory. The job array example is titled [uselist.sh](https://github.com/NatLabRockies/HPC/blob/master/slurm/uselist.sh), and requires [doarray.py](https://github.com/NatLabRockies/HPC/blob/master/slurm/source/doarray.py) and [invertc.c](https://github.com/NatLabRockies/HPC/blob/master/slurm/source/invertc.c) from the source folder.
 
 ## SBATCH Directives for Job Arrays
 In order to submit a job array to Slurm, the SBATCH directives at the top of your script or sbatch command line submission must contain the flag `--array=<ARRAY_VALS>`, where `ARRAY_VALS` is a list or range of numbers that will represent the index values of your job array. For example:

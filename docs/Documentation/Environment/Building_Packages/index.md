@@ -4,7 +4,7 @@ title: Building Packages
 parent: General
 ---
 
-# Building packages on NREL HPC for individual or project use.
+# Building packages on NLR HPC for individual or project use.
 
 This training module will walk through how to build a reasonably complex package, OpenMPI, and deploy
 it for use by yourself or members of a project.

@@ -8,7 +8,7 @@ hide:
 
 ## Schedule Your Computational Work with Slurm
 
-[Slurm](https://slurm.schedmd.com/) is the job scheduler and workload manager used by the HPC clusters hosted at NREL. 
+[Slurm](https://slurm.schedmd.com/) is the job scheduler and workload manager used by the HPC clusters hosted at NLR. 
 
 A **job** contains a list of required consumable resources (such as nodes), a list of job constraints (when, where and how the job should run), and an execution environment, which includes things like an executable, input and output files. All computational work on an HPC cluster should generally be contained in a job.
 

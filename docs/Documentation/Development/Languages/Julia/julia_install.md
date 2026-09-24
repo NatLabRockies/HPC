@@ -3,14 +3,14 @@ title: Installing Julia
 postdate: November 7, 2022
 layout: default
 author: Jonathan Maack
-description: Guide to installing Julia on on NREL systems
+description: Guide to installing Julia on on NLR systems
 parent: Julia
 grand_parent: Languages
 ---
 
 # Installation
 
-Julia modules exist on NREL HPC systems. Access simply with
+Julia modules exist on NLR HPC systems. Access simply with
 
 ```bash
 module load julia

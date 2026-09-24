@@ -6,7 +6,7 @@ There are a few common scientific libraries: LAPACK, BLAS, BLACS, scaLAPACK, FFT
 
 Scientific libraries can be packaged together, like in the Intel Math Kernel Library (MKL), or Cray’s LibSci. They can also be built completely separately and act as standalone libraries. These libraries can be built with different MPI implementations and compiler choices. 
 
-If you’re building a code that relies on one or more of these libraries, you can choose how to include these libraries. By the end of this tutorial, how to include these libraries should be clearer. If you need help building a particular package on an NREL machine, please contact [HPC help](mailto:hpc-help@nrel.gov). 
+If you’re building a code that relies on one or more of these libraries, you can choose how to include these libraries. By the end of this tutorial, how to include these libraries should be clearer. If you need help building a particular package on an NLR machine, please contact [HPC help](mailto:hpc-help@nlr.gov). 
 
 ## Makefiles, autoconf, and cmake
 
@@ -39,7 +39,7 @@ Yields the output:
 
 `intel-oneapi-mkl/2023.0.0-intel      ucx/1.13.0` 
 
-Thus, if we want to use the toolchains managed by NREL, we must use the Intel oneapi toolchain in our VASP build, since `intel-oneapi-mkl/2023.0.0-intel` is the only available mkl module. If you want to use a different toolchain, you could build MKL yourself, but that’s outside the scope of this article. 
+Thus, if we want to use the toolchains managed by NLR, we must use the Intel oneapi toolchain in our VASP build, since `intel-oneapi-mkl/2023.0.0-intel` is the only available mkl module. If you want to use a different toolchain, you could build MKL yourself, but that’s outside the scope of this article. 
 
 To “use the Intel oneapi toolchain” means to use Intel compilers and Intel’s implementation of MPI to compile VASP. We’re doing this because mkl was built with this toolchain, and we want our toolchains to match as best as possible to minimize build errors and bugs. 
 
@@ -193,7 +193,7 @@ If you’re working with a code that has a testsuite, now is a good time to run 
 2. Consult the documentation of the package to find out what scientific libraries are needed, and if the package developers provide guidance on what toolchains/libraries are best 
 3. Determine the availability of the needed scientific libraries.  
     1. Can a “library-of-libraries” like MKL or LibSci be used? 
-    2. Does NREL support the library as a module?  
+    2. Does NLR support the library as a module?  
         1. If so, determine the toolchain it was built with (usually given in the name of the module). If the toolchain is not clear from the name of the module, try the `ldd` command (e.g., `ldd path/to/executable/executable`), which will show you the dynamically linked libraries of the executable.
 4. Prepare your environment 
     1. `module load` the necessary modules to prepare your environment. (See  [environment preparation](#environment-preparation) step of VASP example) 
@@ -206,4 +206,4 @@ If you’re working with a code that has a testsuite, now is a good time to run 
 
 ## Questions?
 
-If you’re still stuck and unable to successfully link the scientific libraries you need, get in contact with [HPC help](mailto:hpc-help@nrel.gov).
+If you’re still stuck and unable to successfully link the scientific libraries you need, get in contact with [HPC help](mailto:hpc-help@nlr.gov).

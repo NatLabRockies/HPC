@@ -39,7 +39,7 @@ Once the job has finished, the standard output is saved in a file called
 - The `--account=<account_string>` flag must include a valid account string or
   the job will encounter a permanent hold (it will appear in the queue but will
   never run).  For more information, see [user
-  accounts](https://www.nrel.gov/hpc/user-accounts.html).
+  accounts](https://www.nlr.gov/hpc/user-accounts.html).
 - The environment variable `$SLURM_SUBMIT_DIR` is set by the scheduler to the
   directory from which the sbatch command was executed, e.g., `/scratch/$USER.`
   In this example, it is also the directory into which MATLAB will write the

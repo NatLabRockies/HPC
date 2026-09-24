@@ -2,6 +2,32 @@
 
 *We will update this page with Kestrel release notes after major Kestrel upgrades.*
 
+## February 2, 2026
+1. Slurm was upgraded to 25.05.5
+2. The following scheduling policy changes were made:
+    - Debug walltime was increased to four hours
+    - The walltime limit for all standby jobs was decreased to 24 hours
+    - The half-life decay for fairshare calculation was decreased from 14 to 7 days
+    - The GPU limit for debug jobs was increased from 2 to 4
+3. Management software and storage system updates
+
+## October 1, 2025
+1. The size of the shared partition was doubled from 64 nodes to 128 nodes.
+
+## July 2, 2025
+
+1. Slurm was upgraded to 24.11.05. 
+1. The default version of Ansys was changed to 2025R1. The old version (2024R1) is still available by using `module load ansys/2024R1`. 
+1. The default version of STAR-CCM+ was changed to 20.02.007. Version 19.02.009 will no longer be available. 
+1. The VASP 6.5.1 CPU modules have been updated with hdf5 support.
+1. A MACE enabled version of LAMMPS has been added to the GPU modules. This can be loaded
+using `ml mace/lammps-mace` and run with `srun -n 1 lmp -in lammps.inp`. Use `module show mace/lammps-mace` for more information. 
+1. 32 CPU nodes received a RAM upgrade from 256GB to 1TB. Access them by requesting the amount of memory you need with the ```--mem``` flag.
+1. 32 additional CPU nodes in the ```hbw``` partition received a RAM upgrade from 256GB to 1TB. Use the ```hbw``` partition and request additional memory to access them.
+1. 24 GPU nodes received a RAM upgrade from 384GB to 1.5TB. Access them by requesting a GPU node with the amount of memory you need with the ```--mem``` flag.
+1. The same 24 GPU nodes also received a local disk upgrade to 14TB. Use the GPU partition and the ```--tmp``` flag to request the space you need.
+
+
 ## December 13, 2024
 
 1.  Two new racks of GPU nodes were integrated into the system.
@@ -112,7 +138,7 @@ Intel-oneapi-compilers.
 
 ## Jan. 29 - Feb. 14, 2024 Upgrades
 
-1. We have experienced that most previously built software runs without modification (this includes NREL provided modules) and performs at the same level. 
+1. We have experienced that most previously built software runs without modification (this includes NLR provided modules) and performs at the same level. 
 
 2. Cray programming environment (CPE) 22.10, the default on the system, produces an error with cray-libsci when using PrgEnv-intel and the cc, CC, or ftn compiler wrappers. This error can be overcome either by swapping in a newer revision of cray-libsci, or by loading CPE/22.12. 
 
@@ -136,7 +162,7 @@ Intel-oneapi-compilers.
     module swap PrgEnv-cray PrgEnv-intel  
     ```
 
-3. CPE 23.12 is now available on the system but is a work-in-progress. We are still building out the CPE 23 NREL modules.  
+3. CPE 23.12 is now available on the system but is a work-in-progress. We are still building out the CPE 23 NLR modules.  
 
     To load CPE 23.12: 
 

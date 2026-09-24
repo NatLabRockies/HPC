@@ -1,10 +1,10 @@
 {% extends "base.html" %}
 
-{% block announce %}
-<!-- Add announcement here, including arbitrary HTML -->
-The <a href="https://nrel.github.io/HPC/Documentation/Resource_Management_System/#aus_report-command-line-utility">aus_report</a> CLI utility is now available on Kestrel and Swift for tracking AU usage.
-  {% endblock %} {% block footer %} <footer class="md-footer">
+{# {% block announce %} #}
+ <!-- Add announcement here, including arbitrary HTML  -->
+{# {% endblock %} #}
 
+ {% block footer %} <footer class="md-footer">
   <!-- Link to previous and/or next page -->
   {% if page.previous_page or page.next_page %}
   <nav class="md-footer__inner md-grid" aria-label="{{ lang.t('footer.title') }}">
@@ -51,11 +51,11 @@ The <a href="https://nrel.github.io/HPC/Documentation/Resource_Management_System
   <div class="md-footer-meta md-typeset">
     <div class="md-footer-meta__inner md-grid">
       <div class="md-footer-copyright">
-        <a href="https://www.nrel.gov/computational-science/" title="Computational Science at NREL">Computational
-          Science at NREL</a><br>
-        <a href="https://www.nrel.gov/hpc/about-hpc.html" target="_blank"
-          title="About NREL High-Performance Computing">About NREL High-Performance Computing</a><br>
-        <a href="https://www.nrel.gov/hpc/contact-us.html" target="_blank" title="Contact Us">Contact Us</a><br>
+        <a href="https://www.nlr.gov/computational-science/" title="Computational Science at NLR">Computational
+          Science at NLR</a><br>
+        <a href="https://www.nlr.gov/hpc/about-hpc.html" target="_blank"
+          title="About NLR High-Performance Computing">About NLR High-Performance Computing</a><br>
+        <a href="https://www.nlr.gov/hpc/contact-us.html" target="_blank" title="Contact Us">Contact Us</a><br>
       </div>
     </div>
   </div>

@@ -34,7 +34,7 @@ VisIt features a robust remote visualization capability.  To enable remote visua
 ![Alt text](../../assets/images/VisIT/kestrel-software-visit-step7.png)
 6. To connect to VisIt, go to File → Open file
 ![Alt text](../../assets/images/VisIT/kestrel-8.png)
-7. In the Host option, click on the drop down menu and choose the host kestrel.hpc.nrel.gov
+7. In the Host option, click on the drop down menu and choose the host kestrel.hpc.nlr.gov
 ![Alt text](../../assets/images/VisIT/kestrel-9.png)
 8. It will display a window with an option to change the username, if the username is not correct, then click on change username. *This is your HPC username*
 9. Type your HPC username and click Confirm username.

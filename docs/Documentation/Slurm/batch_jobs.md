@@ -11,13 +11,13 @@ Batch jobs are run by submitting a job script to the scheduler with the `sbatch`
 
 Once submitted, the scheduler will insert your job script into the queue to be run at some point in the future, based on priority and how many jobs are in the queue currently.
 
-Priority factors vary on a cluster-by-cluster basis, but typically include a "fairshare" value based on the resources assigned to the allocation, as well as weighting by the job's age, partition, resources (e.g. node count) and/or Quality of Service (qos) factor. Please see the [Monitoring and Control commands](monitor_and_control) page for more information on checking your job's priority. The [Systems](../Systems/) documentation for each cluster will also have more information about the priority weighting, QOS factors, and any associated AU upcharges. 
+Priority factors vary on a cluster-by-cluster basis, but typically include a "fairshare" value based on the resources assigned to the allocation, as well as weighting by the job's age, partition, resources (e.g. node count) and/or Quality of Service (qos) factor. Please see the [Monitoring and Control commands](./monitor_and_control.md) page for more information on checking your job's priority. The [Systems](../Systems/index.md) documentation for each cluster will also have more information about the priority weighting, QOS factors, and any associated AU upcharges. 
 
-To submit batch jobs on an HPC system at NREL, the Slurm `sbatch` command should be used:
+To submit batch jobs on an HPC system at NLR, the Slurm `sbatch` command should be used:
 
 `$ sbatch --account=<project-handle> <batch_script>`
 
-Sbatch scripts may be stored on or run from any file system (/home or /projects, for example), as they are typically fairly lightweight shell scripts. However, on most HPC systems it's generally a good idea to have your executables, conda environments, other software that your sbatch script executes stored in a /projects directory. Your input and output files should typically be read from and/or written to either /projects or /scratch directories, as well. Please see the appropriate [Systems](/Documentation/Systems/) page for more information specific to the filesystems on the NREL-hosted cluster you're working on to maximize I/O performance.
+Sbatch scripts may be stored on or run from any file system (/home or /projects, for example), as they are typically fairly lightweight shell scripts. However, on most HPC systems it's generally a good idea to have your executables, conda environments, other software that your sbatch script executes stored in a /projects directory. Your input and output files should typically be read from and/or written to either /projects or /scratch directories, as well. Please see the appropriate [Systems](../Systems/index.md) page for more information specific to the filesystems on the NLR-hosted cluster you're working on to maximize I/O performance.
 
 Arguments to `sbatch` may be used to specify resource limits such as job duration (referred to as "walltime"), number of nodes, etc., as well as what hardware features you want your job to run with. These can also be supplied within the script itself by placing #SBATCH comment directives within the file. 
 
@@ -52,7 +52,7 @@ Command and control and monitoring customization are also available:
 | Standby priority | `--qos` | `--qos=standby` | Standby jobs will only run when nodes are idle. *Note*: Jobs with standby priority do not consume AUs.| 
 | Dependencies | `--dependency` | `--dependency=<condition>:<job_id>` <br><br>Conditions:<br><br>`after`<br>`afterany`<br>`afternotok`<br>`afterok`<br>`singleton` | You can submit jobs that will wait until a condition is met before running. <br><br><br>Conditions:<br><br>After the listed jobs have started<br>After the listed jobs have finished<br>After the listed jobs have failed<br>After the listed jobs return exit code 0<br>After all existing jobs with the same name and user have ended|
 | Job Name | `--job-name` | `--job-name=myjob` | A short, descriptive job name for easier identification in the queue.|
-| Email notifications | `--mail-user` | `--mail-user=my.email@nrel.gov`<br>`--mail=type=ALL` | Slurm will send updates on job status change. Type can be specified with `--mail-type` as BEGIN, END, FAIL, or ALL.|
+| Email notifications | `--mail-user` | `--mail-user=my.email@nlr.gov`<br>`--mail=type=ALL` | Slurm will send updates on job status change. Type can be specified with `--mail-type` as BEGIN, END, FAIL, or ALL.|
 | Output | `--output`<br><br>`--error` | `--output=job_stdout`<br><br>`--output=job_stderr` | Defaults to `slurm-<jobid>.out`<br><br>Defaults to `slurm-<jobid>.out` (same file as stdout)<br><br> stdout and stderr will be written to the same file unless specified otherwise|
 
 
@@ -89,7 +89,7 @@ You may use these environment variables in your sbatch scripts to help control o
 
 ## Example SBATCH Script Walkthrough
 
-Many examples of sbatch scripts are available in the [HPC Repository Slurm Directory](https://github.com/NREL/HPC/tree/master/slurm) on Github.
+Many examples of sbatch scripts are available in the [HPC Repository Slurm Directory](https://github.com/NatLabRockies/HPC/tree/master/slurm) on Github.
 
 Here's a basic template job script to get started, followed by a breakdown of the individual components of the script. This script may be adapted to any HPC system with minor modifications. Copy it into a file on the cluster, make any necessary changes, and save it as a file, e.g. "myjob.sh". 
 
@@ -98,7 +98,7 @@ Here's a basic template job script to get started, followed by a breakdown of th
 #SBATCH --account=<allocation>
 #SBATCH --time=4:00:00
 #SBATCH --job-name=job
-#SBATCH --mail-user=your.email@nrel.gov
+#SBATCH --mail-user=your.email@nlr.gov
 #SBATCH --mail-type=BEGIN,END,FAIL
 #SBATCH --output=job_output_filename.%j.out  # %j will be replaced with the job ID
 
@@ -123,7 +123,7 @@ This denotes the start of the script, and that it is written in BASH shell langu
 #SBATCH --account=<allocation>
 #SBATCH --time=4:00:00
 #SBATCH --job-name=job
-#SBATCH --mail-user=your.email@nrel.gov
+#SBATCH --mail-user=your.email@nlr.gov
 #SBATCH --mail-type=BEGIN,END,FAIL
 #SBATCH --output=job_output_filename.%j.out  # %j will be replaced with the job ID
 ```
@@ -160,5 +160,5 @@ You may also use more advanced bash scripting as a part of your sbatch script, e
 
 More system-specific information about Slurm partitions, node counts, memory limits, and other details can be found under the appropriate [Systems](../Systems/index.md) page.
 
-You may also visit the "master" main branch of the [Github repository](https://www.github.com/NREL/HPC) for downloadable examples, or to contribute your own.
+You may also visit the "master" main branch of the [Github repository](https://github.com/NatLabRockies/HPC) for downloadable examples, or to contribute your own.
 

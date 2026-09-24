@@ -11,7 +11,7 @@ search:
 
 ## Getting Started
 
-This section provides the minimum amount of information needed to run a BerkeleyGW job on an NREL cluster.
+This section provides the minimum amount of information needed to run a BerkeleyGW job on an NLR cluster.
 
 First, see which versions of BerkeleyGW are available with `module avail` and load your preferred version with `module load`:
 
@@ -25,7 +25,7 @@ The `module avail berkeleygw` command shows that two BerkeleyGW modules are avai
 module load berkeleygw/3.0.1-gpu
 ```
 
-Next, create a job script. Below are example job scripts for the available NREL systems. Continuing the above example, we would select the "Kestrel GPU" example script.
+Next, create a job script. Below are example job scripts for the available NLR systems. Continuing the above example, we would select the "Kestrel GPU" example script.
 
 ### Sample Job Scripts
 

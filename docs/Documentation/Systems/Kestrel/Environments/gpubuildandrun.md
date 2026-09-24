@@ -12,7 +12,7 @@ tar -xzf /nopt/nrel/apps/examples/gpu/h100.tgz
 Or you can use git to do a download:
 
 ```bash
-git clone $USER@kestrel.hpc.nrel.gov:/nopt/nrel/apps/examples/gpu/0824 h100
+git clone $USER@kestrel.hpc.nlr.gov:/nopt/nrel/apps/examples/gpu/0824 h100
 ```
 
 After getting the source you can run all of the examples:
@@ -29,7 +29,7 @@ Almost all compiling/running on a linux system will at some point reference or i
 
 * Native to the Operating system
 * Built by Cray
-* Built by NREL
+* Built by NLR
 
 You will also see modules for "mixed" versions.  These are just duplicates of others and should not be loaded.
 
@@ -48,12 +48,12 @@ Here are some of the options:
 #### module load gcc-standalone/13.1.0
 * which gcc
 	* /nopt/nrel/apps/gpu_stack/compilers/03-24/.../gcc-13.1.0.../bin/gcc
-* Built by NREL
+* Built by NLR
 
 #### module load gcc-standalone/12.3.0 
 * which gcc
 	* /nopt/nrel/apps/cpu_stack/compilers/06-24/.../gcc-12.3.0.../bin/gcc
-* Built by NREL
+* Built by NLR
  
 
 
@@ -398,7 +398,7 @@ Here we build and run a single GPU code stream.cu. This code is a standard bench
 
 Steam.cu runs a standard benchmark showing the computational speed of the gpu for simple math operations.
 
-We use nvhpc-nompi which is a NREL written environment that builds cuda programs without MPI and run on each of the GPUs one at a time.
+We use nvhpc-nompi which is a NLR written environment that builds cuda programs without MPI and run on each of the GPUs one at a time.
 
 ??? example "cuda/nvidia"
 	```bash
@@ -578,7 +578,7 @@ However, if we load the modules craype and cray-mpich-abi the Intel MPI library 
 
 ## mpi/normal/nvidia/nrelopenmpi
 
-In this case we are building normal MPI programs but using a NREL built OpenMPI and a NREL installed version of NVIDIA's environment.  This particular OpenMPI was built using NVIDIA's compilers and thus is more compatible with other NVIDIA packages.  NREL's MPI versions are built with slurm support so these programs are launched with srun.
+In this case we are building normal MPI programs but using a NLR built OpenMPI and a NLR installed version of NVIDIA's environment.  This particular OpenMPI was built using NVIDIA's compilers and thus is more compatible with other NVIDIA packages.  NLR's MPI versions are built with slurm support so these programs are launched with srun.
 
 ??? example "mpi/normal/nvidia/nrelopenmpi"
 	```bash
@@ -730,7 +730,7 @@ Since PrgEnv-* is compatible with slurm we launch using srun. We do a on-node an
 
 This example is a MPI ping-pong test where the data starts and ends up on a GPU but passes through CPU memory.  See the explanation in the previous example.
 
-We are using ml openmpi/4.1.6-nvhpc and ml nvhpc-nompi/24.1.  These supply a NREL built version of OpenMPI with NVIDIA's backend compilers.
+We are using ml openmpi/4.1.6-nvhpc and ml nvhpc-nompi/24.1.  These supply an NLR built version of OpenMPI with NVIDIA's backend compilers.
 
 Here we use mpiCC. If we were compiling Fortran then ftn instead of CC.  These are wrappers that point to Cray MPI.
 
@@ -754,7 +754,7 @@ Since PrgEnv-* is compatible with slurm we launch using srun. We do a on-node an
 	
 	: << ++++ 
 	 Compile our program
-	 Here we use mpiCC which uses, in this case a NREL built  version
+	 Here we use mpiCC which uses, in this case an NLR built  version
 	 of MPI and Nvidia's backend compiler. 
 	++++
 	
@@ -880,6 +880,26 @@ We need to  MPICH_GPU_SUPPORT_ENABLED=1 to make this work.  Depending on the cod
 Here is a plot comparing the bandwidth using Staged and Cuda aware MPI.
 ![Bandwidth comparison between Staged and Aware MPI](../../../../../assets/images/bw.png)
 
+### Alternate compilation method by explicitly linking GTL  
+
+The CUDA-aware MPI example can also be compiled using PrgEnv-gnu instead of PrgEnv-nvhpc. This approach uses `nvcc` directly and manually specifies the required MPI and CUDA library paths. The key advantage of this method is explicit control over the GPU Transport Layer (GTL) library linking, which enables GPU-aware MPI functionality. The GTL library (`libmpi_gtl_cuda`) provides the necessary support for direct GPU-to-GPU communication without staging through host memory.
+
+```bash
+module load PrgEnv-gnu/8.5.0
+module load craype-x86-milan
+module load cuda/12.3
+
+# On Cray systems with PrgEnv-gnu, get MPI paths from environment
+# Use nvcc directly for CUDA compilation
+MPI_INCLUDE="-I${CRAY_MPICH_DIR}/include"
+MPI_LINK="-L${CRAY_MPICH_DIR}/lib -lmpich"
+CUDA_LINK="-L${CUDA_HOME}/lib64 -lcudart"
+# Try to find and link GTL for GPU-aware MPI support
+GTL_LINK="-L${CRAY_MPICH_ROOTDIR}/gtl/lib -lmpi_gtl_cuda"
+
+nvcc -arch=sm_90 -x cu -std=c++17 --expt-extended-lambda \
+     $MPI_INCLUDE $MPI_LINK $CUDA_LINK $GTL_LINK ping_pong_cuda_aware.cu -o pp_cuda_aware
+```
 
 ## openacc/cray
 
@@ -1032,7 +1052,7 @@ As discussed above this is a somewhat contrived example.  If does, in fact combi
 
 Here we load openmpi/4.1.6-nvhpc and  nvhpc-nompi/24.1 which together give us a Cuda aware MPI with NVIDIA's OpenACC compile capability.
 
-We launch with srun since NREL's OpenMPI supports the slurm scheduler.
+We launch with srun since NLR's OpenMPI supports the slurm scheduler.
 
 ??? example "mpi/openacc/nvidia/nrelopenmpi"
     ```bash
@@ -1283,10 +1303,10 @@ Again we run on a cube of size 512.
 1. stream.cu - https://github.com/bcumming/cuda-stream with mods for MPI
 1. nbodyacc2.c - Nvidia, part of the nvhpc distribution
 1. acc_c3.c - Nvidia, part of the nvhpc distribution
-1. helloc.c, hellof.f90 - Tim Kaiser tkaiser2@nrel.gov
-1. ping\_pong\_cuda\_aware.cu, ping\_pong\_cuda\_staged.cu [https://github.com/olcf-tutorials/MPI_ping_pong]()
+1. helloc.c, hellof.f90 - Tim Kaiser tkaiser2@nlr.gov
+1. ping\_pong\_cuda\_aware.cu, ping\_pong\_cuda\_staged.cu [https://github.com/olcf-tutorials/MPI_ping_pong](https://github.com/olcf-tutorials/MPI_ping_pong)
 1. cpu.C - Multiple sources with significant mods 
 1. cusolver\_getrf\_example.cu - https://github.com/NVIDIA/CUDALibrarySamples.git with significant mods
 1. 3d\_mgpu\_c2c\_example.cpp - https://github.com/NVIDIA/CUDALibrarySamples.git
-1. ftw3d.c - Tim Kaiser tkaiser2@nrel.gov
+1. ftw3d.c - Tim Kaiser tkaiser2@nlr.gov
 

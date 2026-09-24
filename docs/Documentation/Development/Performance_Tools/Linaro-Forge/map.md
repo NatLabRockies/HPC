@@ -20,7 +20,7 @@ Download the remote client from the [Linaroforge Website](https://www.linaroforg
 Once you have the client installed, you will need to configure it to connect to the host:
 
 1.	Open the Linaro Forge Client application
-2.	Select the configure option in the "Remote Launch" dropdown menu, click "Add" and set the hostname to "USER@HOST.hpc.nrel.gov" where USER is your username and HOST is the host you are trying to connect to. We recommend using DAV nodes if available on your system.
+2.	Select the configure option in the "Remote Launch" dropdown menu, click "Add" and set the hostname to "USER@HOST.hpc.nlr.gov" where USER is your username and HOST is the host you are trying to connect to. We recommend using DAV nodes if available on your system.
 3.	In the Remote Installation Directory field, set the path to the Linaro installation on your host. This can be found by running the command: 
 
 
@@ -39,7 +39,7 @@ Once you have the client installed, you will need to configure it to connect to 
 4.	Hit "Test Remote Launch" to test the configuration. 
 
 Once the remote client is correctly set up, start a terminal and connect to the desired HPC system.
-`$ ssh USER@$HOST.hpc.nrel.gov` 
+`$ ssh USER@$HOST.hpc.nlr.gov` 
 
 Continue to the [profiling section](map.md#profiling-a-program)
 

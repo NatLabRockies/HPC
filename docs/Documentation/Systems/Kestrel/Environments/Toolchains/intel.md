@@ -7,7 +7,7 @@ Intel's C compiler icc has been around for many years.  It is being retired and 
 
 Our example programs are hybrid MPI/Openmp so we'll show commands for building hybrid programs.  If your program is pure MPI the only change you need to make to the build process is to remove the compile line option -fopenmp.  
 
-Sample makefile, source codes, and runscript for on Kestrel can be found in our [Kestrel Repo](https://github.com/NREL/HPC/tree/master/kestrel)  under the Toolchains folder.  There are individual directories for source,makefiles, and scripts or you can download the intel.tgz file containing all required files.  The source differs slightly from what is shown here.  There is an extra file *triad.c* that gets compiled along with the Fortran and C programs discussed below.  This file does some "dummy" work to allow the programs to run for a few seconds.  
+Sample makefile, source codes, and runscript for on Kestrel can be found in our [Kestrel Repo](https://github.com/NatLabRockies/HPC/tree/master/kestrel)  under the Toolchains folder.  There are individual directories for source,makefiles, and scripts or you can download the intel.tgz file containing all required files.  The source differs slightly from what is shown here.  There is an extra file *triad.c* that gets compiled along with the Fortran and C programs discussed below.  This file does some "dummy" work to allow the programs to run for a few seconds.  
 
 
 ### module loads for compile

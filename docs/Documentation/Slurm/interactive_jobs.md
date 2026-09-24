@@ -86,7 +86,7 @@ The above salloc command will log you into one of the two nodes automatically. Y
 If your single-node job needs a GUI that uses X-windows:
 
 ```
-$ ssh -Y kestrel.hpc.nrel.gov
+$ ssh -Y kestrel.hpc.nlr.gov
 ...
 $ salloc --time=20 --account=<handle> --nodes=1 --x11
 ```
@@ -102,7 +102,7 @@ $ salloc --time=20 --account=<handle> --nodes=2
 Then from your local workstation:
 
 ```
-$ ssh -Y kestrel.hpc.nrel.gov
+$ ssh -Y kestrel.hpc.nlr.gov
 ...
 [hpc_user@kl1 ~]$ ssh -Y x1008c7s6b1n0  #(from login node to reserved compute node)
 ...
@@ -110,7 +110,7 @@ $ ssh -Y kestrel.hpc.nrel.gov
 [hpc_user@x1008c7s6b1n0 ~]$ xterm  #(or another X11 GUI application)
 ```
 
-From a Kestrel-DAV FastX remote desktop session, you can omit the `ssh -Y kestrel.hpc.nrel.gov` above since your terminal in FastX will already be connected to a DAV (kd#) login node. 
+From a Kestrel-DAV FastX remote desktop session, you can omit the `ssh -Y kestrel.hpc.nlr.gov` above since your terminal in FastX will already be connected to a DAV (kd#) login node. 
 
 
 ## Requesting Interactive GPU Nodes

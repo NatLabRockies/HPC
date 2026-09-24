@@ -21,7 +21,7 @@ Most of us coming from Eagle are probably used to running our codes with Intel M
 
 Using the cray-designed programming environments ("PrgEnvs") requires using special Cray compiler wrappers `cc` and `ftn`. These wrappers replace the MPI compiler wrappers you're used to, like `mpicc`, `mpiicc`, `mpiifort`, etc.  
 
-This guide will walk through how to utilize the Cray `PrgEnv-` environments with Cray MPICH, how to use "NREL-built" environments, and how to make sure your build is using the dependencies you expect.
+This guide will walk through how to utilize the Cray `PrgEnv-` environments with Cray MPICH, how to use "NLR-built" environments, and how to make sure your build is using the dependencies you expect.
 
 
 ### What is "PrgEnv-"?
@@ -33,7 +33,7 @@ Kestrel comes pre-packaged with several "programming environments." You can see 
 We're going to walk through building and running an MPI benchmarking code called IMB. This is a simple code that only requires a compiler and an MPI as dependencies (no scientific libraries, etc. are needed).
 
 First, log onto Kestrel with
-`ssh [your username]@kestrel.hpc.nrel.gov`
+`ssh [your username]@kestrel.hpc.nlr.gov`
 
 Let's grab an interactive node session:
 
@@ -113,7 +113,7 @@ When it completes, take a look at the out file:
 
 IMB swept from 1 MPI task to 104 MPI tasks, performing a number of MPI_ALLREDUCE calls between the MPI tasks (ranging from 0 bytes to 4194304 bytes)
 
-**Note -- very important:** when you run IMB-MPI1, you *MUST* specify IMB-MPI1 as `./IMB-MPI1` or otherwise give a direct path to this specific version of `IMB-MPI1`. When we move to the NREL-built intel environment in this tutorial, we will have an `IMB-MPI1` already loaded into the path by default, and the command `srun IMB-MPI1` will execute the default `IMB-MPI1`, not the one you just built.
+**Note -- very important:** when you run IMB-MPI1, you *MUST* specify IMB-MPI1 as `./IMB-MPI1` or otherwise give a direct path to this specific version of `IMB-MPI1`. When we move to the NLR-built intel environment in this tutorial, we will have an `IMB-MPI1` already loaded into the path by default, and the command `srun IMB-MPI1` will execute the default `IMB-MPI1`, not the one you just built.
 
 If you'd like, you can also submit this as a slurm job. Make a file `submit-IMB.in`, and paste the following contents:
 
@@ -143,7 +143,7 @@ module swap PrgEnv-cray PrgEnv-intel
 module load gcc-stdalone/12.3.0
 ```
 
-Note that where possible, we want to avoid using `module purge` because it can unset some environment variables that we generally want to keep. We unload the `cray-libsci` package for the sake of simplicity (we are working through resolving a default versioning conflict between cray-libsci and PrgEnv-intel. If you need to use cray-libsci within PrgEnv-intel, please reach out to hpc-help@nrel.gov).
+Note that where possible, we want to avoid using `module purge` because it can unset some environment variables that we generally want to keep. We unload the `cray-libsci` package for the sake of simplicity (we are working through resolving a default versioning conflict between cray-libsci and PrgEnv-intel. If you need to use cray-libsci within PrgEnv-intel, please reach out to hpc-help@nlr.gov).
 
 Again, we can test which C compiler we're using with:
 `cc --version`
@@ -214,7 +214,7 @@ Note that the only difference between this submit script and the one for Environ
 
 ### Environment 3: Intel Compilers and Intel MPI
 
-We've now seen two examples using Cray's environments, `PrgEnv-cray` and `PrgEnv-intel`. Let's build IMB using one of NREL's environments, which are separate from Cray's.
+We've now seen two examples using Cray's environments, `PrgEnv-cray` and `PrgEnv-intel`. Let's build IMB using one of NLR's environments, which are separate from Cray's.
 
 First, go back to your `IMB-tutorial` directory and re-clone the code:
 
@@ -226,7 +226,7 @@ git clone https://github.com/intel/mpi-benchmarks.git
 cd mpi-benchmarks 
 ```
 
-Then, load the NREL environment. To do this, first run:
+Then, load the NLR environment. To do this, first run:
 ```
 module unload PrgEnv-intel
 ```
@@ -248,7 +248,7 @@ module load intel-oneapi-compilers
 module load intel-oneapi-mpi
 ```
 
-Note that if we look back at `module avail intel` and look at the header above, e.g., `intel-oneapi`, we can see that these intel modules live in `/nopt/nrel/apps/cpu_stack/modules/default/compilers_mpi` -- this is different than the PrgEnvs, which can be found in `/opt/cray/pe/lmod/modulefiles/core`. This is one way to tell that you are using NREL's set of modules and not Cray's set of modules.
+Note that if we look back at `module avail intel` and look at the header above, e.g., `intel-oneapi`, we can see that these intel modules live in `/nopt/nrel/apps/cpu_stack/modules/default/compilers_mpi` -- this is different than the PrgEnvs, which can be found in `/opt/cray/pe/lmod/modulefiles/core`. This is one way to tell that you are using NLR's set of modules and not Cray's set of modules.
 
  Now, we can build IMB with the intel compilers and Intel MPI:
 
@@ -273,7 +273,7 @@ This outputs something like:
 	libmpi.so.12 => /nopt/nrel/apps/mpi/07-23/spack/opt/spack/linux-rhel8-icelake/intel-2021.6.0/intel-oneapi-mpi-2021.8.0-6pnag4mmmx6lvoczign5a4fslwvbgebb/mpi/2021.8.0/lib/release/libmpi.so.12 (0x00007f94e4138000)
 ```
 
-We see a few more libraries than we saw with the PrgEnvs. For example, we now have `libmpicxx`, `libmpifort`, and `libmpi`, instead of just `libmpi_intel` or `libmpi_cray`, as was the case with the two PrgEnvs. We can see that our three MPI library dependencies are pointing to the corresponding library's in the NREL-built environments.
+We see a few more libraries than we saw with the PrgEnvs. For example, we now have `libmpicxx`, `libmpifort`, and `libmpi`, instead of just `libmpi_intel` or `libmpi_cray`, as was the case with the two PrgEnvs. We can see that our three MPI library dependencies are pointing to the corresponding library's in the NLR-built environments.
 
 We can submit an IMB job with the following slurm script:
 
@@ -297,7 +297,7 @@ don't forget to replace `/your/path/to/IMB-tutorial/intel-intelMPI/mpi-benchmark
 
 ### Environment 4: GCC and OpenMPI
 
-Environment 4 works similarly to Environment 3, except instead of using the NREL-built intel modules, we'll use GCC and OpenMPI instead. Note that OpenMPI is not ever recommended to use multi-node, because it is unstable on cray slingshot networks. You should only use OpenMPI for single-node jobs.
+Environment 4 works similarly to Environment 3, except instead of using the NLR-built intel modules, we'll use GCC and OpenMPI instead. Note that OpenMPI is not ever recommended to use multi-node, because it is unstable on cray slingshot networks. You should only use OpenMPI for single-node jobs.
 
 
 Return to your `IMB-tutorial` directory and set up for gcc-openMPI:
@@ -370,6 +370,6 @@ don't forget to replace `/your/path/to/IMB-tutorial/gcc-openMPI/mpi-benchmarks/I
 
 With all four environments built, you could now run a few benchmarks comparing how MPI performs between them. Try this using 1 node and using 2 nodes, and compare the results for each environment. You should see that performance between all four environments is competitive on 1 node, but the two `PrgEnv` builds run a bit faster for large message sizes on 2 nodes, and the gcc/openmpi build is liable to randomly fail in the 2 node case.
 
-Keeping track of the environments on Kestrel can be tricky at first. The key point to remember is that there are two separate "realms" of environments: the Cray `PrgEnv`s, which use Cray MPICH and best practices dictate the use of the `cc`, `CC`, and `ftn` compiler wrappers for C, C++, and Fortran, respectively, and the NREL-built environments that function similar to how the environments on Eagle function, and which use the more familiar compiler wrappers like `mpiicc` (for compiling C code with intel/intel MPI) or `mpicc` (for compiling C code with gcc/Open MPI.)
+Keeping track of the environments on Kestrel can be tricky at first. The key point to remember is that there are two separate "realms" of environments: the Cray `PrgEnv`s, which use Cray MPICH and best practices dictate the use of the `cc`, `CC`, and `ftn` compiler wrappers for C, C++, and Fortran, respectively, and the NLR-built environments that function similar to how the environments on Eagle function, and which use the more familiar compiler wrappers like `mpiicc` (for compiling C code with intel/intel MPI) or `mpicc` (for compiling C code with gcc/Open MPI.)
 
 Earlier in the article, we mentioned the existence of the `cray-mpich-abi`, which allows you to compile your code with a non-Cray MPICH-based MPI, like Intel MPI, and then run the code with Cray MPICH via use of the `cray-mpich-abi` module. We will include instructions for how to use this in an updated version of the tutorial.

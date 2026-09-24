@@ -42,9 +42,14 @@ nav:
           - Documentation/Systems/Swift/running.md
           - Documentation/Systems/Swift/modules.md
           - Documentation/Systems/Swift/filesystems.md
-        - Vermilion:
-          - Documentation/Systems/Vermilion/index.md
-          - Documentation/Systems/Vermilion/running.md
+        - Gila:
+          - Documentation/Systems/Gila/index.md
+          - Running on Gila: Documentation/Systems/Gila/running.md
+          - Modules: Documentation/Systems/Gila/modules.md
+          - Filesystems: Documentation/Systems/Gila/filesystem.md
+        # - Vermilion:
+        #   - Documentation/Systems/Vermilion/index.md
+        #   - Documentation/Systems/Vermilion/running.md
       - Slurm Job Scheduling:
         - Documentation/Slurm/index.md
         - Monitor and Control Commands: Documentation/Slurm/monitor_and_control.md
@@ -66,6 +71,7 @@ nav:
           - Lmod: Documentation/Environment/lmod.md
           # - Customization:
           - Conda: Documentation/Environment/Customization/conda.md
+          - Pixi: Documentation/Environment/Customization/pixi.md
           - Building an Application: 
             - Documentation/Environment/Building_Packages/index.md
             - Documentation/Environment/Building_Packages/acquire.md
@@ -78,7 +84,8 @@ nav:
           - Documentation/Applications/index.md
           - AlphaFold:  Documentation/Applications/alphafold.md
           - ANSYS CFD:  Documentation/Applications/ansys.md
-          - AMR-Wind:  Documentation/Applications/amrwind.md
+          - CONVERGE CFD:  Documentation/Applications/converge.md
+          - ExaWind:  Documentation/Applications/exawind.md
           - Chemical Kinetics: Documentation/Applications/chemicalKinetics.md
           - COMSOL:     Documentation/Applications/comsol.md
           - FEniCS:     Documentation/Applications/fenics.md
@@ -88,6 +95,7 @@ nav:
           - IDAES Solvers : Documentation/Applications/idaes_solvers.md
           - IPOPT:      Documentation/Applications/ipopt.md
           - LAMMPS:     Documentation/Applications/lammps.md
+          - LBM CFD:     Documentation/Applications/LBMcfd.md
           - MACE:     Documentation/Applications/mace.md
           - MATLAB:
             - Documentation/Applications/Matlab/index.md
@@ -95,6 +103,7 @@ nav:
             - Interactive Mode: Documentation/Applications/Matlab/interactive.md
             - Parallel Computing Toolbox: Documentation/Applications/Matlab/parallel.md
             - Versions and Licenses: Documentation/Applications/Matlab/versions.md
+          - NAMD:       Documentation/Applications/namd.md
           - OpenFAST/FAST.Farm: Documentation/Applications/openfast.md
           - OpenFOAM: Documentation/Applications/openfoam.md
           - PLEXOS:
@@ -102,6 +111,7 @@ nav:
             - Setting Up: Documentation/Applications/Plexos/setup_plexos.md
             - Running Models: Documentation/Applications/Plexos/run_plexos.md
           - Q-Chem:     Documentation/Applications/qchem.md
+          - Quantum Computing: Documentation/Applications/quantum_computing.md
           - STAR-CCM+:  Documentation/Applications/starccm.md
           - VASP:       Documentation/Applications/vasp.md
           - WRF:        Documentation/Applications/wrf.md
@@ -160,6 +170,8 @@ nav:
                - Performance Reports: Documentation/Development/Performance_Tools/Linaro-Forge/performance_rep.md
              - oneAPI Tools:
                - Documentation/Development/Performance_Tools/Intel/index.md
+             - WattAMeter:
+               - Documentation/Development/Performance_Tools/WattAMeter/index.md
               #  - Trace Analyzer: Documentation/Development/Performance_Tools/Intel/trace.md
               #  - VTune : Documentation/Development/Performance_Tools/Intel/vtune.md
             #  - CrayPat: Documentation/Development/Performance_Tools/craypat.md
@@ -168,7 +180,7 @@ nav:
              - DDT: Documentation/Development/Debug_Tools/ddt.md
              - GDB: Documentation/Development/Debug_Tools/gdb.md
          - Visual Studio Code:
-            - Documentation/Development/VSCode/vscode.md
+            - Documentation/Development/VSCode/index.md
          - Containers:
             - Documentation/Development/Containers/index.md
             - Documentation/Development/Containers/registries.md
@@ -184,8 +196,10 @@ nav:
            - Reinforcement Learning: Documentation/Machine_Learning/Reinforcement_Learning/index.md
            - TensorBoard: Documentation/Machine_Learning/TensorBoard/index.md
            - Containerized TensorFlow: Documentation/Machine_Learning/Containerized_TensorFlow/index.md
+           - LLM: Documentation/Machine_Learning/LLM/index.md
   - Kestrel RHEL9 Upgrade:
       - RHEL9_upgrade/index.md 
+      - RHEL9_upgrade/quick_start.md
       - RHEL9_upgrade/access.md 
       - Modules organization: 
           - RHEL9_upgrade/modules/index.md 
@@ -224,6 +238,6 @@ extra_css:
 extra_javascript:
   - javascripts/mathjax.js
   - https://unpkg.com/mathjax@3/es5/tex-mml-chtml.js
-site_name: NREL HPC 
-repo_url: https://github.com/NREL/HPC/tree/gh-pages
-repo_name: NREL/HPC
+site_name: NLR HPC 
+repo_url: https://github.com/NatLabRockies/HPC/tree/gh-pages
+repo_name: NLR/HPC

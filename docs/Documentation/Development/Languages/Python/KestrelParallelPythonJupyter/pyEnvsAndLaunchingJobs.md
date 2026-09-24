@@ -16,7 +16,7 @@ For a general introduction to using Jupyter notebooks on Kestrel, please refer t
 
 Login to Kestrel
 ```
-$ ssh -X <username>@kestrel-gpu.hpc.nrel.gov
+$ ssh -X <username>@kestrel-gpu.hpc.nlr.gov
 ```
 
 Navigate to your /projects directory
@@ -27,6 +27,7 @@ $ cd /projects/<projectname>/<username>/
 Load the Nvidia HPC programming environment
 ```
 $ module load PrgEnv-nvhpc/8.5.0
+$ module load nccl/2.21.5_cuda124
 ```
 
 Check available conda modules and load one
@@ -36,8 +37,13 @@ $ module load anaconda3/2024.06.1
 ```
 
 Create a new environment named ‘myEnv’ in the current directory
+
+!!! Warning
+    Conda environments should be *always* be installed outside of your home directory for storage and performance reasons. **This is especially important for frameworks like Dask**, whose parallel processes can particularly strain the `/home` filesystem. Please refer to our dedicated [conda documentation](../../../../Environment/Customization/conda.md#creating-environments-by-location) for more information on how to setup your conda environments to redirect the installation outside of `/home` by default.
+
 ```
 $ conda create --prefix ./myEnv
+$ conda install python==3.12.4
 ```
 
 Activate your new environment
@@ -60,6 +66,37 @@ $ ln -s /scratch/<username>/ scratch
 The above command will create a symbolic link to the `scratch` folder, which can be navigated to from JupyterHub to access files in your scratch directory.
 
 ## Install packages
+
+qiskit-aer-gpu : ["Aer is a high performance simulator for quantum circuits written in Qiskit, that includes realistic noise models."](https://pypi.org/project/qiskit-aer-gpu/)
+```
+pip install qiskit-aer-gpu
+pip install pylatexenc
+```
+
+??? note "Experimental: Pre-built qiskit/aer-gpu module"
+
+    A pre-built `qiskit/aer-gpu` module is available on Kestrel as an experimental alternative to the manual pip install above. It provides qiskit-aer-gpu 0.15.1 with qiskit 2.2.3, cuQuantum 26.3.0, CUDA 12.4, and Python 3.11. It is for **GPU nodes only**.
+
+    Load it with:
+    ```
+    module load qiskit/aer-gpu
+    ```
+
+    which will print usage instructions:
+    ```
+    qiskit/aer-gpu loaded (qiskit-aer-gpu 0.15.1 | qiskit 2.2.3 | CUDA 12.4 | H100/sm_90 only)
+
+    Use directly:
+      python3 your_qiskit_script.py
+
+    To add pip packages on top:
+      python3 -m venv /scratch/$USER/qiskit_env --system-site-packages
+      source /scratch/$USER/qiskit_env/bin/activate
+      pip install <your-packages>
+    For conda packages too: see 'module help qiskit/aer-gpu'
+    ```
+
+    The module also inherits PyTorch 2.10.0, mpi4py, NCCL 2.23.4, and all other packages from the `pytorch/2.10.0` module.
 
 CuPy : [“An open-source array library for GPU-accelerated computing with Python”](https://cupy.dev/)
 ```
@@ -94,6 +131,14 @@ $ conda install ipycytoscape
 $ conda install matplotlib
 ```
 
+??? example "Quickstart: Install all of the above packages from our pre-built environment file."
+    ```
+    $ wget https://raw.githubusercontent.com/NatLabRockies/HPC/gh-pages/docs/Documentation/Development/Languages/Python/KestrelParallelPythonJupyter/metadata/myEnv.yml
+    $ conda env create --prefix=/projects/<projectname>/<username>/myEnv  --file=myEnv.yml
+    $ conda activate /projects/<projectname>/<username>/myEnv
+    $ python -m ipykernel install --user --name=myEnvJupyter 
+    ```
+
 ## Launching jobs
 
 A general guide to running jobs on Kestrel can be found in the [official documentation](../../../../Systems/Kestrel/Running/index.md). Below are example procedures suitable for running jobs involving specific python modules, depending on their parallelization capability.
@@ -109,11 +154,11 @@ The text in the red box shows an example of the output parameter `<nodename>` an
 
 <!-- ![<alphabet soup>](metadata/alphabetSoup.png "<alphabet soup>") -->
 
-### GPU compatible modules: E.g. CuPy, numba-cuda etc.
+### GPU compatible modules: E.g. Qiskit, CuPy, numba-cuda etc.
 
 1. Kestrel: Launch an interactive job
     ```
-    $ salloc -A <projectname> -t 00:15:00 --partition=debug --gres=gpu:1
+    $ salloc -A <projectname> -t 01:00:00 --nodes=1 --ntasks-per-node=32 --mem=80G --gres=gpu:1 --partition=debug
     $ module load anaconda3/2024.06.1
     $ conda activate ./myEnv
     $ jupyter-lab --no-browser --ip=$(hostname -s)
@@ -122,7 +167,7 @@ The text in the red box shows an example of the output parameter `<nodename>` an
 
 2. Local terminal: Establish a SSH tunnel
     ```
-    $ ssh -N -L 8888:<nodename>:8888 <username>@kestrel-gpu.hpc.nrel.gov
+    $ ssh -N -L 8888:<nodename>:8888 <username>@kestrel-gpu.hpc.nlr.gov
     ```
 
 3. Web browser
@@ -132,9 +177,13 @@ The text in the red box shows an example of the output parameter `<nodename>` an
 
     File > New > Notebook > myEnvJupyter
 
+[Jupyter test notebook for Qiskit](./exampleNotebooks/qcBenchmark.ipynb)
+
 [Jupyter test notebook for CuPy](./exampleNotebooks/cupyOnly.ipynb)
 
 [Jupyter test notebook for numba-cuda](./exampleNotebooks/numbaCUDA.ipynb)
+
+![<qcScaling>](metadata/qcScaling.png "qcScaling"){width=800}
 
 ### Multithread capable modules: E.g. Dask
 
@@ -148,7 +197,7 @@ The text in the red box shows an example of the output parameter `<nodename>` an
 
 2. Local terminal: Establish a SSH tunnel
     ```
-    $ ssh -N -L 8888:<nodename>:8888 <username>@kestrel.hpc.nrel.gov
+    $ ssh -N -L 8888:<nodename>:8888 <username>@kestrel.hpc.nlr.gov
     ```
 
 3. Web browser
@@ -172,7 +221,7 @@ The text in the red box shows an example of the output parameter `<nodename>` an
 
 2. Local terminal: Establish a SSH tunnel
     ```
-    $ ssh -N -L 8888:<nodename>:8888 <username>@kestrel.hpc.nrel.gov
+    $ ssh -N -L 8888:<nodename>:8888 <username>@kestrel.hpc.nlr.gov
     ```
 
 3. Web browser
@@ -196,7 +245,7 @@ The text in the red box shows an example of the output parameter `<nodename>` an
 
 2. Local terminal: Establish a SSH tunnel
     ```
-    $ ssh -N -L 8888:<nodename>:8888 <username>@kestrel-gpu.hpc.nrel.gov
+    $ ssh -N -L 8888:<nodename>:8888 <username>@kestrel-gpu.hpc.nlr.gov
     ```
 
 3. Web browser

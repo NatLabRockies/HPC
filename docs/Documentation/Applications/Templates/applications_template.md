@@ -11,7 +11,7 @@ search:
 
 ## Getting Started
 
-This section provides the minimum amount of information necessary to successfully run a basic job on an NREL Cluster.
+This section provides the minimum amount of information necessary to successfully run a basic job on an NLR Cluster.
 This information should be as complete and self-contained as possible.
 
 Instructions should be step-by-step and include copy-and-pastable commands where applicable.

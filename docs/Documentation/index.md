@@ -6,7 +6,7 @@ description: Documentation Home
 
 ---
 
-Welcome to the central source of user-contributed documentation for NREL's HPC systems. This repository is open to both NREL and non-NREL HPC users. You can browse the documentation here, or start contributing by [visiting the repository in Git](https://github.com/NREL/HPC) for more information.
+Welcome to the central source of user-contributed documentation for NLR's HPC systems. This repository is open to both NLR and non-NLR HPC users. You can browse the documentation here, or start contributing by [visiting the repository in Git](https://github.com/NatLabRockies/HPC) for more information.
 
 ## Where to Begin
 
@@ -17,8 +17,8 @@ Please use the navigation bar on the left to explore the available documentation
 * [Jupyterhub](./Development/Jupyter/index.md) to get started with Jupyter Notebooks 
 * [Conda environment](./Environment/Customization/conda.md) howto and HPC-specific information
 
-### Other NREL Documentation Resources
+### Other NLR Documentation Resources
 
-* The [NREL HPC Website](https://hpc.nrel.gov) is the home of Advanced Computing at NREL
-* Our [Github Repository](https://github.com/NREL/HPC) for specific application examples, scripts, workshop content, the contributor guide, and more. 
-* The [gh-pages branch](https://github.com/NREL/HPC/tree/gh-pages) (this site) is also open for contribution.
+* The [NLR HPC Website](https://www.nlr.gov/hpc/) is the home of Advanced Computing at NLR
+* Our [Github Repository](https://github.com/NatLabRockies/HPC) for specific application examples, scripts, workshop content, the contributor guide, and more. 
+* The [gh-pages branch](https://github.com/NatLabRockies/HPC/tree/gh-pages) (this site) is also open for contribution.

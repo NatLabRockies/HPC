@@ -2,6 +2,15 @@
 
 *FICO Xpress Optimizer provides optimization algorithms and technologies to solve linear, mixed integer and non-linear problems*
 
+
+!!! important
+    While Xpress Solver is available as a module on Kestrel for use by all NLR users, you MUST be a part of the `xpressmp` group on Kestrel. If you are new or have not used Xpress in a while, you can:
+
+    1. Check whether you are a part of this group by running the `groups` command from your terminal, or
+    2. Load the `xpressmp` module and run an example
+
+    If you are not a part of the `xpressmp` linux group and/or are unable to run an Xpress instance, please submit a ticket to [HPC-Help@nlr.gov](mailto:HPC-Help@nlr.gov) requesting access to Xpress on HPC systems and provide a business justification that describes how you intend to use Xpress in your workflow. **Please indicate whether you intend to use Xpress for federally funded projects or otherwise**. Our HPC license **ONLY SUPPORTS FEDERALLY FUNDED PROJECTS**. 
+
 For documentation, forums, and FAQs, see the [FICO
 website](https://www.fico.com/fico-xpress-optimization/docs/latest/overview.html).
 
@@ -18,24 +27,17 @@ Xpress solver cannot be used to solve nonlinear programs.
 
 ## Available Modules
 
-| Kestrel (CPU)   |
+| Kestrel (CPU & GPU nodes)   |
 |:---------------:|
 | xpressmp/9.0.2 |
 | xpressmp/9.2.2 |
 | xpressmp/9.2.5 |
+| xpressmp/9.7.0 |
 
 !!! info
-    Xpress is available as a module on Kestrel. Additionally, NREL has a site-wide license for Xpress to run locally on an NREL-issued computer. Please see instructions [here](https://github.nrel.gov/MSOC/fico-xpress).
+    Xpress is available as a module on Kestrel. Additionally, NLR has a site-wide license for Xpress to run locally on an NLR-issued computer. Please see instructions [here](https://github.nrel.gov/MSOC/fico-xpress).
 
 ## Running Xpress Solver on Kestrel
-
-!!! important
-    While Xpress Solver is available as a module on Kestrel for use by all NREL-users, you MUST be a part of the `xpressmp` group on Kestrel. If you are new or have not used Xpress in a while, you can:
-
-    1. Check whether you are a part of this group by running the `groups` command from your terminal, or
-    2. Load the `xpressmp` module and run an example
-
-    If you are not a part of the `xpressmp` linux group and/or are unable to run an Xpress instance, please submit a ticket to [HPC-Help@nrel.gov](mailto:HPC-Help@nrel.gov) requesting access to Xpress on HPC systems and provide a business justification that describes how you intend to use Xpress in your workflow.
 
 Xpress solvers can be used by simply loading the module
 

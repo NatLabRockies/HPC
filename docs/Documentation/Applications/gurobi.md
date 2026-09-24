@@ -2,8 +2,17 @@
 
 *Gurobi Optimizer is a suite of solvers for mathematical programming.*
 
-For documentation, forums, and FAQs, see the [Gurobi
-website](https://www.gurobi.com/products/gurobi-optimizer/).
+!!! warning "License Request Required"
+    Starting soon, Gurobi jobs will require explicit license requests in your job submission. 
+    If you see the following warning message:
+    
+    ```
+    WARNING: SLURM_JOB_LICENSES is not set.
+    Please request a license with your job submission using '-L gurobi@slurmdb:numberoflicenses'.
+    Gurobi will fail in the future if you do not add the above to your job submission.
+    ```
+    
+    You must add the license request to your job submission using the `-L` flag. See the sbatch example [below](#requesting-gurobi-licenses-in-job-submissions).
 
 Gurobi includes a linear programming solver (LP), quadratic programming solver
 (QP), quadratically constrained programming solver (QCP), mixed-integer linear
@@ -18,6 +27,21 @@ onto the appropriate cluster, load the default Gurobi module using
 "`gurobi.sh`". Gurobi can also be interfaced with C/C++/Java/MATLAB/R codes by 
 linking with the Gurobi libraries.
 
+For details on Gurobi programming, see the [Gurobi Resource
+Center](https://www.gurobi.com/resource-center/) and [Gurobi
+documentation](https://www.gurobi.com/documentation/).
+
+## Available Modules
+
+| Kestrel (CPU & GPU nodes)        | Swift           |
+|:---------------:|:---------------:|
+| gurobi/12.0.3   ||
+| gurobi/12.0.0   ||
+| gurobi/11.0.2   ||
+| gurobi/10.0.2   ||
+| gurobi/10.0.1   ||
+| gurobi/9.5.1    | gurobi/9.5.1    |
+
 !!! tip
     You can check how many Gurobi licenses are available for use by running the following command
     after loading the Gurobi module
@@ -25,19 +49,28 @@ linking with the Gurobi libraries.
     gurobi_cl -t
     ```
 
-For details on Gurobi programming, see the [Gurobi Resource
-Center](https://www.gurobi.com/resource-center/) and [Gurobi
-documentation](https://www.gurobi.com/documentation/).
+## Requesting Gurobi Licenses in Job Submissions
 
-## Available Modules
+When submitting jobs that use Gurobi, you need to request the appropriate number of licenses. Here's an example sbatch script:
 
-| Kestrel         | Swift           |
-|:---------------:|:---------------:|
-| gurobi/12.0.0   ||
-| gurobi/11.0.2   ||
-| gurobi/10.0.2   ||
-| gurobi/10.0.1   ||
-| gurobi/9.5.1    | gurobi/9.5.1    |
+```bash
+#!/bin/bash
+#SBATCH --job-name=gurobi_job
+#SBATCH --time=01:00:00
+#SBATCH --ntasks=1
+#SBATCH --cpus-per-task=4
+#SBATCH --mem=8GB
+#SBATCH -L gurobi@slurmdb:1
+
+module load gurobi
+
+# Your Gurobi commands here
+gurobi.sh your_model.lp
+```
+
+The `-L gurobi@slurmdb:1` flag requests 1 Gurobi license token. When this option is included, Slurm checks license availability before allocating compute resources. If no license is available, the job remains in the Licensing state until a token becomes available. Once a license is available, Slurm automatically allocates the requested compute resources and starts the job.
+
+Without the -L option, Slurm allocates compute resources immediately without checking license availability. If the Gurobi license cannot be obtained at runtime, the job will fail. Adjust the number based on your needs, keeping in mind that there are 24 license tokens available for concurrent use.
 
 
 ## Gurobi and MATLAB
@@ -51,10 +84,10 @@ MATLAB prompt or your script:
 >> path(path,grb)
 ```
 
-## Gurobi and General Algebraic Modeling System
+## Gurobi and General Algebraic Modeling System (GAMS)
 
 The General Algebraic Modeling System (GAMS) is a high-level modeling system for
-mathematical programming and optimization. The GAMS package installed at NREL
+mathematical programming and optimization. The GAMS package installed at NLR
 includes Gurobi solvers. For more information, see [using GAMS](gams.md).
 
 Note that the Gurobi license for this interface is separate from the standalone

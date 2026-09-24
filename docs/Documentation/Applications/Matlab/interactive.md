@@ -1,12 +1,12 @@
 # Running MATLAB Software Interactively
 
-*Learn how to run MATLAB software interactively on NREL HPC systems.*
+*Learn how to run MATLAB software interactively on NLR HPC systems.*
 
 To run MATLAB interactively there are two ways to proceed: you can choose to start an
 interactive job and use a basic MATLAB terminal (no GUI), or you can use the GUI
 with a [FastX](../../Viz_Analytics/virtualgl_fastx.md) session on a DAV
-node.  For information on how to connect to NREL HPC systems, see [System
-Connection](https://www.nrel.gov/hpc/system-connection.html).
+node.  For information on how to connect to NLR HPC systems, see [System
+Connection](https://www.nlr.gov/hpc/system-connection.html).
 
 ## Running MATLAB via an Interactive Job
 
@@ -22,7 +22,7 @@ When your job starts, you will have a shell on a compute node.
 
     1. To submit an interactive job you must include the `--account=<handle>` flag
        and include a valid project allocation handle. For more information, see
-       [User Accounts](https://www.nrel.gov/hpc/user-accounts.html).
+       [User Accounts](https://www.nlr.gov/hpc/user-accounts.html).
     2. For more information on interactive jobs, see [Running Interactive
        Jobs](../../Slurm/interactive_jobs.md).
 

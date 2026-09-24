@@ -1,9 +1,9 @@
 # Running Gaussian16 Software Jobs
 
-*Learn about the Gaussian16 electronic structure program and how to run Gaussian16 jobs at NREL.*
+*Learn about the Gaussian16 electronic structure program and how to run Gaussian16 jobs at NLR.*
 
 !!! tip "Important"
-	 To run Gaussian16, users must be a member of the Gaussian user group. To be added to the group, contact [HPC-Help](mailto:hpc-help@nrel.gov). In your email message, include your username and copy the following text agreeing not to compete with Gaussian, Inc.:
+	 To run Gaussian16, users must be a member of the Gaussian user group. To be added to the group, contact [HPC-Help](mailto:hpc-help@nlr.gov). In your email message, include your username and copy the following text agreeing not to compete with Gaussian, Inc.:
 
 	```
 	I am not actively developing applications for a competing software program, or for a project in 
@@ -16,7 +16,7 @@
 
 ## Configuration and Default Settings
 
-NREL currently has Gaussian16 Revision C.01 installed, and the user manual can be found at the [Gaussian website](https://gaussian.com/man).  Gaussian currently doesn't have support for H100 GPUs.
+NLR currently has Gaussian16 Revision C.01 installed, and the user manual can be found at the [Gaussian website](https://gaussian.com/man).  Gaussian currently doesn't have support for H100 GPUs.
 
 Previous Gaussian 09 users sometimes may feel Gaussian 16 runs slower than Gaussian 09. That's because Gaussian G16 has changed the default accuracy into `Int=Acc2E=12 Grid=Ultrafine`, which means that individual SCF iterations will take longer with G16 than with G09. 
 
@@ -59,7 +59,7 @@ Gaussian may be configured to run on one or more physical nodes, with or without
 	
 	export GAUSS_SCRDIR=$SCRATCH
 	
-	# Run gaussian NREL script (performs much of the Gaussian setup)
+	# Run gaussian NLR script (performs much of the Gaussian setup)
 	g16_nrel
 	
 	#Setup Linda parameters
@@ -82,4 +82,6 @@ The user scratch space is set to a directory in the default scratch space, with 
 To submit a job with the example script, named g16.slurm, one would type:
 
 `sbatch g16.slurm`
+
+For large size jobs, which may have extensive I/O for reading and writing scratch files, using nodes with a local disk would improve job performance. To request standard CPU nodes with local disk, use the `nvme` partition by adding `--partition=nvme` to your job script.  Note that all of the Bigmem nodes have a local disk.
 

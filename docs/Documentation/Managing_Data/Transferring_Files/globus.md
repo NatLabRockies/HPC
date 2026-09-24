@@ -1,16 +1,12 @@
---- layout: default 
+--- layout: default
 title: Globus 
 grand_parent: Data Movement 
 parent: Transferring Data ---
 # Transferring Files with Globus
 
-*For large data transfers between NREL’s high-performance computing (HPC)
+*For large data transfers between NLR’s high-performance computing (HPC)
 systems and another data center, or even a laptop off-site, we recommend using
 Globus.*
-
-A supporting set of instructions for requesting a Globus account and data
-transfer using Globus is available on the [HPC NREL
-Website](https://www.nrel.gov/hpc/globus-file-transfer.html)
 
 ## What Is Globus?
 
@@ -27,16 +23,37 @@ providing automatic fault recovery and notification of completion or problems.
 
 ## Get a Globus Account
 
-To get a Globus account, sign up on the [Globus account website](https://www.globusid.org/create).
+### Internal Users
 
-## Globus NREL Endpoints
+Globus has linked institutional identities with NLR, so if you are an NLR employee, you should set up your Globus account using your NLR account.
 
-The current NREL Globus Endpoints are:
+1. Navigate to the [Globus Login Page](https://app.globus.org) (sign out if you are logged in), and in the dropdown menu under "Use your organizational login", type "NLR" and select the "National Laboratory of the Rockies" option.
+![The Globus login page. In the "Use your organizational login" dropdown menu, "National Laboratory of the Rockies" is selected.](../../../assets/images/Globus/1GlobusSelectNLR.png)
+2. Log in using your NLR account and click "Accept" for Globus SSO.
+![The Microsoft's "Permissions requested" menu, with the requestor being Globus SSO. The menu notes that the Globus SSO is not published by Microsoft. The two options at the bottom of the menu are "Cancel" and "Accept".](../../../assets/images/Globus/2GlobusVerify.png){ style="width:50%" }
+3. Once you have successfully logged in, you will see two options: "Continue" and "Link to an existing account". If you have previously used Globus (via another institution or GlobusID), please select "Link to an existing account" and move to step 4. Otherwise, select "Continue" and you are done.
+![The Globus successful login page. Text: "This is the first time you are accessing Globus with your National Laboratory of the Rockies login. If you have previously used Globus with another login you can link it to your National Laboratory of the Rockies login. When linked, both logins will be able to access the same Globus account
+permissions and history." The two options are "Continue" and "Link to an existing account". An additional hyperlink has the text "Why should I link accounts?"](../../../assets/images/Globus/3GlobusNewInstitutionLogin.png)
+4. Now, select the other institution from the dropdown menu and log in using the credentials for that Globus account. Then, your accounts will be linked along with your identities and bookmarks.
+![The Globus login page. Text: "In order to link example@nlr.gov to your Globus account, please log into your primary identity." In the "Log into your primary identity." dropdown menu, "Globus ID" is selected.](../../../assets/images/Globus/4GlobusIDLinking.png)
 
-- **nrel#eglobus** - This endpoint allows access to any files on Eagle's Lustre file system: /scratch and /projects. 
+### External Users
+
+If this is your first time using Globus, get a Globus account by signing up on the [Globus ID account website](https://www.globusid.org/create).
+
+If you previously had an account, you may use that account and follow the steps below to connect to the NLR Globus endpoints.
+
+## Globus NLR Endpoints
+
+The current NLR Globus Endpoints are:
+
 - **nrel#kglobus_projects** - This endpoint will give you access to any files you have on the Kestrel Project File System: /datasets, /projects, and /shared-projects.
 - **nrel#kglobus_scratch** - This endpoint will give you access to any files you have on the Kestrel Scratch File System: /scratch.
-- **nrel#vast** - This endpoint will give you access to any files you have on our VAST file system: /campaign, /datasets (Eagle), /MSS and /shared-projects (Eagle).
+- **nrel#vast** - This endpoint will give you access to files you have on our VAST file system: /campaign and /bscl. It is available for other shares on VAST upon request.  
+
+!!! warning
+    Note that if you already have a Globus account with a different institution, such as a university, be sure to select an "NLR OIDC" identity as
+    the "Owner Identity" when connecting to an NLR endpoint. Otherwise, you will encounter permission errors. 
 
 ## Globus Personal Endpoints
 
@@ -79,8 +96,8 @@ Online](https://www.globus.org) website or via the [CLI](https://docs.globus.org
 ??? abstract "Globus Online" 
     Globus Online is a hosted service that allows you to use a browser to transfer
     files between trusted sites called "endpoints".  To use it, the Globus software
-    must be installed on the systems at both ends of the data transfer. The NREL
-    endpoint is nrel#eglobus.
+    must be installed on the systems at both ends of the data transfer. The NLR
+    endpoints are listed above.
 
     1. Click Login on the [Globus web site](https://www.globus.org/). On the login
     page select "Globus ID" as the login method and click continue.  Use the Globus
@@ -88,10 +105,10 @@ Online](https://www.globus.org) website or via the [CLI](https://docs.globus.org
     2. The ribbon on the left side of the screen acts as a Navigator, select File Manager
     if not already selected.  In addition, select the 'middle' option for Panels in the upper
     right, which will display space for two Globus endpoints. 
-    3. The collection tab will be searchable (e.g. nrel), or **nrel#eglobus** can be 
+    3. The collection tab will be searchable (e.g. nrel), or one of the NLR endpoints (e.g. **nrel#kglobus_projects**) can be 
     entered in the left collection tab.  In the box asking for authentication, **enter 
-    your NREL HPC username and password**.  Do **not** use your globus.org username 
-    or password when authenticating with the **nrel#eglobus** endpoint.
+    your NLR HPC username and password**.  Do **not** use your globus.org username 
+    or password when authenticating to the NLR endpoints.
     4. Select another Globus endpoint, such as a personal endpoint or 
     an endpoint at another institution that you have access to.
     To use your personal endpoint, first start the Globus Connect Personal application. 

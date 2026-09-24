@@ -1,8 +1,8 @@
 The Vienna Ab initio Simulation Package (VASP) is an application for atomic scale materials modelling from first principles. VASP computes an approximate solution to the many-body Schrödinger equation, either within density functional theory or within the Hartree-Fock approximation using pseudopotentials and plane wave basis sets. VASP can carry out a range of electronic structure and quantum-mechanical molecular dynamics calculations and has many features including hybrid functionals, Green's functions methods (GW quasiparticles, and ACFDT-RPA) and many-body perturbation theory (2nd-order Møller-Plesset). For a full list of capabilities, please see the [About VASP](https://www.vasp.at/info/about/) page and for further details, documentation, forums, and FAQs, visit the [VASP website](https://www.vasp.at/).
 
-## Accessing VASP on NREL's HPC Clusters
+## Accessing VASP on NLR's HPC Clusters
 !!! tip "Important"
-	The VASP license requires users to be a member of a "workgroup" defined by the University of Vienna or Materials Design. If you are receiving "Permission denied" errors when trying to use VASP, you must be made part of the "vasp" Linux group first. To join, please contact [HPC Help](mailto:hpc-help@nrel.gov) with the following information:
+	The VASP license requires users to be a member of a "workgroup" defined by the University of Vienna or Materials Design. If you are receiving "Permission denied" errors when trying to use VASP, you must be made part of the "vasp" Linux group first. To join, please contact [HPC Help](mailto:hpc-help@nlr.gov) with the following information:
 
 	```
 	- Your name
@@ -28,13 +28,13 @@ Each VASP module provides three executables where the correct one should be chos
 
 3. `vasp_gam` is for Gamma-point-only calculations
 
-NREL also offers build and module support for additional functionalities such as [transition state theory tools from University of Texas-Austin](http://theory.cm.utexas.edu/vtsttools/), [implicit solvation models from the University of Florida](http://vaspsol.mse.ufl.edu/), and [BEEF-vdw functionals](https://github.com/vossjo/libbeef). Please contact [HPC-Help](mailto:hpc-help@nrel.gov) if a functionality you need is not present in one of our builds.
+NLR also offers build and module support for additional functionalities such as [transition state theory tools from University of Texas-Austin](http://theory.cm.utexas.edu/vtsttools/), [implicit solvation models from the University of Florida](http://vaspsol.mse.ufl.edu/), and [BEEF-vdw functionals](https://github.com/vossjo/libbeef). Please contact [HPC-Help](mailto:hpc-help@nlr.gov) if a functionality you need is not present in one of our builds.
 
 !!! warning "Attention"
 	If you would like to build your own VASP on Kestrel, please read our section [Building VASP on Kestrel](vasp.md#building-vasp-on-kestrel) carefully before compiling on Kestrel's cray architecture. 
 
 ## Supported Versions
-NREL offers modules for VASP 5 and VASP 6 on CPUs as well as GPUs on certain systems. See table below for current availability, as well as system specific documentation for more details on running different builds.
+NLR offers modules for VASP 5 and VASP 6 on CPUs as well as GPUs on certain systems. See table below for current availability, as well as system specific documentation for more details on running different builds.
 
 |             |    Kestrel    |     Swift     |   Vermilion   |
 | ----------- | ------------- | ------------- | ------------- |
@@ -45,6 +45,9 @@ NREL offers modules for VASP 5 and VASP 6 on CPUs as well as GPUs on certain sys
 
 ## VASP on Kestrel
 
+??? note "Performance Note" 
+    As part of the Computational Sciences Tutorial Series, NLR's Computational Sciences Center hosted "Fast and Efficient VASP: Accelerating and Optimizing    Workflows on CPUs and GPUs." The tutorial provides performance recommendations for Kestrel, including guidance on when it is more efficient to run calculations on GPUs (for example, hybrid calculations or larger GGA calculations with more than ~200 atoms). Please see this link to access [a copy of our presentation](https://nrel.sharepoint.com/:b:/r/sites/ComputationalSciencesTutorials/Shared%20Documents/HPC%20User%20Community/Slides/6%20-%20Applications%20of%20HPC/Fast,%20Efficient%20VASP%20-%20Accelerating%20and%20Optimizing%20Workflows%20on%20GPUs%20and%20CPUs.pdf?csf=1&web=1&e=69hKjB).
+
 ### Running Using Modules
 
 #### CPU
@@ -53,9 +56,10 @@ There are several modules for CPU builds of VASP 5 and VASP 6.
 
 ```
 CPU $ module avail vasp
-------------- /nopt/nrel/apps/cpu_stack/modules/default/application -------------
-   vasp/5.4.4+tpc    vasp/6.3.2_openMP+tpc    vasp/6.4.2_openMP+tpc
-   vasp/5.4.4        vasp/6.3.2_openMP        vasp/6.4.2_openMP     (D)
+---------------- /nopt/nrel/apps/cpu_stack/modules/default/application -----------------
+   vasp/5.4.4+tpc           vasp/6.3.2_openMP        vasp/6.5.1_openMP+tpc
+   vasp/5.4.4               vasp/6.4.2_openMP+tpc    vasp/6.5.1_openMP     (D)
+   vasp/6.3.2_openMP+tpc    vasp/6.4.2_openMP
 ```
 
  Notes:
@@ -83,6 +87,13 @@ CPU $ module avail vasp
     #SBATCH --job-name=<your-job-name>
 
     module load vasp/<version with openMP>
+
+    # Recommended settings to improve stability of OpenMP runs
+    export OMP_NUM_THREADS=8    # Match this to the number of OpenMP threads (cpus-per-task above)
+    export OMP_PROC_BIND=spread
+    export OMP_PLACES=cores
+    export OMP_STACKSIZE=1G
+    ulimit -s unlimited
 
     srun vasp_std &> out
     ```
@@ -130,7 +141,7 @@ CPU $ module avail vasp
 
 ??? note "Performance Note"
 
-    Internal testing at NREL has indicated that standard VASP DFT calculations from sizes 50-200 atoms run most efficiently on a quarter to a half node. The graph below shows the performance of a 192-atom VASP DFT job using partial nodes on the shared partition. Up to 1/2 a node, near perfect scaling is observed, but using the full node gives a speedup of only 1.5 relative to using 1/2 a node. So, the calculation will cost 50% more AUs if run on a single node compared to a half node. For a 48-atom surface Pt calculation, using the full node gives no speedup relative to using 1/2 a node, so the calculation will cost 100% more AUs if run on a single node compared to half a node. 
+    Internal testing at NLR has indicated that standard VASP DFT calculations from sizes 50-200 atoms run most efficiently on a quarter to a half node. The graph below shows the performance of a 192-atom VASP DFT job using partial nodes on the shared partition. Up to 1/2 a node, near perfect scaling is observed, but using the full node gives a speedup of only 1.5 relative to using 1/2 a node. So, the calculation will cost 50% more AUs if run on a single node compared to a half node. For a 48-atom surface Pt calculation, using the full node gives no speedup relative to using 1/2 a node, so the calculation will cost 100% more AUs if run on a single node compared to half a node. 
 
     ![VASP-sharednodescaling](../../../assets/images/VASP/sharedscaling-192.png)
 
@@ -138,15 +149,16 @@ CPU $ module avail vasp
 
 !!! tip "Important"
 	Submit GPU jobs from a [GPU login node](../Systems/Kestrel/index.md).
-    $ ssh <username>@kestrel-gpu.hpc.nrel.gov
+    `$ ssh <username>@kestrel-gpu.hpc.nlr.gov`
 
 There are several modules for GPU builds of VASP 5 and VASP 6: 
 
 ```
 GPU $ module avail vasp
 
------------- /nopt/nrel/apps/gpu_stack/modules/default/application -------------
-   vasp/6.3.2_openMP    vasp/6.3.2    vasp/6.4.2_openMP    vasp/6.4.2 (D)
+---------------- /nopt/nrel/apps/gpu_stack/modules/default/application -----------------
+   vasp/6.3.2_openMP    vasp/6.4.2_openMP    vasp/6.5.1_openMP+tpc
+   vasp/6.3.2           vasp/6.4.2           vasp/6.5.1_openMP     (D)
 
 ```
 
@@ -158,13 +170,14 @@ GPU $ module avail vasp
     #SBATCH --nodes=1
     #SBATCH --gpus=4 
     #SBATCH --ntasks-per-node=4
-    #SBATCH --cpus-per-task=1 #The GPU partition is shared :. you must specify cpus needed even when requesting all the GPU resources
+    #SBATCH --cpus-per-task=1 #The GPU partition is shared: You must specify CPUs needed even when requesting all the GPU resources
     #SBATCH --time=02:00:00
     #SBATCH --job-name=<your-job-name>
-    #SBATCH --mem=0 #The GPU partition is shared :. you must specify memory needed even when requesting all the GPU resources
+    #SBATCH --mem=350G # The GPU partition is shared: you must specify memory needed even when requesting all the GPU resources
+
+    #NOTE: THIS MUST BE SUBMITTED FROM A GPU LOGIN NODE
 
     export MPICH_GPU_SUPPORT_ENABLED=1
-
     module load vasp/<version>
 
     srun vasp_std &> out
@@ -186,8 +199,9 @@ GPU nodes can be shared so you may request fewer than all 4 GPUs on a node. When
     #SBATCH --time=02:00:00
     #SBATCH --job-name=<your-job-name>
 
-    export MPICH_GPU_SUPPORT_ENABLED=1
+    #NOTE: THIS MUST BE SUBMITTED FROM A GPU LOGIN NODE
 
+    export MPICH_GPU_SUPPORT_ENABLED=1
     module load vasp/<version>
 
     srun vasp_std &> out
@@ -195,7 +209,7 @@ GPU nodes can be shared so you may request fewer than all 4 GPUs on a node. When
     
 ### Building VASP on Kestrel
 
-Sample makefiles for vasp5 (cpu version) and vasp6 (cpu and gpu versions) on Kestrel can be found in our [Kestrel Repo](https://github.com/NREL/HPC/tree/master/kestrel) under the vasp folder.
+Sample makefiles for vasp5 (cpu version) and vasp6 (cpu and gpu versions) on Kestrel can be found in our [Kestrel Repo](https://github.com/NatLabRockies/HPC/tree/master/kestrel) under the vasp folder.
 
 !!! tip "Important"
     On Kestrel, any modules you have loaded on the login node will be copied to a compute node, and there are many loaded by default for the cray programming environment. Make sure you are using what you intend to. Please see the [Kestrel Environments](../Systems/Kestrel/Environments/index.md) page for more details on programming environments.
@@ -220,7 +234,7 @@ Sample makefiles for vasp5 (cpu version) and vasp6 (cpu and gpu versions) on Kes
     module load intel-oneapi-mkl
     ```
 
-    Sample makefiles for vasp5 and vasp6 on Kestrel can be found in our [Kestrel Repo](https://github.com/NREL/HPC/tree/master/kestrel) under the vasp folder.
+    Sample makefiles for vasp5 and vasp6 on Kestrel can be found in our [Kestrel Repo](https://github.com/NatLabRockies/HPC/tree/master/kestrel) under the vasp folder.
 
 ##### Running your build
 
@@ -454,166 +468,119 @@ Sample makefiles for vasp5 (cpu version) and vasp6 (cpu and gpu versions) on Kes
     mpirun -npernode 4 vasp_std &> out
     ```
 
-## VASP on Vermilion
+## VASP on Gila
 
 #### CPU
-??? example "Sample job script: Vermilion - VASP 6 CPU (Intel MPI)"
+??? example "Sample job script: Gila - VASP 6.4.1 CPU (Intel - Intel MPI)"
   
     ```
     #!/bin/bash
     #SBATCH --job-name=vasp
     #SBATCH --nodes=1
+    #SBATCH --ntasks=60
+    #SBATCH --mem=60G
     #SBATCH --time=8:00:00
     #SBATCH --error=std.err
     #SBATCH --output=std.out
-    #SBATCH --partition=lg
-    #SBATCH --exclusive
-    #SBATCH --account=myaccount
+    #SBATCH --partition=amd
+    #SBATCH --account=<allocation handle>
 
-    module purge
-    ml vasp/6.3.1
+    ml application
+    ml vasp-intel/6.4.1
 
-    source /nopt/nrel/apps/220525b/myenv.2110041605
-    ml intel-oneapi-compilers/2022.1.0-k4dysra
-    ml intel-oneapi-mkl/2022.1.0-akthm3n
-    ml intel-oneapi-mpi/2021.6.0-ghyk7n2
-
-    # some extra lines that have been shown to improve VASP reliability on Vermilion
+    # some extra lines that have been shown to improve VASP performance on Gila when compiled against an Intel toolchain
     ulimit -s unlimited
-    export UCX_TLS=tcp,self
-    export OMP_NUM_THREADS=1
-    ml ucx
+    export I_MPI_ADJUST_REDUCE=3
 
-    srun --mpi=pmi2 -n 60 vasp_std
-
-    # If the multi-node calculations are breaking, replace the srun line with this line
-    # I_MPI_OFI_PROVIDER=tcp mpirun -iface ens7 -np 60 vasp_std
-    ```
-??? example "Sample job script: Vermilion - VASP 6 CPU (Open MPI)"
-  
-    ```
-    #!/bin/bash
-    #SBATCH --job-name=vasp
-    #SBATCH --nodes=1
-    #SBATCH --time=8:00:00
-    #SBATCH --error=std.err
-    #SBATCH --output=std.out
-    #SBATCH --partition=lg
-    #SBATCH --exclusive
-    #SBATCH --account=myaccount
-
-    module purge
-    ml gcc
-    ml vasp/6.1.1-openmpi
-
-    # some extra lines that have been shown to improve VASP reliability on Vermilion
-    ulimit -s unlimited
-    export UCX_TLS=tcp,self
-    export OMP_NUM_THREADS=1
-    ml ucx
-
-    # lines to set "ens7" as the interconnect network
-    module use /nopt/nrel/apps/220525b/level01/modules/lmod/linux-rocky8-x86_64/gcc/12.1.0
-    module load openmpi
-    OMPI_MCA_param="btl_tcp_if_include ens7"
-
-    srun --mpi=pmi2 -n 60 vasp_std
-    ```
-??? example "Sample job script: Vermilion - VASP 5 CPU (Intel MPI)"
-  
-    ```
-    #!/bin/bash
-    #SBATCH --job-name=vasp
-    #SBATCH --nodes=1
-    #SBATCH --time=8:00:00
-    ##SBATCH --error=std.err
-    ##SBATCH --output=std.out
-    #SBATCH --partition=lg
-    #SBATCH --exclusive
-    #SBATCH --account=myaccount
-
-    module purge
-
-    ml vasp/5.4.4
-
-    source /nopt/nrel/apps/220525b/myenv.2110041605
-    ml intel-oneapi-compilers/2022.1.0-k4dysra
-    ml intel-oneapi-mkl/2022.1.0-akthm3n
-    ml intel-oneapi-mpi/2021.6.0-ghyk7n2
-
-    # some extra lines that have been shown to improve VASP reliability on Vermilion
-    ulimit -s unlimited
-    export UCX_TLS=tcp,self
-    export OMP_NUM_THREADS=1
-    ml ucx
-
-    srun --mpi=pmi2 -n 60 vasp_std
-
-    # If the multi-node calculations are breaking, replace the srun line with this line
-    # I_MPI_OFI_PROVIDER=tcp mpirun -iface ens7 -np 60 vasp_std
-    ```
-
-??? note "Performance Notes"
-
-    On Vermilion, VASP runs more performantly on a single node. Many issues have been reported for running VASP on multiple nodes, especially when requesting all available cores on each node. In order for MPI to work reliably on Vermilion, it is necessary to specify the interconnect network that Vermilion should use to communicate between nodes. If many cores are needed for your VASP calculation, it is recommended to run VASP on a singe node in the lg partition (60 cores/node), which provides the largest numbers of cores per node and use the following settings that have been shown to work well for multi-node jobs on 2 nodes. The Open MPI multi-node jobs are more reliable on Vermilion, but Intel MPI VASP jobs show better runtime performance as usual.
+    srun -n 60 vasp_std
     
-    If your multi-node **Intel MPI VASP** job is crashing on Vermilion, try replacing your srun line with the following mpirun run line. ```-iface ens7``` sets ens7 as the interconnect. 
     ```
-    I_MPI_OFI_PROVIDER=tcp mpirun -iface ens7 -np 16 vasp_std
+??? example "Sample job script: Gila - VASP 6.4.1 CPU (GCC - OpenMPI)"
+  
     ```
+    #!/bin/bash
+    #SBATCH --job-name=vasp
+    #SBATCH --nodes=1
+    #SBATCH --ntasks=60
+    #SBATCH --mem=60G
+    #SBATCH --time=8:00:00
+    #SBATCH --error=std.err
+    #SBATCH --output=std.out
+    #SBATCH --partition=amd
+    #SBATCH --account=<allocation handle>
 
-    If your multi-node **Open MPI VASP** job is crashing on Vermilion, replace a call to load an openmpi module with the following lines. The OMPI_MCA_param variable sets ens7 as the interconnect. 
+    ml application
+    ml vasp-gcc/6.4.1
 
-    ```
-    module use /nopt/nrel/apps/220525b/level01/modules/lmod/linux-rocky8-x86_64/gcc/12.1.0
-    module load openmpi
-    OMPI_MCA_param="btl_tcp_if_include ens7"
+    ### Using mpirun as opposed to srun due to OpenMPI 5.0 compatibility issues with Slurm Process Manager
+    mpirun -np 60 vasp_std
     ```
 
 #### GPU
 
-??? example "Sample job script: Vermilion - VASP 6 CPU (OpenACC)"
+??? example "Sample job script: Gila - VASP 6.4.1 GPU (A100) (OpenACC)"
   
     ```
     #!/bin/bash
     #SBATCH --job-name=vasp
-    #SBATCH --nodes=2
-    #SBATCH --time=1:00:00
+    #SBATCH --nodes=1
+    #SBATCH --time=8:00:00
+    #SBATCH --ntasks=1
+    #SBATCH --mem=60G
+    #SBATCH --gpus=1
+    #SBATCH --error=std.err
+    #SBATCH --output=std.out
+    #SBATCH --partition=gpu-intel-a100-80g
+    #SBATCH --account=<allocation handle>
+    
+    ml application
+    ml vasp-gpu-a100/6.4.1
+    export CUDA_VISIBLE_DEVICES=0
+    export OMPI_MCA_opal_cuda_support=1
+
+    ### Using mpirun as opposed to srun due to OpenMPI 5.0 compatibility issues with Slurm Process Manager
+    mpirun -np 1 60 vasp_std
+
+    ```
+
+
+??? example "Sample job script: Gila - VASP 6.4.1 GPU (Grace Hopper) (OpenACC)"
+  
+    ```
+    #!/bin/bash
+    #SBATCH --job-name=vasp
+    #SBATCH --nodes=1
+    #SBATCH --time=8:00:00
+    #SBATCH --ntasks=1
+    #SBATCH --mem=60G
+    #SBATCH --gpus=1
     ##SBATCH --error=std.err
     ##SBATCH --output=std.out
-    #SBATCH --partition=gpu
-    #SBATCH --gpu-bind=map_gpu:0,1,0,1
-    #SBATCH --exclusive
-    #SBATCH --account=myaccount
+    #SBATCH --partition=gh
+    #SBATCH --account=<allocation handle>
 
-    # Load the OpenACC build of VASP
-    ml vasp/6.3.1-nvhpc_acc
+    export OMPI_MCA_opal_cuda_support=1
+    export CUDA_VISIBLE_DEVICES=0
 
-    # Load some additional modules
-    module use  /nopt/nrel/apps/220421a/modules/lmod/linux-rocky8-x86_64/gcc/11.3.0/
-    ml nvhpc
-    ml fftw
+    ml application
+    ml vasp-gpu-grace
 
-    mpirun -npernode 1 vasp_std > vasp.$SLURM_JOB_ID
+
+    ### Using mpirun as opposed to srun due to OpenMPI 5.0 compatibility issues with Slurm Process Manager
+    mpirun -np 1 60 vasp_std
+
+
     ```
 
 ??? note "Performance Notes"
-    The OpenACC build shows significant performance improvement compared to the Cuda build, but is more susceptible to running out of memory. The OpenACC GPU-port of VASP was released with VASP 6.2.0, and the Cuda GPU-port of VASP was dropped in VASP 6.3.0.
 
+    On Gila, VASP runs more performantly on a single node. If many cores are needed for your VASP calculation, it is recommended to use a single node in the `amd` partition (60 cores/node), which provides the largest number of cores per node. Intel-MPI is required to run multi-node VASP jobs on Gila, whereas OpenMPI can only be run on single node VASP jobs.
 
+    Between the two GPU VASP versions available, the Grace Hopper version is more performant than the NVIDIA A100 version on a single GPU, but each NVIDIA A100 node has more GPUs than the Grace Hopper nodes. However, neither GPU version can be run multi-node. The underlying compilation architecture of both (nvhpc) relies on its own implementation of OpenMPI 5.0, where we run into the same process manager issues in Slurm as we do on the AMD nodes. This issue is a work in progress.
 
+    Between all VASP versions running on a single node, the Grace Hopper version is the most performant. VASP multi-node jobs can only be run with Intel-MPI, and the performance in that can vary according to the size of the given system. Experimentation may be necessary to run the most optimal multi-node jobs using Intel-MPI.
     
-
-
-
-
-
-
-
-
-
-
-
+  
 
 
 

@@ -95,7 +95,7 @@ For a walkthrough of the elements of an sbatch script, please see [Submitting Ba
     #SBATCH --account=<allocation handle>   # Required
     #SBATCH --nodes=2  
     #SBATCH --gpus-per-node=1
-    #SBATCH --mem=50G                       # Request CPU memory per node 
+    #SBATCH --mem=50G                       # Request system RAM per node. 
     #SBATCH --ntasks-per-node=2             # Request CPU cores per node
     #SBATCH --time=01:00:00                 # Required, maximum job duration 
     #SBATCH --partition=debug 
@@ -105,7 +105,7 @@ For a walkthrough of the elements of an sbatch script, please see [Submitting Ba
     srun ./my_program.sh
     ```
 ??? example "Sample batch script for a full GPU node"
-    Kestrel GPU nodes have 4 H100 GPUs. To run jobs on GPUs, your script should contain the `--gpus=<NUM_GPUS>` flag in the SBATCH directives.
+    Kestrel GPU nodes have 4 H100 GPUs. To run jobs on GPUs, your script should contain the `--gpus=<NUM_GPUS>` flag in the SBATCH directives. Even when requesting all GPUs, you must request the system memory with `--mem` or `--mem-per-cpu`. 
     Submit GPU jobs from the [GPU login nodes](../index.md).
 
     ```
@@ -116,8 +116,7 @@ For a walkthrough of the elements of an sbatch script, please see [Submitting Ba
     #SBATCH --ntasks-per-node=128           # Maximum CPU cores for job 
     #SBATCH --gpus=4                        # GPU request 
     #SBATCH --exclusive                     # Request exclusive access to node. Allocates all CPU cores and GPUs by default.  
-    #SBATCH --mem=0                         # Request all of the RAM available on node
-
+    #SBATCH --mem=360000                    # Request system RAM. If you need more memory, request up to 720000 to use the larger mem GPU nodes.
 
     # Load modules
     module load vasp

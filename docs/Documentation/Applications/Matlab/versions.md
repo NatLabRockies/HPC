@@ -1,10 +1,10 @@
 # MATLAB Software Versions and Licenses
 
-*Learn about the MATLAB software versions and licenses available for the NREL HPC systems.*
+*Learn about the MATLAB software versions and licenses available for the NLR HPC systems.*
 
 ## Versions
 
-The latest version available on NREL HPC systems is R2023a.
+The latest version available on NLR HPC systems is R2023a.
 
 ## Licenses
 

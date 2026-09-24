@@ -4,7 +4,7 @@
 
 
 ## Getting Started
-This section walks through how to compile and run a basic Fortran code, and then a basic Fortran MPI code, adapted from [here](https://github.com/NREL/HPC/tree/master/languages/fortran). See [Compilers and Toolchains](#compilers-and-toolchains) for compiler and programming environment information on NREL HPC systems. For an extensive guide to Fortran 90, see our page on [Advanced Fortran](f90_advanced.md). See [External Resources](#external-resources) for general Fortran language tutorials and Fortran-MPI tutorials.  
+This section walks through how to compile and run a basic Fortran code, and then a basic Fortran MPI code, adapted from [here](https://github.com/NatLabRockies/HPC/tree/master/languages/fortran). See [Compilers and Toolchains](#compilers-and-toolchains) for compiler and programming environment information on NLR HPC systems. For an extensive guide to Fortran 90, see our page on [Advanced Fortran](f90_advanced.md). See [External Resources](#external-resources) for general Fortran language tutorials and Fortran-MPI tutorials.  
 
 ### Hello World
 
@@ -145,6 +145,6 @@ When the job is done, the file hello.out should contain the same output as you f
 
 * [Comprehensive treatise on Fortran 90](f90_advanced.md)
 * [Basic Fortran Tutorial](https://pages.mtu.edu/~shene/COURSES/cs201/NOTES/fortran.html)
-* [Detailed Fortran Tutorial](https://github.com/NREL/HPC/blob/gh-pages/docs/Documentation/languages/fortran/f90.md)
+* [Detailed Fortran Tutorial](./f90_advanced.md)
 * [Fortran/MPI on an HPC Tutorial](https://curc.readthedocs.io/en/latest/programming/MPI-Fortran.html)
 

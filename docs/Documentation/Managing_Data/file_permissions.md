@@ -57,7 +57,7 @@ This "**rwx**" order repeats three times: the first triplet is for User permissi
 
 In the example above, `testjob.sh` has the permissions `-rwxrwx---`. This means that the User and Group owners have read, write, and execute permission. The last three characters are `-`, which indicates that "Other" users do not have permissions to this file.
 
-There also may be a dot (`.`) or other character at the end of the permissions list, depending on the variety of Linux that is installed. The dot indicates that no further access controls are in place. A `+` indicates that ACLs (Access Control Lists) are in place that provide additional permissions. ACLs are an extension of the file permission system that is present on some, but not all, NREL HPC systems, and may be used to provide more fine-grained access control on a per-user basis. If the system you are using supports ACLs, you may see `man getfacl` and `man setfacl` for more help on ACLs. 
+There also may be a dot (`.`) or other character at the end of the permissions list, depending on the variety of Linux that is installed. The dot indicates that no further access controls are in place. A `+` indicates that ACLs (Access Control Lists) are in place that provide additional permissions. ACLs are an extension of the file permission system that is present on some, but not all, NLR HPC systems, and may be used to provide more fine-grained access control on a per-user basis. If the system you are using supports ACLs, you may see `man getfacl` and `man setfacl` for more help on ACLs. 
 
 After the permissions flags is a number indicating the number of hard links to the file. It has no bearing on permissions and can be ignored.
 
@@ -186,10 +186,10 @@ We do not endorse any particular source, site, or vendor. The following links ma
 * https://www.linux.com/training-tutorials/file-types-linuxunix-explained-detail/
 * https://en.wikipedia.org/wiki/Unix_file_types
 
-## Default Permissions on NREL Systems
+## Default Permissions on NLR Systems
 
 When first created, all /projects directories will be owned by the allocation's HPC Lead User and the project's shared Group. The default permissions will typically be ug+rwx (chmod 770) or ug+rwx,o+rx (chmod 776), depending on the system. The setgid bit will also be set on the directory, so that all files created in the /projects directory will have a Group ownership of the project's group. 
 
-## NREL Technical Help with File Permissions
+## NLR Technical Help with File Permissions
 
-The NREL HPC Support Team relies on allocation owners and users to be responsible for file permissions and ownership as a part of managing the allocation and its data, but the PI or HPC Leads of a project may request assistance in changing permissions or ownership of files that belong to the allocation by opening a support ticket with [hpc-help@nrel.gov](mailto://hpc-help@nrel.gov).
+The NLR HPC Support Team relies on allocation owners and users to be responsible for file permissions and ownership as a part of managing the allocation and its data, but the PI or HPC Leads of a project may request assistance in changing permissions or ownership of files that belong to the allocation by opening a support ticket with [hpc-help@nlr.gov](mailto://hpc-help@nlr.gov).

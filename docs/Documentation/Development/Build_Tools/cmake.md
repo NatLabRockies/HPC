@@ -8,7 +8,7 @@ CMake is a cross-platform build tool that is used to manage software compilation
 
 ## Getting Started
 
-On the NREL HPC systems, CMake is available through:
+On the NLR HPC systems, CMake is available through:
 
 ```bash
 module load cmake

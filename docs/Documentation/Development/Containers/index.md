@@ -14,13 +14,13 @@ Software *images* provide a method of packaging your code so that its *container
 
 
 ## Docker vs. Apptainer
-The most common container runtime environment (outside of HPC) is Docker. Due to the fact that it requires root-level permissions to build its associated images and run containers, Docker is not suited for HPC environments and is therefore not available on NREL's systems currently. Apptainer is an alternative containerization tool that can be used in HPC environments because running it does not require root. However, you can use Docker to build images locally and convert them to the Apptainer format for use with HPC (described in more detail [here](index.md#building-software-images)).
+The most common container runtime environment (outside of HPC) is Docker. Due to the fact that it requires root-level permissions to build its associated images and run containers, Docker is not suited for HPC environments and is therefore not available on NLR's systems currently. Apptainer is an alternative containerization tool that can be used in HPC environments because running it does not require root. However, you can use Docker to build images locally and convert them to the Apptainer format for use with HPC (described in more detail [here](index.md#building-software-images)).
 
 ## Compatibility 
 Apptainer is able to run most Docker images, but Docker is unable to run Apptainer images. A key consideration when deciding to containerize an application is which container engine to build with. A suggested best practice is to build images with Docker whenever possible, as this provides more flexibility. However, if this is not feasible, you may have to build with Apptainer or maintain separate images for each container engine.
 
 ## Advantages to software containerization
-* **Portability**: Containers can be run on HPC, locally, and on cloud infrastructure used at NREL. 
+* **Portability**: Containers can be run on HPC, locally, and on cloud infrastructure used at NLR. 
 * **Reproducibility**: Containers are one option to ensure reproducible research by packaging all necessary software to reproduce an analysis. Containers are also easily versioned using a hash.
 * **Modularity**: Images are composed of cacheable "layers" of other images or build commands, facilitating the image building process.
 * **Workflow integration**: Workflow management systems such as Airflow, Nextflow, Luigi, and others provide built-in integration with container engines. 
@@ -36,11 +36,11 @@ Building Docker or Apptainer images requires root/admin privileges and cannot be
 
 ### Example Docker build workflow for HPC users
 
-Because of the permission limitations described above, it is recommended that HPC users start with building a Docker image locally, e.g., on your laptop. If you are a researcher at NREL and plan to regularly containerize applications, you can request Docker to be installed at the admin-level on your work computer from the [IT Service Portal](https://nrel.servicenowservices.com). This section will describe a simple workflow for building a Docker image locally, exporting it as a `.tar` file, uploading it to Kestrel, and converting it to an Apptainer image for execution on HPC.
+Because of the permission limitations described above, it is recommended that HPC users start with building a Docker image locally, e.g., on your laptop. If you are a researcher at NLR and plan to regularly containerize applications, you can request Docker to be installed at the admin-level on your work computer from the [IT Service Portal](https://nlr.servicenowservices.com). This section will describe a simple workflow for building a Docker image locally, exporting it as a `.tar` file, uploading it to Kestrel, and converting it to an Apptainer image for execution on HPC.
 
 #### 1. Local Docker build
 
-The following [Dockerfile](https://github.com/NREL/HPC/tree/master/docker-examples/simple-python3/Dockerfile) illustrates the build steps to create a small image. In this example, we simply install `python3` into an image based on the Ubuntu operating system (version 22.04):
+The following [Dockerfile](https://github.com/NatLabRockies/HPC/blob/master/docker-examples/simple-python3/Dockerfile) illustrates the build steps to create a small image. In this example, we simply install `python3` into an image based on the Ubuntu operating system (version 22.04):
 
 ```
 # Docker example: save as `Dockerfile` in your working directory
@@ -60,11 +60,11 @@ To build an image from the above Dockerfile (we will call it "simple_python3"), 
 docker build . -t simple_python3 --platform=linux/amd64
 ```
 
-It is important to note that without the `--platform` option, `docker build` will create an image that matches your local machine's CPU chip architecture by default. If you have a machine running on `x86-64`/`amd64`, the container's architecture will be compatible NREL's HPC systems. If your computer does not use chips like these (such as if you have a Mac computer that runs on "Apple Silicon", which uses `arm64`), your image's architecture will *not* match what is found on NREL's HPC systems, causing performance degradation of its containers (at best) or fatal errors (at worst) during runtime on Kestrel, Swift, or Vermillion. Regardless of your local machine, as a best practice, you should explicitly specify your image's desired platform during buildtime with `--platform=linux/amd64` to ensure compatibility on NREL's HPC systems.
+It is important to note that without the `--platform` option, `docker build` will create an image that matches your local machine's CPU chip architecture by default. If you have a machine running on `x86-64`/`amd64`, the container's architecture will be compatible NLR's HPC systems. If your computer does not use chips like these (such as if you have a Mac computer that runs on "Apple Silicon", which uses `arm64`), your image's architecture will *not* match what is found on NLR's HPC systems, causing performance degradation of its containers (at best) or fatal errors (at worst) during runtime on Kestrel, Swift, or Vermillion. Regardless of your local machine, as a best practice, you should explicitly specify your image's desired platform during buildtime with `--platform=linux/amd64` to ensure compatibility on NLR's HPC systems.
 
 #### 2. Export Docker image to .tar
 
-*Coming soon: a centralized software image registry/repository for NREL users, which will simplify the following steps. In the meantime, please follow steps 2 and 3 as written.* 
+*Coming soon: a centralized software image registry/repository for NLR users, which will simplify the following steps. In the meantime, please follow steps 2 and 3 as written.* 
 
 Once the Docker image is built, you can export it to a `.tar` archive with the following command:
 
@@ -80,10 +80,10 @@ tar czf simple_python3.tar.gz simple_python3.tar
 
 #### 3. Upload exported image in `.tar.gz` format to HPC system
 
-Now that the exported Docker image is compressed to `.tar.gz` format, you will need to transfer it to one of NREL's HPC systems. Considering the [scratch space](../../Systems/Kestrel/Filesystems/index.md#scratchfs) of [Kestrel](../../Systems/Kestrel/index.md) as an example destination, we will use `rsync` as the transfer method. Be sure to replace `USERNAME` with your unique HPC username:
+Now that the exported Docker image is compressed to `.tar.gz` format, you will need to transfer it to one of NLR's HPC systems. Considering the [scratch space](../../Systems/Kestrel/Filesystems/index.md#scratchfs) of [Kestrel](../../Systems/Kestrel/index.md) as an example destination, we will use `rsync` as the transfer method. Be sure to replace `USERNAME` with your unique HPC username:
 
 ```
-rsync -aP --no-g simple_python3.tar.gz USERNAME@kestrel.hpc.nrel.gov:/scratch/USERNAME/
+rsync -aP --no-g simple_python3.tar.gz USERNAME@kestrel.hpc.nlr.gov:/scratch/USERNAME/
 ```
 
 For more information on alternatives to `rsync` (such as FileZilla or Globus), please refer to our [documentation regarding file transfers](../../Managing_Data/Transferring_Files/index.md).
@@ -136,11 +136,11 @@ Python 3.6.8
 Python 3.10.12
 ```
 
-For more specific information on and best practices for using Apptainer on NREL's HPC systems, please refer to its [dedicated documentation page](./apptainer.md).
+For more specific information on and best practices for using Apptainer on NLR's HPC systems, please refer to its [dedicated documentation page](./apptainer.md).
 
 #### 5. A more involved Dockerfile example (CUDA 12.4)
 
-For an example of an image you can build to provide everything needed for CUDA v.12.4, please refer to this [Dockerfile](https://github.com/NREL/HPC/tree/master/docker-examples/cuda-12.4/Dockerfile).
+For an example of an image you can build to provide everything needed for CUDA v.12.4, please refer to this [Dockerfile](https://github.com/NatLabRockies/HPC/blob/master/docker-examples/cuda-12.4/Dockerfile).
 
 ### Using Apptainer as build alternatives to Docker
 

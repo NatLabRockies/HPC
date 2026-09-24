@@ -3,7 +3,7 @@
     
 ## How to use Apptainer
 
-On NREL HPC systems, Apptainer is accessed via a module named `apptainer` (you can check the current default module via `ml -d av apptainer`). On Kestrel specifically, the directory `/nopt/nrel/apps/software/apptainer/1.1.9/examples` holds a number of images (`*.sif`) and an example script (`script`) that shows how to run containers hosting MPI programs across multiple nodes. The `script` can also be accessed from [our GitHub repository](https://github.com/NREL/HPC/blob/master/kestrel/apptainer/script).
+On NLR HPC systems, Apptainer is accessed via a module named `apptainer` (you can check the current default module via `ml -d av apptainer`). On Kestrel specifically, the directory `/nopt/nrel/apps/software/apptainer/1.1.9/examples` holds a number of images (`*.sif`) and an example script (`script`) that shows how to run containers hosting MPI programs across multiple nodes. The `script` can also be accessed from [our GitHub repository](https://github.com/NatLabRockies/HPC/blob/master/kestrel/apptainer/script).
 
 Before we get to the more complicated example from `script`, we'll first look at downloading (or *pulling*) and working with a simple image. The following examples assume you are logged into Kestrel, but the concepts demonstrated are still valid for any host system on which you wish to execute a container.
 
@@ -19,7 +19,7 @@ Input commands are preceded by a `$`.
 ##### Allocate a compute node.
 
 ```
-$ ssh USERNAME@kestrel.hpc.nrel.gov
+$ ssh USERNAME@kestrel.hpc.nlr.gov
 [USERNAME@kl1 ~]$ salloc --exclusive --mem=0 --tasks-per-node=104 --nodes=1 --time=01:00:00 --account=MYACCOUNT --partition=debug
 [USERNAME@x1000c0s0b0n0 ~]$ cat /etc/redhat-release
 Red Hat Enterprise Linux release 8.6 (Ootpa)
@@ -89,7 +89,7 @@ As mentioned above, there is a script in the apptainer directory that shows how 
 
 "ch*" can be thought as a "lower level" communications protocol. A MPICH container might be built with either but we have found that ch4 is considerably faster on Kestrel. 
 
-The script can be found at `/nopt/nrel/apps/software/apptainer/1.1.9/examples/script`, as well as [our GitHub repository](https://github.com/NREL/HPC/blob/master/kestrel/apptainer/script).
+The script can be found at `/nopt/nrel/apps/software/apptainer/1.1.9/examples/script`, as well as [our GitHub repository](https://github.com/NatLabRockies/HPC/blob/master/kestrel/apptainer/script).
 
 Here is a copy:
 
@@ -176,7 +176,7 @@ You can see example output from this script in the directory:
 /nopt/nrel/apps/software/apptainer/1.1.9/examples/output/
 ```
 
-Within `/nopt/nrel/apps/software/apptainer/1.1.9/examples`, the subdirectory `defs` contains the recipes for the images in `examples`. The images `apptainer.sif` and `intel.sif` were built in two steps using `app_base.def` - apptainer.def and mods_intel.def - intel.def. They can also be found in the [HPC code examples repository](https://github.com/NREL/HPC/tree/master/kestrel/apptainer/defs).
+Within `/nopt/nrel/apps/software/apptainer/1.1.9/examples`, the subdirectory `defs` contains the recipes for the images in `examples`. The images `apptainer.sif` and `intel.sif` were built in two steps using `app_base.def` - apptainer.def and mods_intel.def - intel.def. They can also be found in the [HPC code examples repository](https://github.com/NatLabRockies/HPC/tree/master/kestrel/apptainer/defs).
 
 The script `sif2def` can be used to generate a `.def` recipe from a `.sif` image. It has not been extensively tested, so it may not work for all images and is provided here "as is."
 
@@ -308,7 +308,7 @@ salloc -A <YOUR-ACCOUNT> -t 1:00:00 --gpus=1 -N 1 -n 1 --mem-per-cpu=8G
 ```
 
 !!! note
-    We are only requesting 1 GPU card (`--gpus=1`) of the 4 available per node, and subsequently 1 task (`-n 1`). Though we are automatically given access to all of the *GPU memory* on the node, we request 8G of *CPU memory* from `salloc`. This is because our Tensorflow example will require a decent amount of CPU memory as it copies data to and from the GPU device. If such CPU memory is a bottleneck in a real-world example, you may want to consider replacing `-n 1 --mem-per-cpu=8G` with `--exclusive --mem=0` to request all of the node's CPU resources, even if you are only using a single GPU card.
+    We are only requesting 1 GPU card (`--gpus=1`) of the 4 available per node, and subsequently 1 task (`-n 1`). Though we are automatically given access to all of the *GPU memory* on the node, we request 8G of *CPU memory* from `salloc`. This is because our Tensorflow example will require a decent amount of CPU memory as it copies data to and from the GPU device. If such CPU memory is a bottleneck in a real-world example, you may want to consider replacing `-n 1 --mem-per-cpu=8G` with `--exclusive --mem=350G` to request all of the node's CPU resources, even if you are only using a single GPU card. You can request up to 700G of CPU RAM. 
 
 
 Once we are allocated a node, we will load the Apptainer module, and then pull `tensorflow:2.15.0-gpu` from DockerHub to a personal scratch location on Kestrel.
@@ -486,7 +486,7 @@ Assuming you made the same `salloc` request above, it should take ~26 seconds to
 
 ## Best practices and recommendations
 
-This section describes general recommendations and best practices for Apptainer users across NREL's HPC systems.
+This section describes general recommendations and best practices for Apptainer users across NLR's HPC systems.
 
 ### Change Apptainer cache location to `/scratch/$USER`
 
@@ -498,7 +498,7 @@ Note that you will either need to log out and back into the system, or run `sour
 
 ### Save `.def` files to home folder and images to /scratch or /projects
 
-An Apptainer definition file (`.def`) is a relatively small text file that contains much (if not all) of the build context for a given image. Since your `$HOME` folders on NREL's HPC systems are regularly backed up, it is strongly recommended to save this file to your home directory in case it accidentally gets deleted or otherwise lost. Since `.sif` images themselves are 1. typically large and 2. can be rebuilt from the `.def` files, we recommend saving them to a folder outside of your `$HOME`, for similar reasons described in the previous section. If you intend to work with an image briefly or intermittantly, it may make sense to save the `.sif` to your `/scratch` folder, from which files can be purged if they haven't been accessed for 28 days. If you plan to use an image frequently over time or share it with other users in your allocation, saving it in a `/projects` location you have access to may be better.
+An Apptainer definition file (`.def`) is a relatively small text file that contains much (if not all) of the build context for a given image. Since your `$HOME` folders on NLR's HPC systems are regularly backed up, it is strongly recommended to save this file to your home directory in case it accidentally gets deleted or otherwise lost. Since `.sif` images themselves are 1. typically large and 2. can be rebuilt from the `.def` files, we recommend saving them to a folder outside of your `$HOME`, for similar reasons described in the previous section. If you intend to work with an image briefly or intermittantly, it may make sense to save the `.sif` to your `/scratch` folder, from which files can be purged if they haven't been accessed for 28 days. If you plan to use an image frequently over time or share it with other users in your allocation, saving it in a `/projects` location you have access to may be better.
 
 
 ### Bind Mounting Directories

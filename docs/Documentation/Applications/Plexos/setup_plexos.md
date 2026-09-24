@@ -6,7 +6,7 @@ grand_parent: Applications
 
 ## Loading the Appropriate Modules
 
-PLEXOS XML model files can only run with Gurobi that is pre-packaged with a given PLEXOS version. The most common version combinations you may encounter at NREL are
+PLEXOS XML model files can only run with Gurobi that is pre-packaged with a given PLEXOS version. The most common version combinations you may encounter at NLR are
 
 | PLEXOS Module    | Gurobi Version |
 |:----------------:|:-------------:|
@@ -14,7 +14,7 @@ PLEXOS XML model files can only run with Gurobi that is pre-packaged with a give
 | plexos/9.200R06  | 10.0.2 |
 | plexos/11.000R01 | 11.0.2 |
 
-Please [contact us](https://www.nrel.gov/hpc/contact-us.html) if you encounter any issues or require a newer version.
+Please [contact us](https://www.nlr.gov/hpc/contact-us.html) if you encounter any issues or require a newer version.
 
 ## Setting up the License
 
@@ -27,7 +27,7 @@ Before we can run PLEXOS, we need to create a license file on the cluster. For t
     echo '<?xml version="1.0"?>
     <XmlRegistryRoot>
       <comms>
-        <licServer_IP val="plexos.hpc.nrel.gov" />
+        <licServer_IP val="plexos.hpc.nlr.gov" />
         <licServer_CommsPort val="8888" />
         <licServer_IP_Secondary />
         <connect>
@@ -95,7 +95,7 @@ Before we can run PLEXOS, we need to create a license file on the cluster. For t
     ```bash
     mkdir /home/$USER/temporary    
     cd /home/$USER/temporary
-    git clone https://github.com/NREL/rplexos.git
+    git clone https://github.com/NatLabRockies/rplexos
     cd rplexos
     CXX=`which icpc` R CMD INSTALL .
     ```

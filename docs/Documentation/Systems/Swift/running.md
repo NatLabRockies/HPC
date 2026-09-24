@@ -12,11 +12,11 @@ Please see the [Modules](./modules.md) page for information about setting up you
 ## Login nodes
 
 ```
-swift.hpc.nrel.gov
-swift-login-1.hpc.nrel.gov
+swift.hpc.nlr.gov
+swift-login-1.hpc.nlr.gov
 ```
 
-`swift.hpc.nrel.gov` is a round-robin alias that will connect you to any available login node.
+`swift.hpc.nlr.gov` is a round-robin alias that will connect you to any available login node.
 
 ## SSH Keys
 
@@ -52,7 +52,7 @@ To request use of a GPU, use the flag `--gres=gpu:<quantity>` with sbatch, srun,
 
 #### CPU Core and RAM Defaults on GPU Nodes
 
-If your job will require more than the default 1 CPU core and 1.5GB RAM you must request the quantity of cores and/or RAM that you will need, by using additional flags such as `--ntasks=` or `--mem=`. See the [Slurm Job Scheduling](https://nrel.github.io/HPC/Documentation/Slurm/) section for details on requesting additional resources.
+If your job will require more than the default 1 CPU core and 1.5GB RAM you must request the quantity of cores and/or RAM that you will need, by using additional flags such as `--ntasks=` or `--mem=`. See the [Slurm Job Scheduling](../../Slurm/index.md) section for details on requesting additional resources.
 
 
 ## Allocation Unit (AU) Charges
@@ -117,7 +117,7 @@ Usage is tracked on the basis of:
 
 ### AU Calculation Examples
 
-AU calculations are performed automatically between the Slurm scheduler and [Lex](https://hpcprojects.nrel.gov)(NREL's web-based allocation tracking/management software). The following calculations are approximations to help illustrate how your AU will be consumed based on your job resource requests and are approximations only:
+AU calculations are performed automatically between the Slurm scheduler and [Lex](https://hpcprojects.nlr.gov)(NLR's web-based allocation tracking/management software). The following calculations are approximations to help illustrate how your AU will be consumed based on your job resource requests and are approximations only:
 
 A request of 1 GPU, up to 24 CPU cores, and up to 256GB RAM will be charged at 12.5 AU/hr:
 
@@ -278,7 +278,7 @@ export OMP_NUM_THREADS=2
 srun  -n 4 ./fhostone -F
 srun  -n 4 ./phostone -F
 
-MPI Version:Open MPI v4.1.1, package: Open MPI nrmc2l@swift-login-1.swift.hpc.nrel.gov Distribution, ident: 4.1.1, repo rev: v4.1.1, Apr 24, 2021
+MPI Version:Open MPI v4.1.1, package: Open MPI nrmc2l@swift-login-1.swift.hpc.nlr.gov Distribution, ident: 4.1.1, repo rev: v4.1.1, Apr 24, 2021
 task    thread             node name  first task    # on node  core
 0002      0000                 c1-31        0002         0000   018
 0000      0000                 c1-30        0000         0000   072
@@ -292,7 +292,7 @@ task    thread             node name  first task    # on node  core
 0001      0001                 c1-30        0000         0001  0103
 0003      0000                 c1-31        0002         0001  0062
 0003      0001                 c1-31        0002         0001  0103
-MPI VERSION Open MPI v4.1.1, package: Open MPI nrmc2l@swift-login-1.swift.hpc.nrel.gov Distribution, ident: 4.1.1, repo rev: v4.1.1, Apr 24, 2021
+MPI VERSION Open MPI v4.1.1, package: Open MPI nrmc2l@swift-login-1.swift.hpc.nlr.gov Distribution, ident: 4.1.1, repo rev: v4.1.1, Apr 24, 2021
 task    thread             node name  first task    # on node  core
 0000      0000                 c1-30        0000         0000  0072
 0000      0001                 c1-30        0000         0000  0020
@@ -436,5 +436,5 @@ task    thread             node name  first task    # on node  core
 
 ## VASP, Jupyter, Julia, and Other Applications on Swift
 
-Please see the relevant page in the [Applications](https://nrel.github.io/HPC/Documentation/Applications/) section for more information on using applications on Swift and other NREL clusters.
+Please see the relevant page in the [Applications](../../Applications/index.md) section for more information on using applications on Swift and other NLR clusters.
 

@@ -5,7 +5,10 @@ parent: Applications
 
 # COMSOL Multiphysics 
 
-*COMSOL Multiphysics is a versatile finite element analysis and simulation package. The COMSOL graphical user interface (GUI) environment is supported primarily for building and solving small models while operation in batch mode allows users to scale their models to larger, higher-fidelity studies. Currently, we host three floating network licenses and a number of additional modules. Two COMSOL versions are available on Kestrel, they are 6.2 and 6.3.*
+COMSOL Multiphysics is a versatile finite element analysis and simulation package. The COMSOL graphical user interface (GUI) environment is supported primarily for building and solving small models while operation in batch mode allows users to scale their models to larger, higher-fidelity studies. Currently, we host three floating network licenses and a number of additional modules. Three COMSOL versions are available on Kestrel, they are 6.2, 6.3 and 6.4 (default).
+
+!!! note
+     By default, COMSOL will create a hidden directory, `.comsol`, in your home directory to save the preference files, recovery files, and temporary files. Since `/home` directories are limited to 50GB, we included new wrappers for the 6.3 and 6.4 versions to force COMSOL to create a directory named `comsol_prefs` in your `/scratch` directory. 
 
 ## Building a COMSOL Model
 Extensive documentation is available in the menu: **Help > Documentation**. For beginners, it is highly recommended to follow the steps in *Introduction to COMSOL Multiphysics* found in **Help > Documentation**.
@@ -19,7 +22,7 @@ Before beginning, it is a good practice to check the license status. To do so, y
 [user@kl3 ~]$ ./lmstat.comsol
 ```
 
-When licenses are available, COMSOL can be used by starting the COMSOL GUI which allows you to build models, run the COMSOL computational engine, and analyze results. The COMSOL GUI can be accessed through a [FastX desktop](https://kestrel-dav.hpc.nrel.gov/auth/ssh/) by opening a terminal in a FastX window and running the following commands:
+When licenses are available, COMSOL can be used by starting the COMSOL GUI which allows you to build models, run the COMSOL computational engine, and analyze results. The COMSOL GUI can be accessed through a [FastX desktop](https://kestrel-dav.hpc.nlr.gov/auth/ssh/) by opening a terminal in a FastX window and running the following commands:
 
 ```
 [user@kl3 ~]$ module load comsol
@@ -31,14 +34,22 @@ Because FastX desktop sessions are supported from DAV nodes shared between multi
 For jobs that require both large-scale compute resources and GUI interactivity simultaneously, there is partial support for running the GUI from an X-enabled shell on a compute node.
 
 
-To do so, submit your interactive job and wait to obtain a node, and take note of the node name once the job has started. Open a secondary terminal on the FastX desktop, and `ssh -Y <nodename>` to connect to the job node with X-forwarding enabled. Then `module load comsol` on that node, and launch comsol. To run comsol with software rendering on a CPU-only node:
+To do so, you can follow the following steps:
 
-```
-[user@kd1 ~]$ ssh -Y x1000c0s0b1n0
-
-[user@x1000c0s0b1n0 ~]$ module load comsol
-[user@x1000c0s0b1n0 ~]$ comsol -3drend sw
-```
+1. Submit your interactive job and wait to obtain a node. For example:
+   ```
+   $ salloc -A <projectname> -t 02:00:00 --nodes=1 --ntasks-per-node=20
+   ```
+2. Once the requested node is allocated, take note of the node name.
+3. Open a secondary terminal on the FastX desktop, and `ssh -X <nodename>` to connect to the job node with X-forwarding enabled.
+   ```
+   [user@kd1 ~]$ ssh -X x1000c0s0b1n0
+   ```
+4. Launch Comsol in the new terminal
+   ```
+   [user@x1000c0s0b1n0 ~]$ module load comsol
+   [user@x1000c0s0b1n0 ~]$ comsol
+   ```
 
 Note that performance with software rendering may be slow and certain display features may behave unexpectedly.
 
@@ -170,4 +181,5 @@ In COMSOL Multiphysics®, GPU acceleration can significantly increase performanc
 
 Note, when launching a GPU job on Kestrel, be sure to do so from one of its dedicated [GPU login nodes](../Systems/Kestrel/index.md).
 
-The Complex Systems Simulation and Optimization group has hosted introductory and advanced COMSOL trainings. The introductory training covered how to use the COMSOL GUI and run COMSOL in batch mode on Kestrel. The advanced training showed how to do a parametric study using different sweeps (running an interactive session is also included) and introduced equation-based simulation and parameter estimation. To learn more about using COMSOL on Kestrel, please refer to the training. The recording can be accessed at [Computational Sciences Tutorials](https://nrel.sharepoint.com/sites/ComputationalSciencesTutorials/Lists/Computational%20Sciences%20Tutorial%20Recordings/AllItems.aspx?viewid=7b97e3fa%2Dedf6%2D48cd%2D91d6%2Df69848525ba4&playlistLayout=playback&itemId=75) and the slides and models used in the training can be downloaded from [Github](https://github.com/NREL/HPC/tree/master/applications/comsol/comsol-training).
+## Additional Resources
+The Complex Systems Simulation and Optimization group has hosted introductory and advanced COMSOL trainings. The introductory training covered how to use the COMSOL GUI and run COMSOL in batch mode on Kestrel. The advanced training showed how to do a parametric study using different sweeps (running an interactive session is also included) and introduced equation-based simulation and parameter estimation. To learn more about using COMSOL on Kestrel, please refer to the training. The recording can be accessed at [Computational Sciences Tutorials](https://nrel.sharepoint.com/sites/ComputationalSciencesTutorials/Lists/Computational%20Sciences%20Tutorial%20Recordings/AllItems.aspx?viewid=7b97e3fa%2Dedf6%2D48cd%2D91d6%2Df69848525ba4&playlistLayout=playback&itemId=75) and the slides and models used in the training can be downloaded from [Github](https://github.com/NatLabRockies/HPC/tree/master/applications/comsol/comsol-training).

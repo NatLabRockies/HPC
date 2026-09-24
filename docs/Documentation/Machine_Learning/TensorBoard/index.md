@@ -57,6 +57,6 @@ TensorBoard 2.5.0 at http://localhost:6006/ (Press CTRL+C to quit)
 ```
 Open a new Terminal tab and create a tunnel:
 ```
-ssh -NfL 6006:localhost:6006 $USER@el1.hpc.nrel.gov
+ssh -NfL 6006:localhost:6006 $USER@el1.hpc.nlr.gov
 ```
 Finally, open the above localhost url (`http://localhost:6006/`) in a browser, where all the aforementioned plots will be shown.

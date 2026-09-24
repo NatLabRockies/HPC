@@ -1,13 +1,13 @@
-This page documents how NREL HPC users can utilize GPUs, from submitting the right kind of job to Slurm to examples of creating custom CUDA kernels from Python.
+This page documents how NLR HPC users can utilize GPUs, from submitting the right kind of job to Slurm to examples of creating custom CUDA kernels from Python.
 
 ## Submitting GPU jobs to Slurm
 
 ### Example scripts
 
-The following examples are generic templates that NREL HPC users can adapt for their own GPU job scripts for a given system. Be sure to replace `<allocation>` with the name of your HPC allocation. Note that Kestrel and Swift's GPU partitions have sharable nodes, allowing for multiple jobs to run on one node simultaneously. Since there are four GPU cards on each node on these systems, each node can theoretically accommodate four GPU-driven jobs at once. As such, example scripts for those systems are tailored for requesting one-quarter of a node by default. Although Vermilion's GPUs are technically "shared" in the sense that multiple (CPU) jobs can run on one node, there is only one GPU per node. As such the Vermilion example requests the entire node. Please refer to the [system-specific pages](../../Systems/index.md) for more information on the GPUs available on each cluster and how AUs are charged accordingly.
+The following examples are generic templates that NLR HPC users can adapt for their own GPU job scripts for a given system. Be sure to replace `<allocation>` with the name of your HPC allocation. Note that Kestrel and Swift's GPU partitions have sharable nodes, allowing for multiple jobs to run on one node simultaneously. Since there are four GPU cards on each node on these systems, each node can theoretically accommodate four GPU-driven jobs at once. As such, example scripts for those systems are tailored for requesting one-quarter of a node by default. Although Vermilion's GPUs are technically "shared" in the sense that multiple (CPU) jobs can run on one node, there is only one GPU per node. As such the Vermilion example requests the entire node. Please refer to the [system-specific pages](../../Systems/index.md) for more information on the GPUs available on each cluster and how AUs are charged accordingly.
 
 !!! note
-    When launching a GPU job on Kestrel, be sure to do so from [one of its dedicated GPU login nodes](https://nrel.github.io/HPC/Documentation/Systems/Kestrel/#accessing-kestrel).
+    When launching a GPU job on Kestrel, be sure to do so from [one of its dedicated GPU login nodes](../../Systems/Kestrel/index.md#accessing-kestrel).
 
 !!! note
     Be aware that `--mem` in Slurm ALWAYS refers to CPU, not GPU, memory. You are automatically given all of the per-device GPU memory in a Slurm job.
@@ -104,10 +104,10 @@ Mon Mar 24 16:42:36 2025
 +-----------------------------------------------------------------------------------------+
 ```
 
-Please reach out to [HPC-Help@nrel.gov](mailto:HPC-Help@nrel.gov) if you would like assistance with profiling your multi-node GPU jobs in a similar manner.
+Please reach out to [HPC-Help@nlr.gov](mailto:HPC-Help@nlr.gov) if you would like assistance with profiling your multi-node GPU jobs in a similar manner.
 
 !!! note
-    **Importantly**, if your target process is running but does *not* show up in the `nvidia-smi` output, that indicates your code cannot recognize the GPU device(s), likely due to software problems or user error. Always feel free to submit a ticket with [HPC-Help@nrel.gov](mailto:HPC-Help@nrel.gov) if something does not look right!
+    **Importantly**, if your target process is running but does *not* show up in the `nvidia-smi` output, that indicates your code cannot recognize the GPU device(s), likely due to software problems or user error. Always feel free to submit a ticket with [HPC-Help@nlr.gov](mailto:HPC-Help@nlr.gov) if something does not look right!
 
 ### GPU-relevant environment variables
 
@@ -183,7 +183,7 @@ Consider the script `numba-mat.py` below. This script demonstrates the importanc
     # balancing the cost of copying data from the host CPU to GPU device in 
     # terms of runtime performance.
 
-    # Please contact Matt.Selensky@nrel.gov with any questions.
+    # Please contact Matt.Selensky@nlr.gov with any questions.
 
     import numba
     from numba import vectorize
@@ -288,6 +288,6 @@ To be sure, there are many more considerations to have when developing a highly 
 ## Extra resources
 
 * ["Preparing your Python code for Perlmutter's GPUs"](https://docs.nersc.gov/development/languages/python/perlmutter-prep/) (NERSC)
-* [Another `numba` example](https://github.com/NREL/HPC/blob/master/languages/python/numba/numba_demo.ipynb) (NREL)
+* [Another `numba` example](https://github.com/NatLabRockies/HPC/blob/master/languages/python/numba/numba_demo.ipynb) (NLR)
 * ["Just-in-time (JIT) compilation"](https://docs.nvidia.com/cuda/cutensor/latest/just_in_time_compilation.html) (NVIDIA)
 * [Numba documentation](https://numba.readthedocs.io/en/stable/) (Numba)

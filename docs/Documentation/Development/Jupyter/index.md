@@ -82,13 +82,13 @@ More on kernels later.
 
 ## JupyterHub Service on Kestrel (KJHub)
 
-The NREL HPC team runs a JupyterHub service for HPC users to quickly access notebooks and data stored on Kestrel, Kestrel-JHub (KJHub.)
+The NLR HPC team runs a JupyterHub service for HPC users to quickly access notebooks and data stored on Kestrel, Kestrel-JHub (KJHub.)
 
-KJHub is available from the NREL VPN (onsite or offsite) for internal NREL users.
+KJHub is available from the NLR VPN (onsite or offsite) for internal NLR users.
 
-This service is not directly accessible externally for non-NREL HPC users. However, it may be reached by using the [HPC VPN](https://www.nrel.gov/hpc/vpn-connection.html), or by using a [FastX Remote Desktop](https://nrel.github.io/HPC/Documentation/Viz_Analytics/virtualgl_fastx/) session via the DAV nodes.
+This service is not directly accessible externally for non-NLR HPC users. However, it may be reached by using the [HPC VPN](https://www.nlr.gov/hpc/vpn-connection.html), or by using a [FastX Remote Desktop](../../Viz_Analytics/virtualgl_fastx.md) session via the DAV nodes.
 
-The JupyterHub service is accessible via web browser at [https://kestrel-jhub.hpc.nrel.gov](https://kestrel-jhub.hpc.nrel.gov)
+The JupyterHub service is accessible via web browser at [https://kestrel-jhub.hpc.nlr.gov](https://kestrel-jhub.hpc.nlr.gov)
 
 ### JupyterHub Advantages:
 
@@ -105,7 +105,7 @@ The JupyterHub service is accessible via web browser at [https://kestrel-jhub.hp
    
 ### Simple Instructions to access JupyterHub:
     
-* Visit [https://kestrel-jhub.hpc.nrel.gov](https://kestrel-jhub.hpc.nrel.gov/) in a web browser and log in using your HPC credentials.
+* Visit [https://kestrel-jhub.hpc.nlr.gov](https://kestrel-jhub.hpc.nlr.gov/) in a web browser and log in using your HPC credentials.
    
 KJHub opens a standard JupyterLab interface by default. Change the url ending from "/lab" to "/tree" in your web browser to switch to the classic Notebooks interface.
 
@@ -119,7 +119,7 @@ Kestrel supports running your own Jupyter Notebook server on a compute node. Thi
 * Custom conda environments to load preferred libraries.
 * Full node usage: Exclusive access to the resources of the node your job is reserved on, including up to 104 CPU cores and up to 240GB RAM on Kestrel CPU nodes and up to 2TB RAM on Kestrel bigmem nodes. (See the system specifications page for more information on the types of nodes available on Kestrel.)
 * No competing with other users for CPU cores and RAM, and no Arbiter2 process throttling.
-* Less than a whole node may be requested via the [shared node](https://nrel.github.io/HPC/Documentation/Systems/Kestrel/running/#shared-node-partition) queue, to save AUs.
+* Less than a whole node may be requested via the [shared node](../../Systems/Kestrel/running.md#shared-node-partition) queue, to save AUs.
 
 ### Disadvantages:
 
@@ -130,9 +130,9 @@ Kestrel supports running your own Jupyter Notebook server on a compute node. Thi
 
 Before you get started, we recommend installing your own Jupyter inside of a conda environment. The default conda/anaconda3 module contains basic Jupyter Notebook packages, but you will likely want your own Python libraries, notebook extensions, and other features. Basic directions are included later in this document.
 
-Internal (NREL) HPC users on the NREL VPN, or external users of the HPC VPN, may use the instructions below.
+Internal (NLR) HPC users on the NLR VPN, or external users of the HPC VPN, may use the instructions below.
 
-External (non-NREL) HPC users may follow the same instructions, but please use `kestrel.nrel.gov` in place of `kestrel.hpc.nrel.gov`.
+-External (non-NLR) HPC users may follow the same instructions, but please use `kestrel.nlr.gov` in place of `kestrel.hpc.nlr.gov`.
 
 ## Using a Compute Node to run Jupyter Notebooks
 
@@ -145,7 +145,7 @@ The examples below will start a 2-hour job. Edit the `<account>` to the name of 
 
 Connect to the login node and launch an interactive job:
 
-`[user@laptop:~]$ ssh kestrel.hpc.nrel.gov`
+`[user@laptop:~]$ ssh kestrel.hpc.nlr.gov`
 
 `[user@kl1:~]$ salloc -A <account> -t 02:00:00`
 
@@ -170,7 +170,7 @@ The `<alphabet soup>` is a long string of letters and numbers. This is a unique 
 
 Next, open an SSH tunnel through a login node to the compute node. Log in when prompted using your regular HPC credentials, and put this terminal to the side or minimize it, but leave it open until you are done working with Jupyter for this session.
 
-`[user@laptop:~]$ ssh -N -L 8888:<nodename>:8888 username@kestrel.hpc.nrel.gov`
+`[user@laptop:~]$ ssh -N -L 8888:<nodename>:8888 username@kestrel.hpc.nlr.gov`
 
 ### Open a Web Browser
 
@@ -184,20 +184,20 @@ Copy the full url and token from Jupyter startup into your web browser. For exam
 Scripted assistance with launching a Jupyter session on Kestrel is available.
 
 
-### Internal NREL Users Only: pyeagle
+### Internal NLR Users Only: pyeagle
 
-The [pyeagle](https://github.nrel.gov/MBAP/pyeagle) package is available for internal users to handle launching and monitoring a jupyter server on a compute node. This package is maintained by an NREL HPC user group and was originally written for use with Eagle, but now supports Kestrel.
+The [pyeagle](https://github.nrel.gov/MBAP/pyeagle) package is available for internal users to handle launching and monitoring a jupyter server on a compute node. This package is maintained by an NLR HPC user group and was originally written for use with Eagle, but now supports Kestrel.
 
 ###  Auto-launching on Kestrel with an sbatch Script
 
 There are scripts written for launching a Jupyter session inside of a slurm job.
 
-Full directions and scripts included in the [Jupyter repo](https://github.com/NREL/HPC/tree/master/general/Jupyterhub/jupyter).
+Full directions and scripts included in the [Jupyter repo](https://github.com/NatLabRockies/HPC/tree/master/general/Jupyterhub/jupyter).
 
 ??? Example "Standard Jupyter session launch with full CPU request"
-    Download [sbatch_jupyter.sh](https://github.com/NREL/HPC/blob/master/general/Jupyterhub/jupyter/sbatch_jupyter.sh) and [auto_launch_jupyter.sh](https://github.com/NREL/HPC/blob/master/general/Jupyterhub/jupyter/auto_launch_jupyter.sh)
+    Download [sbatch_jupyter.sh](https://github.com/NatLabRockies/HPC/blob/master/general/Jupyterhub/jupyter/sbatch_jupyter.sh) and [auto_launch_jupyter.sh](https://github.com/NatLabRockies/HPC/blob/master/general/Jupyterhub/jupyter/auto_launch_jupyter.sh)
 
-    Edit [sbatch_jupyter.sh](https://github.com/NREL/HPC/blob/master/general/Jupyterhub/jupyter/sbatch_jupyter.sh) to change:
+    Edit [sbatch_jupyter.sh](https://github.com/NatLabRockies/HPC/blob/master/general/Jupyterhub/jupyter/sbatch_jupyter.sh) to change:
     ```
     --time=<time_request>
     --account=<project_handle>
@@ -206,17 +206,17 @@ Full directions and scripts included in the [Jupyter repo](https://github.com/NR
     source activate /home/$USER/.conda-envs/<MY_ENVIRONMENT> # Replace <MY_ENVIRONMENT> with the name of your conda environment
     ```
 
-    Edit [auto_launch_jupyter.sh](https://github.com/NREL/HPC/blob/master/general/Jupyterhub/jupyter/auto_launch_jupyter.sh) to include your sbatch_jupyter script:
+    Edit [auto_launch_jupyter.sh](https://github.com/NatLabRockies/HPC/blob/master/general/Jupyterhub/jupyter/auto_launch_jupyter.sh) to include your sbatch_jupyter script:
     ```
     RES=$(sbatch sbatch_jupyter.sh)
     ```
 
-    Run [auto_launch_jupyter.sh](https://github.com/NREL/HPC/blob/master/general/Jupyterhub/jupyter/auto_launch_jupyter.sh) and follow the directions that come up on your terminal window.
+    Run [auto_launch_jupyter.sh](https://github.com/NatLabRockies/HPC/blob/master/general/Jupyterhub/jupyter/auto_launch_jupyter.sh) and follow the directions that come up on your terminal window.
 
 ??? Example "Standard Jupyter session launch in the shared partition with partial CPU request"
-    Download [shared_sbatch_jupyter.sh](https://github.com/NREL/HPC/blob/master/general/Jupyterhub/jupyter/shared_sbatch_jupyter.sh) and [auto_launch_jupyter.sh](https://github.com/NREL/HPC/blob/master/general/Jupyterhub/jupyter/auto_launch_jupyter.sh)
+    Download [shared_sbatch_jupyter.sh](https://github.com/NatLabRockies/HPC/blob/master/general/Jupyterhub/jupyter/shared_sbatch_jupyter.sh) and [auto_launch_jupyter.sh](https://github.com/NatLabRockies/HPC/blob/master/general/Jupyterhub/jupyter/auto_launch_jupyter.sh)
 
-    Edit [shared_sbatch_jupyter.sh](https://github.com/NREL/HPC/blob/master/general/Jupyterhub/jupyter/shared_sbatch_jupyter.sh) to change:
+    Edit [shared_sbatch_jupyter.sh](https://github.com/NatLabRockies/HPC/blob/master/general/Jupyterhub/jupyter/shared_sbatch_jupyter.sh) to change:
     ```
     --time=<time_request>
     --account=<project_handle>
@@ -228,17 +228,17 @@ Full directions and scripts included in the [Jupyter repo](https://github.com/NR
     source activate /home/$USER/.conda-envs/<MY_ENVIRONMENT>  # Replace <MY_ENVIRONMENT> with the name of your conda environment
     ```
 
-    Edit [auto_launch_jupyter.sh](https://github.com/NREL/HPC/blob/master/general/Jupyterhub/jupyter/auto_launch_jupyter.sh) to include your sbatch_jupyter script:
+    Edit [auto_launch_jupyter.sh](https://github.com/NatLabRockies/HPC/blob/master/general/Jupyterhub/jupyter/auto_launch_jupyter.sh) to include your sbatch_jupyter script:
     ```
     RES=$(sbatch shared_sbatch_jupyter.sh)
     ```
 
-    Run [auto_launch_jupyter.sh](https://github.com/NREL/HPC/blob/master/general/Jupyterhub/jupyter/auto_launch_jupyter.sh) and follow the directions that come up on your terminal window.
+    Run [auto_launch_jupyter.sh](https://github.com/NatLabRockies/HPC/blob/master/general/Jupyterhub/jupyter/auto_launch_jupyter.sh) and follow the directions that come up on your terminal window.
 
 ??? Example "Standard Jupyter session launch with GPU request"
-    Download [gpu_sbatch_jupyter.sh](https://github.com/NREL/HPC/blob/master/general/Jupyterhub/jupyter/gpu_sbatch_jupyter.sh) and [auto_launch_jupyter.sh](https://github.com/NREL/HPC/blob/master/general/Jupyterhub/jupyter/auto_launch_jupyter.sh)
+    Download [gpu_sbatch_jupyter.sh](https://github.com/NatLabRockies/HPC/blob/master/general/Jupyterhub/jupyter/gpu_sbatch_jupyter.sh) and [auto_launch_jupyter.sh](https://github.com/NatLabRockies/HPC/blob/master/general/Jupyterhub/jupyter/auto_launch_jupyter.sh)
 
-    Edit [gpu_sbatch_jupyter.sh](https://github.com/NREL/HPC/blob/master/general/Jupyterhub/jupyter/gpu_sbatch_jupyter.sh) to change:
+    Edit [gpu_sbatch_jupyter.sh](https://github.com/NatLabRockies/HPC/blob/master/general/Jupyterhub/jupyter/gpu_sbatch_jupyter.sh) to change:
     ```
     --time=<time_request>
     --account=<project_handle>
@@ -255,12 +255,12 @@ Full directions and scripts included in the [Jupyter repo](https://github.com/NR
     source activate /home/$USER/.conda-envs/<MY_ENVIRONMENT>  # Replace <MY_ENVIRONMENT> with the name of your conda environment
     ```
 
-    Edit [auto_launch_jupyter.sh](https://github.com/NREL/HPC/blob/master/general/Jupyterhub/jupyter/auto_launch_jupyter.sh) to include your sbatch_jupyter script:
+    Edit [auto_launch_jupyter.sh](https://github.com/NatLabRockies/HPC/blob/master/general/Jupyterhub/jupyter/auto_launch_jupyter.sh) to include your sbatch_jupyter script:
     ```
     RES=$(sbatch gpu_sbatch_jupyter.sh)
     ```
 
-    Run [auto_launch_jupyter.sh](https://github.com/NREL/HPC/blob/master/general/Jupyterhub/jupyter/auto_launch_jupyter.sh) and follow the directions that come up on your terminal window.
+    Run [auto_launch_jupyter.sh](https://github.com/NatLabRockies/HPC/blob/master/general/Jupyterhub/jupyter/auto_launch_jupyter.sh) and follow the directions that come up on your terminal window.
 
 
 ## Reasons to Not Run Jupyter Directly on a Login Node

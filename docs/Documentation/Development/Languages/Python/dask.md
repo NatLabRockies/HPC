@@ -15,7 +15,7 @@ Dask is a framework for parallelizing Python code. The most common use case is t
 ## Installation
 
 !!! Warning
-    Conda environments should be *always* be installed outside of your home directory for storage and performance reasons. **This is especially important for frameworks like Dask**, whose parallel processes can particularly strain the `/home` filesystem. Please refer to our dedicated [conda documentation](../../../Environment/Customization/conda.md#reduce-home-directory-usage) for more information on how to setup your conda environments to redirect the installation outside of `/home` by default.
+    Conda environments should be *always* be installed outside of your home directory for storage and performance reasons. **This is especially important for frameworks like Dask**, whose parallel processes can particularly strain the `/home` filesystem. Please refer to our dedicated [conda documentation](../../../Environment/Customization/conda.md#creating-environments-by-location) for more information on how to setup your conda environments to redirect the installation outside of `/home` by default.
 
 Dask can be installed via Conda/Mamba. For example, to install Dask into a new environment from `conda-forge` into your `/projects` allocation folder, first load the appropriate conda (or mamba) module (e.g., `module load mamba` on Kestrel), and then run the following on a compute node.
 
@@ -100,7 +100,7 @@ The [`dask-jobqueue`](https://jobqueue.dask.org/en/latest/index.html#) library m
 
 For the following example, first make sure that both `dask` and `dask-jobqueue` have been installed.  Create a file named `dask_slurm_example.py` with the following contents, and replace `<project>` with your project allocation.
 
-Assuming you are on Kestrel, this example will request two jobs from the `shared` partition.
+Assuming you are on Kestrel, this example will request two jobs from the `shared` partition.  Note the interface is defined so the workers can communicate with the SLURMCluster running on the login node.
 
 ??? example "`dask_slurm_example.py`"
 
@@ -116,6 +116,7 @@ Assuming you are on Kestrel, this example will request two jobs from the `shared
        account='<allocation_handle>',
        walltime='00:30:00',
        processes=17,
+       interface='hsn0',
        queue='shared'
     )
     

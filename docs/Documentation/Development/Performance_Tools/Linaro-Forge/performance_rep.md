@@ -11,7 +11,7 @@ Linaro Performance Reports is a low-overhead tool that produces one-page text an
 
 ## Walk through
 
-Here we show the information you can obtain with Linaro Performance reports using VASP as an example. In the next section, we will detail how to obtain these reports. If you need help with profiling your programs, reach out to [HPC help](mailto:hpc-help@nrel.gov) and we can work with you.
+Here we show the information you can obtain with Linaro Performance reports using VASP as an example. In the next section, we will detail how to obtain these reports. If you need help with profiling your programs, reach out to [HPC help](mailto:hpc-help@nlr.gov) and we can work with you.
 
 Here is the header of performance report obtained for a VASP run on 1 node with 36 processes:
 

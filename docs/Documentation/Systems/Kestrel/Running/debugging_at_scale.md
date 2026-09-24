@@ -42,7 +42,7 @@ To debug applications that use many nodes, there are three possible approaches.
 ??? abstract "Approach 2: Request a Reservation"
     A more convenient approach may be to request a reservation for the number of nodes you need.  A reservation may be shared by multiple users, and it starts and ends at specific times.  
     
-    To request a reservation for a debugging session, please [contact us](mailto://hpc-help@nrel.gov) and include:
+    To request a reservation for a debugging session, please [contact us](mailto://hpc-help@nlr.gov) and include:
 
         * Project handle 
         * Number of nodes 

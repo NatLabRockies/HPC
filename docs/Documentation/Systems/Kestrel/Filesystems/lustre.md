@@ -27,7 +27,7 @@ In some cases special care must be taken while using Lustre so as not to affect 
     ```
 * Have many small files in a single directory
 * Store important files in `/scratch`
-    * e.g. don't keep data, libraries or programs in `/scratch/username`, as `/scratch` directories are subject to automated purging based on the [Data Retention Policy](https://www.nrel.gov/hpc/data-retention-policy.html)
+    * e.g. don't keep data, libraries or programs in `/scratch/username`, as `/scratch` directories are subject to automated purging based on the [Data Retention Policy](https://www.nlr.gov/hpc/data-retention-policy.html)
 
 
 ## Useful Lustre commands

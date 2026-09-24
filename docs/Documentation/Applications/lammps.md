@@ -1,14 +1,14 @@
 # Using LAMMPS Software
 
-*Learn how to use LAMMPS software — an open-source, classical molecular dynamics program designed for massively parallel systems. It is distributed by Sandia National Laboratories.*
+LAMMPS stands for Large-scale Atomic/Molecular Massively Parallel Simulator. LAMMPS is a classical molecular dynamics simulation code focusing on materials modeling. It was designed to run efficiently on parallel computers and to be easy to extend and modify. LAMMPS is open-source software distributed under the terms of the GNU Public License Version 2 (GPLv2).
 
 LAMMPS has numerous built-in potentials for simulations of solid-state, soft matter, and coarse-grained systems. It can be run on a single processor or in parallel using MPI. To learn more, see the [LAMMPS website](https://www.lammps.org/#gsc.tab=0). 
 
-The versions of LAMMPS on Kestrel, Swift, and Vermilion can be checked by running `module avail lammps`. Usually there are two recent stable versions available that were compiled using different compiler and MPI toolchains. The following packages have been installed: asphere, body, bocs, class2, colloid, dielectric, diffraction, dipole, dpd-basic, drude, eff, electrode, extra-fix, extra-pair, fep, granular, h5md, intel, interlayer, kspace, manifold, manybody, mc, meam, misc, molecule, mpiio, openmp, opt, python, phonon, qep, qmmm, reaction, reaxff, replica, rigid, shock, spin, voronoi.
+The versions of LAMMPS on Kestrel, Swift, and Gila can be checked by running `module avail lammps`. Usually there are two recent stable versions available that were compiled using different compiler and MPI toolchains. The following packages have been installed: asphere, body, bocs, class2, colloid, dielectric, diffraction, dipole, dpd-basic, drude, eff, electrode, extra-fix, extra-pair, fep, granular, h5md, intel, interlayer, kspace, manifold, manybody, mc, meam, misc, molecule, mpiio, openmp, opt, python, phonon, qep, qmmm, reaction, reaxff, replica, rigid, shock, spin, voronoi.
 
-If you need other packages or a certain LAMMPS version, please [contact us](mailto:HPC-Help@nrel.gov). 
+If you need other packages or a certain LAMMPS version, please [contact us](mailto:HPC-Help@nlr.gov). 
 
-## Sample CPU Slurm Script 
+## Sample Kestrel CPU Slurm Script 
 A sample Slurm script for running LAMMPS on Kestrel CPU nodes is given below:
 
 ```
@@ -23,7 +23,7 @@ A sample Slurm script for running LAMMPS on Kestrel CPU nodes is given below:
 #SBATCH --exclusive
 #SBATCH -p debug
 
-module load lammps/080223-intel-mpich
+module load lammps/072225-intel-mpich
 module list
 
 run_cmd="srun --mpi=pmi2 "
@@ -34,7 +34,7 @@ $run_cmd $lmp_path -in $name.in >& $name.log
 
 where `my_job.in` is the input and `my_job.log` is the output. This runs LAMMPS using two nodes with 208 MPI ranks. 
 
-## Sample GPU Slurm Script 
+## Sample Kestrel GPU Slurm Script 
 A sample Slurm script for running LAMMPS on Kestrel GPU nodes is given below:
 
 ```
@@ -50,7 +50,7 @@ A sample Slurm script for running LAMMPS on Kestrel GPU nodes is given below:
 #SBATCH --gres=gpu:2 #Request 2 GPU per node
 #SBATCH -p debug
 
-module load lammps/080223-gpu
+module load lammps/072225-gpu
 module list
 
 export MPICH_GPU_SUPPORT_ENABLED=1
@@ -115,10 +115,51 @@ $run_cmd $lmp_path -in $name.in >& $name.log
 
 Please note – the CPU binding and MPICH_OFI_NIC_POLICY being set explicitly allow for extra performance gains on the high-bandwidth partition. If not set, there are still performance gains on the high-bandwidth nodes, just not as much as there would be otherwise. 
 
+## Sample Gila AMD CPU Partition Slurm Script
+A sample Slurm script for running LAMMPS on Gila's AMD CPU nodes is given below. These jobs must be submitted [from a Gila x86 login node](../Systems/Gila/modules/#x86-vs-arm). This job runs on an entire CPU node. Note that mpirun must currently be used to launch parallel jobs. Also note that multi-node LAMMPS jobs are not currently possible. 
+
+```
+#!/bin/bash
+#SBATCH --job-name my-lammps-job
+#SBATCH --nodes=1
+#SBATCH --tasks-per-node=60
+#SBATCH --exclusive
+#SBATCH --time=00:20:00
+#SBATCH --account=<your_allocation_name>
+#SBATCH --partition=amd
+
+export OMP_NUM_THREADS=1
+
+ml application
+ml lammps/22Jul2025-x86-gnu
+
+mpirun -np ${SLURM_NTASKS} lmp -in lammps.in -log lammps.out
+```
+
+Another sample Slurm script for 1 MPI task CPU node job (i.e. a partial CPU node) is below:
+```
+#!/bin/bash
+#SBATCH --job-name my-lammps-job
+#SBATCH --nodes=1
+#SBATCH --cpus-per-task=1
+#SBATCH --mem-per-cpu=1G
+#SBATCH --time=00:20:00
+#SBATCH --account=<your_allocation_name>
+#SBATCH --partition=amd
+ 
+export OMP_NUM_THREADS=1
+ 
+ml application
+ml lammps/22Jul2025-x86-gnu
+
+# Change "-np 1" to be the same number as --cpus-per-task 
+mpirun -np 1 lmp -in lammps.in -log lammps.out
+```
+
 ## Hints and Additional Resources
 1. For calculations requesting more than ~10 nodes, running on the high-bandwidth partition is recommended. Further information on the High-Bandwidth partition can be found here: [High-Bandwidth Partition](../Systems/Kestrel/Running/index.md#high-bandwidth-partition).
 2. For CPU runs, especially for multi-nodes runs, the optimal performance for a particular job may be at a tasks-per-node value less than 104. For GPU runs, number of GPUs should also be varied to achieve the optimal performance. Users should investigate those parameters for large jobs by performing some short test runs. Some tasks-per-node values that could be useful to test are: 72, 52, and 48.
-3. For instructions on running LAMMPS with OpenMP, see the [HPC Github code repository](https://github.com/NREL/HPC/tree/master/applications/lammps).
+3. For instructions on running LAMMPS with OpenMP, see the [HPC Github code repository](https://github.com/NatLabRockies/HPC/tree/master/applications/lammps).
 
 
 

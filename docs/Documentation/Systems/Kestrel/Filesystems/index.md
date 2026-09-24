@@ -7,7 +7,7 @@ title: Filesystems
 
 ## Home File System
 
-The Home File System (HFS) on Kestrel is part of the ClusterStor used for the Parallel File System (PFS), providing highly reliable storage for user home directories and NREL-specific software. HFS has 1.2 petabytes (PB) of capacity. Snapshots of files on the HFS are available up to 30 days after change/deletion. 
+The Home File System (HFS) on Kestrel is part of the ClusterStor used for the Parallel File System (PFS), providing highly reliable storage for user home directories and NLR-specific software. HFS has 1.2 petabytes (PB) of capacity.
 
 **/home**
 
@@ -20,7 +20,7 @@ The /home directory on Kestrel is intended to hold small files. These include sh
 
 **/nopt**
 
-The /nopt directory on Kestrel resides on HFS and is where NREL-specific software, module files, licenses, and licensed software are kept.
+The /nopt directory on Kestrel resides on HFS and is where NLR-specific software, module files, licenses, and licensed software are kept.
 
 ## Parallel File System
 
@@ -63,7 +63,7 @@ Directories in /projects have a quota assigned based on the project resource all
 
 Projects may request a shared project directory to host data, configuration, and applications shared by multiple projects/allocations. 
 
-To request a /shared-projects directory, please contact [hpc-help@nrel.gov](mailto:HPC-Help@nrel.gov) and include the following information:
+To request a /shared-projects directory, please contact [hpc-help@nlr.gov](mailto:HPC-Help@nlr.gov) and include the following information:
 ```
 1. The name of the primary/"host" allocation that the /shared-projects directory will belong to. 
 2. The name/email of a person who will authorize changes to the /shared-projects directory. 
@@ -78,7 +78,7 @@ To request a /shared-projects directory, please contact [hpc-help@nrel.gov](mail
 
 The /kfs2/datasets directory on Kestrel hosts widely used data sets.
 
-There are multiple big data sets that are commonly used across various projects for computation and analysis on NREL's HPC Systems. We provide a common location on Kestrel's filesystem at /kfs2/datasets, where these data sets are available for global reading by all compute nodes. Each data set contains a readme file that covers background, references, explanation of the data structure, and Python examples.
+There are multiple big data sets that are commonly used across various projects for computation and analysis on NLR's HPC Systems. We provide a common location on Kestrel's filesystem at /kfs2/datasets, where these data sets are available for global reading by all compute nodes. Each data set contains a readme file that covers background, references, explanation of the data structure, and Python examples.
 
 These datasets include: 
 
@@ -89,6 +89,8 @@ The National Solar Radiation Database (NSRDB) is a serially complete collection 
 **/kfs2/datasets/WIND**
 
 The Wind Integration National Data Set (WIND) Toolkit consists of wind resource data for North America and was produced using the Weather Research and Forecasting Model (WRF).
+
+For more information on the data sets hosted on Kestrel, please see the [Github repository](https://github.com/NatLabRockies/HPC/tree/master/general/datasets).
 
 ### ScratchFS
 
@@ -112,5 +114,8 @@ The local disk on nodes that have one is mounted at `/tmp/scratch`. To write to 
 
 To request nodes with local disk, use the `--tmp` option in your job submission script. (e.g. `--tmp=1600000`). For more information about requesting this feature, please see the [Running on Kestrel page](../Running/index.md).
 
+## Backups and Snapshots
+
+There are no backups nor snapshots of the Kestrel filesystems. Though the system is protected from hardware failure by multiple layers of redundancy, please regularly back up important data put on Kestrel, and consider using a Version Control System (such as Git) for important code.
 
 

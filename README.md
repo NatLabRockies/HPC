@@ -1,5 +1,5 @@
 # About
-This branch includes the content rendered on the  nrel.github.io/hpc site. The focus of this site is to provide documentation and blog posts to enable users to utilize NREL's computational resources. 
+This branch includes the content rendered on the  [natlabrockies.github.io/HPC/](https://natlabrockies.github.io/HPC/) site. The focus of this site is to provide documentation and blog posts to enable users to utilize NLR's computational resources. 
 
 For code tutorials and workshops see the master branch of this repository. 
 

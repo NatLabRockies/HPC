@@ -4,7 +4,7 @@
 
 * OpenFOAM versions 10, 11, and 2306 are now available as modules. All are compiled with GCC and OpenMPI.
 * The module `openfoam/v2306-openmpi-gcc` is an installation of OpenFOAM obtained from the .com OpenFOAM website.
-* OpenFOAM 10 and 11 are from the .org website which is cloned from the OpenFOAM repo. If there is a need for the dev version of OpenFOAM on Github, please let us know via [HPC-Help@nrel.gov](mailto:HPC-Help@nrel.gov) and we can work on making it available. 
+* OpenFOAM 10 and 11 are from the .org website which is cloned from the OpenFOAM repo. If there is a need for the dev version of OpenFOAM on Github, please let us know via [HPC-Help@nlr.gov](mailto:HPC-Help@nlr.gov) and we can work on making it available. 
 
 ## Anaconda
 

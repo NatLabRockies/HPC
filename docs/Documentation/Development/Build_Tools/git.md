@@ -11,7 +11,7 @@ has_children: true
 Git is used locally to track incremental development and modifications to a collection of files. [GitHub](https://github.com) is a git-repository hosting web-service, which serves as a synchronized, common access point for the file collections. GitHub also has social aspects, like tracking who changed what and why. There are other git hosting services like [GitLab](https://gitlab.com) which are similar to GitHub but offer slightly different features.
 
 
-NREL has a Github Enterprise server (github.nrel.gov) for internally-managed repos. Please note that github.nrel.gov is only available internally using the NREL network or VPN. NREL's git server uses SAML/SSO for logging into GitHub Enterprise. To get help accessing the server or creating a repository, please contact NREL ITS.
+NLR has a Github Enterprise server (github.nrel.gov) for internally-managed repos. Please note that github.nrel.gov is only available internally using the NLR network or VPN. NLR's git server uses SAML/SSO for logging into GitHub Enterprise. To get help accessing the server or creating a repository, please contact NLR ITS.
 
 ## Git Configuration Set Up
 
@@ -21,7 +21,7 @@ Git needs to know your user name and an email address at a minimum:
 
 ```
 $ git config --global user.name "Your name"
-$ git config --global user.email "your.name@nrel.gov"
+$ git config --global user.email "your.name@nlr.gov"
 ```
 
 Github does not accept account passwords for authenticated Git operations. Instead, token-based authentication ([PAT](https://docs.github.com/en/authentication/keeping-your-account-and-data-secure/creating-a-personal-access-token) or [SSH key](https://docs.github.com/en/authentication/connecting-to-github-with-ssh/about-ssh)) is required.
@@ -181,7 +181,7 @@ Users already have SSH keys created on the HPC systems. To set up Github SSH aut
     If you run `git status` again you will see that the changes have been reverted. Just be sure that you want to revert the file before doing so, because all current changes will not be recoverable. 
 
 ???+ note "Point your repo to a different remote server"
-    For example, you may need to do this if you were working on code from a repo that was checked-out from Github.com, and you want to check that code into a repository on NREL's github server. Once you've requested a new NREL git repo from ITS and it's configured, you can:    
+    For example, you may need to do this if you were working on code from a repo that was checked-out from Github.com, and you want to check that code into a repository on NLR's github server. Once you've requested a new NLR git repo from ITS and it's configured, you can:    
     ```
     git remote set-url origin git@github.nrel.gov:hpc/my.<newprojectname>.git
     ```    

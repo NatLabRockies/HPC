@@ -962,7 +962,7 @@ Valid categories include
 Intel® Fortran Compiler Classic (ifort) is now deprecated and will be discontinued in late 2024. 
 Intel recommends that customers transition now to using the LLVM-based Intel® Fortran Compiler (ifx).
 Other  than the name change some people will not notice significant differences.  The new compiler
-supports offloading to Intel GPU. Kestrel and Swift do not have Intel GPUs so this is not at NREL.  
+supports offloading to Intel GPU. Kestrel and Swift do not have Intel GPUs so this is not at NLR.  
 
 One notable deletion from the new compiler is dropping of auto-parilization.  With ifort the 
 -parallel compiler option auto-parallelization is enabled. That is not true for ifx; there
