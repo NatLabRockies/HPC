@@ -1,0 +1,35 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+<title>HPC Module Index</title>
+<link rel="stylesheet" href="styles.css" />
+</head>
+<body>
+  <header class="site-header">
+    <div class="header-inner">
+      <h1>HPC Module Index</h1>
+      <input id="search" type="search" placeholder="Search modules by name, description, or category..." autocomplete="off" />
+      <div class="meta" id="meta"></div>
+    </div>
+  </header>
+
+  <main class="layout">
+    <aside class="sidebar">
+      <h2>Categories</h2>
+      <ul id="category-list" class="category-list"></ul>
+    </aside>
+
+    <section class="package-list" id="package-list">
+      <!-- package cards injected here -->
+    </section>
+
+    <section class="detail-pane" id="detail-pane">
+      <div class="detail-placeholder">Select a module to see details.</div>
+    </section>
+  </main>
+
+  <script src="app.js"></script>
+</body>
+</html>
