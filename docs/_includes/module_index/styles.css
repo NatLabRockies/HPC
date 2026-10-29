@@ -231,6 +231,17 @@ body {
   font-weight: 600;
 }
 
+.system-badge {
+  display: inline-block;
+  border-radius: 999px;
+  padding: 0.2rem 0.7rem;
+  margin-left: 0.4rem;
+  font-size: 0.78rem;
+  font-weight: 600;
+  background: var(--surface-muted, #e2e8f0);
+  color: var(--muted, #475569);
+}
+
 .detail-section {
   margin-top: 1.25rem;
 }

@@ -54,6 +54,16 @@ function categoryColor(pkg) {
   return (pkg.category_color && pkg.category_color.css) || "#b5b3b3";
 }
 
+function packageKey(pkg) {
+  return pkg.name;
+}
+
+function systemBadges(pkg) {
+  return (pkg.systems || [])
+    .map((s) => `<span class="system-badge">${escapeHtml(s)}</span>`)
+    .join(" ");
+}
+
 // Picks black or white text for readable contrast against an arbitrary rgb() background.
 function idealTextColor(rgbCss) {
   const match = /rgb\((\d+),\s*(\d+),\s*(\d+)\)/.exec(rgbCss || "");
@@ -70,6 +80,7 @@ function matchesQuery(pkg, query) {
   if (pkg.description && pkg.description.toLowerCase().includes(q)) return true;
   if (categoryLabel(pkg).toLowerCase().includes(q)) return true;
   if (pkg.tags && pkg.tags.some((t) => t.toLowerCase().includes(q))) return true;
+  if (pkg.systems && pkg.systems.some((s) => s.toLowerCase().includes(q))) return true;
   return false;
 }
 
@@ -119,18 +130,18 @@ function renderPackageList() {
   container.innerHTML = state.filtered
     .map((pkg) => {
       const versionCount = pkg.versions ? pkg.versions.length : 0;
-      const isActive = state.selected && state.selected.name === pkg.name;
+      const isActive = state.selected && packageKey(state.selected) === packageKey(pkg);
       const color = categoryColor(pkg);
       return `
-        <div class="package-card ${isActive ? "active" : ""}" data-name="${escapeHtml(pkg.name)}" style="border-left: 4px solid ${escapeHtml(color)}">
-          <h3>${escapeHtml(pkg.name)} <span class="version-badge">${versionCount} version${versionCount === 1 ? "" : "s"}</span></h3>
+        <div class="package-card ${isActive ? "active" : ""}" data-key="${escapeHtml(packageKey(pkg))}" style="border-left: 4px solid ${escapeHtml(color)}">
+          <h3>${escapeHtml(pkg.name)} <span class="version-badge">${versionCount} version${versionCount === 1 ? "" : "s"}</span> ${systemBadges(pkg)}</h3>
           <p>${escapeHtml(pkg.description || "No description available.")}</p>
         </div>`;
     })
     .join("");
   container.querySelectorAll(".package-card").forEach((card) => {
     card.addEventListener("click", () => {
-      const pkg = state.packages.find((p) => p.name === card.dataset.name);
+      const pkg = state.packages.find((p) => packageKey(p) === card.dataset.key);
       selectPackage(pkg);
     });
   });
@@ -159,11 +170,12 @@ function renderDetail() {
   const versions = (pkg.versions || [])
     .map((v) => {
       const loadCmd = `module load ${v.full_name || `${pkg.name}/${v.version}`}`;
-      const isDefault = v.version === pkg.default_version;
+      const isDefault = Boolean(v.is_default);
       return `
         <details class="version-row" ${isDefault ? "open" : ""}>
           <summary>
             ${escapeHtml(v.full_name || v.version || "unknown")}
+            ${v.system ? `<span class="system-badge">${escapeHtml(v.system)}</span>` : ""}
             ${isDefault ? '<span class="default-badge">default</span>' : ""}
           </summary>
           <div class="load-cmd">${escapeHtml(loadCmd)}</div>
@@ -174,7 +186,7 @@ function renderDetail() {
 
   pane.innerHTML = `
     <h2>${escapeHtml(pkg.name)}</h2>
-    <div class="category-row">${categoryBadge}</div>
+    <div class="category-row">${categoryBadge}${systemBadges(pkg)}</div>
     ${pkg.description ? `<p>${escapeHtml(pkg.description)}</p>` : ""}
     ${pkg.url ? `<p class="url"><a href="${escapeHtml(pkg.url)}" target="_blank" rel="noopener noreferrer">${escapeHtml(pkg.url)}</a></p>` : ""}
     ${tags ? `<div>${tags}</div>` : ""}
