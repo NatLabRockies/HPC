@@ -1,7 +1,7 @@
 {
-  "generated_at": "2026-10-29T18:30:30.891975+00:00",
+  "generated_at": "2026-10-29T19:41:05.470578+00:00",
   "hostname": "kl3",
-  "method": "lmod-spider (kestrel-cpu + kestrel-gpu, grouped by package name)",
+  "method": "lmod-spider (kestrel-cpu + kestrel-gpu + gila-x86 + gila-arm, grouped by package name)",
   "modulepath": {
     "kestrel-cpu": [
       "/nopt/nlr/apps/kestrel-cpu/apps_modules/26.05",
@@ -14,7 +14,7 @@
       "/nopt/nlr/apps/kestrel-gpu/modules"
     ]
   },
-  "package_count": 197,
+  "package_count": 217,
   "packages": [
     {
       "name": "abinit",
@@ -403,10 +403,30 @@
       "family": null,
       "tags": [],
       "systems": [
+        "gila-arm",
+        "gila-x86",
         "kestrel-cpu",
         "kestrel-gpu"
       ],
       "versions": [
+        {
+          "version": "25.05",
+          "full_name": "application/25.05",
+          "modulefile": "/nopt/gila/apps/gracehopper/modules/application/25.05.lua",
+          "is_default": false,
+          "help": "Add path for Applications 25.05 modules to MODULEPATH",
+          "parents": [],
+          "system": "gila-arm"
+        },
+        {
+          "version": "25.05",
+          "full_name": "application/25.05",
+          "modulefile": "/nopt/gila/apps/gila/modules/application/25.05.lua",
+          "is_default": false,
+          "help": "Add path for Applications 25.05 modules to MODULEPATH",
+          "parents": [],
+          "system": "gila-x86"
+        },
         {
           "version": "26.05",
           "full_name": "application/26.05",
@@ -577,16 +597,142 @@
       }
     },
     {
+      "name": "autoconf",
+      "description": "Autoconf -- system configuration part of autotools",
+      "url": null,
+      "family": null,
+      "tags": [],
+      "systems": [
+        "gila-arm",
+        "gila-x86"
+      ],
+      "versions": [
+        {
+          "version": "2.72",
+          "full_name": "autoconf/2.72",
+          "modulefile": "/nopt/gila/apps/gracehopper/spack/modules/Core/25.05/autoconf/2.72.lua",
+          "is_default": false,
+          "help": "Autoconf -- system configuration part of autotools",
+          "parents": [
+            [
+              "Core/25.05"
+            ]
+          ],
+          "system": "gila-arm"
+        },
+        {
+          "version": "2.72",
+          "full_name": "autoconf/2.72",
+          "modulefile": "/nopt/gila/apps/gila/spack/modules/Core/25.05/autoconf/2.72.lua",
+          "is_default": false,
+          "help": "Autoconf -- system configuration part of autotools",
+          "parents": [
+            [
+              "Core/25.05"
+            ]
+          ],
+          "system": "gila-x86"
+        }
+      ],
+      "category": "unclassified",
+      "category_color": {
+        "rgb": [
+          80,
+          80,
+          80
+        ],
+        "css": "rgb(80, 80, 80)",
+        "human": "dark grey"
+      }
+    },
+    {
+      "name": "automake",
+      "description": "Automake -- make file builder part of autotools",
+      "url": null,
+      "family": null,
+      "tags": [],
+      "systems": [
+        "gila-arm",
+        "gila-x86"
+      ],
+      "versions": [
+        {
+          "version": "1.16.5",
+          "full_name": "automake/1.16.5",
+          "modulefile": "/nopt/gila/apps/gracehopper/spack/modules/Core/25.05/automake/1.16.5.lua",
+          "is_default": false,
+          "help": "Automake -- make file builder part of autotools",
+          "parents": [
+            [
+              "Core/25.05"
+            ]
+          ],
+          "system": "gila-arm"
+        },
+        {
+          "version": "1.16.5",
+          "full_name": "automake/1.16.5",
+          "modulefile": "/nopt/gila/apps/gila/spack/modules/Core/25.05/automake/1.16.5.lua",
+          "is_default": false,
+          "help": "Automake -- make file builder part of autotools",
+          "parents": [
+            [
+              "Core/25.05"
+            ]
+          ],
+          "system": "gila-x86"
+        }
+      ],
+      "category": "unclassified",
+      "category_color": {
+        "rgb": [
+          80,
+          80,
+          80
+        ],
+        "css": "rgb(80, 80, 80)",
+        "human": "dark grey"
+      }
+    },
+    {
       "name": "bc",
       "description": "bc is an arbitrary precision numeric processing language. Syntax is similar to C, but differs in many substantial areas. It supports interactive execution of statements.",
       "url": null,
       "family": null,
       "tags": [],
       "systems": [
+        "gila-arm",
+        "gila-x86",
         "kestrel-cpu",
         "kestrel-gpu"
       ],
       "versions": [
+        {
+          "version": "1.07.1",
+          "full_name": "bc/1.07.1",
+          "modulefile": "/nopt/gila/apps/gracehopper/spack/modules/Core/25.05/bc/1.07.1.lua",
+          "is_default": false,
+          "help": "bc is an arbitrary precision numeric processing language. Syntax is\nsimilar to C, but differs in many substantial areas. It supports\ninteractive execution of statements.",
+          "parents": [
+            [
+              "Core/25.05"
+            ]
+          ],
+          "system": "gila-arm"
+        },
+        {
+          "version": "1.07.1",
+          "full_name": "bc/1.07.1",
+          "modulefile": "/nopt/gila/apps/gila/spack/modules/Core/25.05/bc/1.07.1.lua",
+          "is_default": false,
+          "help": "bc is an arbitrary precision numeric processing language. Syntax is\nsimilar to C, but differs in many substantial areas. It supports\ninteractive execution of statements.",
+          "parents": [
+            [
+              "Core/25.05"
+            ]
+          ],
+          "system": "gila-x86"
+        },
         {
           "version": "1.07.1",
           "full_name": "bc/1.07.1",
@@ -681,10 +827,24 @@
       "family": null,
       "tags": [],
       "systems": [
+        "gila-arm",
         "kestrel-cpu",
         "kestrel-gpu"
       ],
       "versions": [
+        {
+          "version": "2.43.1",
+          "full_name": "binutils/2.43.1",
+          "modulefile": "/nopt/gila/apps/gracehopper/spack/modules/Core/25.05/binutils/2.43.1.lua",
+          "is_default": false,
+          "help": "GNU binutils, which contain the linker, assembler, objdump and others",
+          "parents": [
+            [
+              "Core/25.05"
+            ]
+          ],
+          "system": "gila-arm"
+        },
         {
           "version": "2.45.1",
           "full_name": "binutils/2.45.1",
@@ -730,10 +890,38 @@
       "family": null,
       "tags": [],
       "systems": [
+        "gila-arm",
+        "gila-x86",
         "kestrel-cpu",
         "kestrel-gpu"
       ],
       "versions": [
+        {
+          "version": "3.8.2",
+          "full_name": "bison/3.8.2",
+          "modulefile": "/nopt/gila/apps/gracehopper/spack/modules/Core/25.05/bison/3.8.2.lua",
+          "is_default": false,
+          "help": "Bison is a general-purpose parser generator that converts an annotated\ncontext-free grammar into a deterministic LR or generalized LR (GLR)\nparser employing LALR(1) parser tables.",
+          "parents": [
+            [
+              "Core/25.05"
+            ]
+          ],
+          "system": "gila-arm"
+        },
+        {
+          "version": "3.8.2",
+          "full_name": "bison/3.8.2",
+          "modulefile": "/nopt/gila/apps/gila/spack/modules/Core/25.05/bison/3.8.2.lua",
+          "is_default": false,
+          "help": "Bison is a general-purpose parser generator that converts an annotated\ncontext-free grammar into a deterministic LR or generalized LR (GLR)\nparser employing LALR(1) parser tables.",
+          "parents": [
+            [
+              "Core/25.05"
+            ]
+          ],
+          "system": "gila-x86"
+        },
         {
           "version": "3.8.2",
           "full_name": "bison/3.8.2",
@@ -902,10 +1090,38 @@
       "family": null,
       "tags": [],
       "systems": [
+        "gila-arm",
+        "gila-x86",
         "kestrel-cpu",
         "kestrel-gpu"
       ],
       "versions": [
+        {
+          "version": "1.0.8",
+          "full_name": "bzip2/1.0.8",
+          "modulefile": "/nopt/gila/apps/gracehopper/spack/modules/Core/25.05/bzip2/1.0.8.lua",
+          "is_default": false,
+          "help": "bzip2 is a freely available, patent free high-quality data compressor.\nIt typically compresses files to within 10% to 15% of the best available\ntechniques (the PPM family of statistical compressors), whilst being\naround twice as fast at compression and six times faster at\ndecompression.",
+          "parents": [
+            [
+              "Core/25.05"
+            ]
+          ],
+          "system": "gila-arm"
+        },
+        {
+          "version": "1.0.8",
+          "full_name": "bzip2/1.0.8",
+          "modulefile": "/nopt/gila/apps/gila/spack/modules/Core/25.05/bzip2/1.0.8.lua",
+          "is_default": false,
+          "help": "bzip2 is a freely available, patent free high-quality data compressor.\nIt typically compresses files to within 10% to 15% of the best available\ntechniques (the PPM family of statistical compressors), whilst being\naround twice as fast at compression and six times faster at\ndecompression.",
+          "parents": [
+            [
+              "Core/25.05"
+            ]
+          ],
+          "system": "gila-x86"
+        },
         {
           "version": "1.0.8",
           "full_name": "bzip2/1.0.8",
@@ -1150,10 +1366,38 @@
       "family": null,
       "tags": [],
       "systems": [
+        "gila-arm",
+        "gila-x86",
         "kestrel-cpu",
         "kestrel-gpu"
       ],
       "versions": [
+        {
+          "version": "3.30.5",
+          "full_name": "cmake/3.30.5",
+          "modulefile": "/nopt/gila/apps/gracehopper/spack/modules/Core/25.05/cmake/3.30.5.lua",
+          "is_default": false,
+          "help": "A cross-platform, open-source build system. CMake is a family of tools\ndesigned to build, test and package software.",
+          "parents": [
+            [
+              "Core/25.05"
+            ]
+          ],
+          "system": "gila-arm"
+        },
+        {
+          "version": "3.30.5",
+          "full_name": "cmake/3.30.5",
+          "modulefile": "/nopt/gila/apps/gila/spack/modules/Core/25.05/cmake/3.30.5.lua",
+          "is_default": false,
+          "help": "A cross-platform, open-source build system. CMake is a family of tools\ndesigned to build, test and package software.",
+          "parents": [
+            [
+              "Core/25.05"
+            ]
+          ],
+          "system": "gila-x86"
+        },
         {
           "version": "3.31.11",
           "full_name": "cmake/3.31.11",
@@ -1202,10 +1446,24 @@
         "multi-physics"
       ],
       "systems": [
+        "gila-x86",
         "kestrel-cpu",
         "kestrel-gpu"
       ],
       "versions": [
+        {
+          "version": "6.4",
+          "full_name": "comsol/6.4",
+          "modulefile": "/nopt/gila/apps/gila/apps_modules/25.05/comsol/6.4.lua",
+          "is_default": false,
+          "help": "COMSOL Multiphysics is a commercial finite element analysis, simulation tool.\n\nCategory: modeling, multi-physics\nURL: http://www.comsol.com/\nDescription: Modeling and Simulating MultiPhysics Modules\n",
+          "parents": [
+            [
+              "application/25.05"
+            ]
+          ],
+          "system": "gila-x86"
+        },
         {
           "version": "6.4",
           "full_name": "comsol/6.4",
@@ -1340,10 +1598,30 @@
       "family": null,
       "tags": [],
       "systems": [
+        "gila-arm",
+        "gila-x86",
         "kestrel-cpu",
         "kestrel-gpu"
       ],
       "versions": [
+        {
+          "version": "25.05",
+          "full_name": "Core/25.05",
+          "modulefile": "/nopt/gila/apps/gracehopper/modules/Core/25.05.lua",
+          "is_default": false,
+          "help": "Add path for Core 25.05 modules to MODULEPATH",
+          "parents": [],
+          "system": "gila-arm"
+        },
+        {
+          "version": "25.05",
+          "full_name": "Core/25.05",
+          "modulefile": "/nopt/gila/apps/gila/modules/Core/25.05.lua",
+          "is_default": false,
+          "help": "Add path for Core 25.05 modules to MODULEPATH",
+          "parents": [],
+          "system": "gila-x86"
+        },
         {
           "version": "26.05",
           "full_name": "Core/26.05",
@@ -1546,10 +1824,38 @@
       "family": null,
       "tags": [],
       "systems": [
+        "gila-arm",
+        "gila-x86",
         "kestrel-cpu",
         "kestrel-gpu"
       ],
       "versions": [
+        {
+          "version": "2.9",
+          "full_name": "cppcheck/2.9",
+          "modulefile": "/nopt/gila/apps/gracehopper/spack/modules/Core/25.05/cppcheck/2.9.lua",
+          "is_default": false,
+          "help": "A tool for static C/C++ code analysis.",
+          "parents": [
+            [
+              "Core/25.05"
+            ]
+          ],
+          "system": "gila-arm"
+        },
+        {
+          "version": "2.9",
+          "full_name": "cppcheck/2.9",
+          "modulefile": "/nopt/gila/apps/gila/spack/modules/Core/25.05/cppcheck/2.9.lua",
+          "is_default": false,
+          "help": "A tool for static C/C++ code analysis.",
+          "parents": [
+            [
+              "Core/25.05"
+            ]
+          ],
+          "system": "gila-x86"
+        },
         {
           "version": "2.18.0",
           "full_name": "cppcheck/2.18.0",
@@ -4513,9 +4819,77 @@
       "family": null,
       "tags": [],
       "systems": [
+        "gila-arm",
+        "gila-x86",
         "kestrel-gpu"
       ],
       "versions": [
+        {
+          "version": "12.9.0",
+          "full_name": "cuda/12.9.0",
+          "modulefile": "/nopt/gila/apps/gracehopper/modules/cuda/12.9.0.lua",
+          "is_default": true,
+          "help": "NVIDIA CUDA Toolkit",
+          "parents": [],
+          "system": "gila-arm"
+        },
+        {
+          "version": "13.1.0",
+          "full_name": "cuda/13.1.0",
+          "modulefile": "/nopt/gila/apps/gracehopper/modules/cuda/13.1.0.lua",
+          "is_default": false,
+          "help": "NVIDIA CUDA Toolkit",
+          "parents": [],
+          "system": "gila-arm"
+        },
+        {
+          "version": "11.8.0",
+          "full_name": "cuda/11.8.0",
+          "modulefile": "/nopt/gila/apps/gila/spack/modules/Core/25.05/cuda/11.8.0.lua",
+          "is_default": false,
+          "help": "NVIDIA CUDA Toolkit",
+          "parents": [
+            [
+              "Core/25.05"
+            ]
+          ],
+          "system": "gila-x86"
+        },
+        {
+          "version": "12.1.1",
+          "full_name": "cuda/12.1.1",
+          "modulefile": "/nopt/gila/apps/gila/spack/modules/Core/25.05/cuda/12.1.1.lua",
+          "is_default": false,
+          "help": "NVIDIA CUDA Toolkit",
+          "parents": [
+            [
+              "Core/25.05"
+            ]
+          ],
+          "system": "gila-x86"
+        },
+        {
+          "version": "12.9.0",
+          "full_name": "cuda/12.9.0",
+          "modulefile": "/nopt/gila/apps/gila/modules/cuda/12.9.0.lua",
+          "is_default": true,
+          "help": "NVIDIA CUDA Toolkit",
+          "parents": [],
+          "system": "gila-x86"
+        },
+        {
+          "version": "13.1.1",
+          "full_name": "cuda/13.1.1",
+          "modulefile": "/nopt/gila/apps/gila/spack/modules/Core/25.05/cuda/13.1.1.lua",
+          "is_default": false,
+          "help": "NVIDIA CUDA Toolkit",
+          "parents": [
+            [
+              "Core/25.05"
+            ]
+          ],
+          "system": "gila-x86"
+        },
         {
           "version": "12.8.1",
           "full_name": "cuda/12.8.1",
@@ -4636,10 +5010,51 @@
       "family": null,
       "tags": [],
       "systems": [
+        "gila-arm",
+        "gila-x86",
         "kestrel-cpu",
         "kestrel-gpu"
       ],
       "versions": [
+        {
+          "version": "8.10.1",
+          "full_name": "curl/8.10.1",
+          "modulefile": "/nopt/gila/apps/gracehopper/spack/modules/Core/25.05/curl/8.10.1.lua",
+          "is_default": false,
+          "help": "cURL is an open source command line tool and library for transferring\ndata with URL syntax",
+          "parents": [
+            [
+              "Core/25.05"
+            ]
+          ],
+          "system": "gila-arm"
+        },
+        {
+          "version": "7.76.1",
+          "full_name": "curl/7.76.1",
+          "modulefile": "/nopt/gila/apps/gila/spack/modules/Core/25.05/curl/7.76.1.lua",
+          "is_default": false,
+          "help": "cURL is an open source command line tool and library for transferring\ndata with URL syntax",
+          "parents": [
+            [
+              "Core/25.05"
+            ]
+          ],
+          "system": "gila-x86"
+        },
+        {
+          "version": "8.10.1",
+          "full_name": "curl/8.10.1",
+          "modulefile": "/nopt/gila/apps/gila/spack/modules/Core/25.05/curl/8.10.1.lua",
+          "is_default": false,
+          "help": "cURL is an open source command line tool and library for transferring\ndata with URL syntax",
+          "parents": [
+            [
+              "Core/25.05"
+            ]
+          ],
+          "system": "gila-x86"
+        },
         {
           "version": "8.18.0",
           "full_name": "curl/8.18.0",
@@ -4665,6 +5080,41 @@
             ]
           ],
           "system": "kestrel-gpu"
+        }
+      ],
+      "category": "unclassified",
+      "category_color": {
+        "rgb": [
+          80,
+          80,
+          80
+        ],
+        "css": "rgb(80, 80, 80)",
+        "human": "dark grey"
+      }
+    },
+    {
+      "name": "darshan",
+      "description": "Darshan is an I/O profiler used for both MPI/Non-MPI Applications",
+      "url": null,
+      "family": null,
+      "tags": [],
+      "systems": [
+        "gila-arm"
+      ],
+      "versions": [
+        {
+          "version": "3.5.0",
+          "full_name": "darshan/3.5.0",
+          "modulefile": "/nopt/gila/apps/gracehopper/apps_modules/25.05/darshan/3.5.0.lua",
+          "is_default": false,
+          "help": "Short description : Darshan is an I/O profiler used for both MPI/Non-MPI Applications ",
+          "parents": [
+            [
+              "application/25.05"
+            ]
+          ],
+          "system": "gila-arm"
         }
       ],
       "category": "unclassified",
@@ -4755,10 +5205,30 @@
       "family": null,
       "tags": [],
       "systems": [
+        "gila-arm",
+        "gila-x86",
         "kestrel-cpu",
         "kestrel-gpu"
       ],
       "versions": [
+        {
+          "version": null,
+          "full_name": "DefApps",
+          "modulefile": "/nopt/gila/apps/gracehopper/modules/DefApps.lua",
+          "is_default": false,
+          "help": null,
+          "parents": [],
+          "system": "gila-arm"
+        },
+        {
+          "version": null,
+          "full_name": "DefApps",
+          "modulefile": "/nopt/gila/apps/gila/modules/DefApps.lua",
+          "is_default": false,
+          "help": null,
+          "parents": [],
+          "system": "gila-x86"
+        },
         {
           "version": null,
           "full_name": "DefApps",
@@ -4796,10 +5266,38 @@
       "family": null,
       "tags": [],
       "systems": [
+        "gila-arm",
+        "gila-x86",
         "kestrel-cpu",
         "kestrel-gpu"
       ],
       "versions": [
+        {
+          "version": "29.4",
+          "full_name": "emacs/29.4",
+          "modulefile": "/nopt/gila/apps/gracehopper/spack/modules/Core/25.05/emacs/29.4.lua",
+          "is_default": false,
+          "help": "The Emacs programmable text editor.",
+          "parents": [
+            [
+              "Core/25.05"
+            ]
+          ],
+          "system": "gila-arm"
+        },
+        {
+          "version": "29.4",
+          "full_name": "emacs/29.4",
+          "modulefile": "/nopt/gila/apps/gila/spack/modules/Core/25.05/emacs/29.4.lua",
+          "is_default": false,
+          "help": "The Emacs programmable text editor.",
+          "parents": [
+            [
+              "Core/25.05"
+            ]
+          ],
+          "system": "gila-x86"
+        },
         {
           "version": "30.2",
           "full_name": "emacs/30.2",
@@ -4896,10 +5394,38 @@
       "family": null,
       "tags": [],
       "systems": [
+        "gila-arm",
+        "gila-x86",
         "kestrel-cpu",
         "kestrel-gpu"
       ],
       "versions": [
+        {
+          "version": "7.0.2",
+          "full_name": "ffmpeg/7.0.2",
+          "modulefile": "/nopt/gila/apps/gracehopper/spack/modules/Core/25.05/ffmpeg/7.0.2.lua",
+          "is_default": false,
+          "help": "FFmpeg is a complete, cross-platform solution to record, convert and\nstream audio and video.",
+          "parents": [
+            [
+              "Core/25.05"
+            ]
+          ],
+          "system": "gila-arm"
+        },
+        {
+          "version": "7.0.2",
+          "full_name": "ffmpeg/7.0.2",
+          "modulefile": "/nopt/gila/apps/gila/spack/modules/Core/25.05/ffmpeg/7.0.2.lua",
+          "is_default": false,
+          "help": "FFmpeg is a complete, cross-platform solution to record, convert and\nstream audio and video.",
+          "parents": [
+            [
+              "Core/25.05"
+            ]
+          ],
+          "system": "gila-x86"
+        },
         {
           "version": "7.1",
           "full_name": "ffmpeg/7.1",
@@ -4994,10 +5520,38 @@
       "family": null,
       "tags": [],
       "systems": [
+        "gila-arm",
+        "gila-x86",
         "kestrel-cpu",
         "kestrel-gpu"
       ],
       "versions": [
+        {
+          "version": "2.6.3",
+          "full_name": "flex/2.6.3",
+          "modulefile": "/nopt/gila/apps/gracehopper/spack/modules/Core/25.05/flex/2.6.3.lua",
+          "is_default": false,
+          "help": "Flex is a tool for generating scanners.",
+          "parents": [
+            [
+              "Core/25.05"
+            ]
+          ],
+          "system": "gila-arm"
+        },
+        {
+          "version": "2.6.3",
+          "full_name": "flex/2.6.3",
+          "modulefile": "/nopt/gila/apps/gila/spack/modules/Core/25.05/flex/2.6.3.lua",
+          "is_default": false,
+          "help": "Flex is a tool for generating scanners.",
+          "parents": [
+            [
+              "Core/25.05"
+            ]
+          ],
+          "system": "gila-x86"
+        },
         {
           "version": "2.6.3",
           "full_name": "flex/2.6.3",
@@ -5225,14 +5779,43 @@
     },
     {
       "name": "gaussian",
-      "description": null,
+      "description": "Gaussian 16 compiled for shared-memory execution",
       "url": null,
       "family": null,
-      "tags": [],
+      "tags": [
+        "Chemistry"
+      ],
       "systems": [
+        "gila-x86",
         "kestrel-cpu"
       ],
       "versions": [
+        {
+          "version": "C.01",
+          "full_name": "gaussian/g16_GPU",
+          "modulefile": "/nopt/gila/apps/gila/apps_modules/25.05/gaussian/g16_GPU.lua",
+          "is_default": false,
+          "help": "  Gaussian16 revision C.01\n  Compiled for shared-memory execution with PGI compiler 17.7.\n  For more information, visit the Gaussian website:\n  http://www.gaussian.com/\n",
+          "parents": [
+            [
+              "application/25.05"
+            ]
+          ],
+          "system": "gila-x86"
+        },
+        {
+          "version": "C.01",
+          "full_name": "gaussian/g16C",
+          "modulefile": "/nopt/gila/apps/gila/apps_modules/25.05/gaussian/g16C.lua",
+          "is_default": false,
+          "help": "  Gaussian16 revision C.01\n  Compiled for shared-memory execution with PGI compiler 17.7.\n  For more information, visit the Gaussian website:\n  http://www.gaussian.com/\n",
+          "parents": [
+            [
+              "application/25.05"
+            ]
+          ],
+          "system": "gila-x86"
+        },
         {
           "version": "g16C01",
           "full_name": "gaussian/g16C01",
@@ -5265,10 +5848,30 @@
       "family": null,
       "tags": [],
       "systems": [
+        "gila-arm",
+        "gila-x86",
         "kestrel-cpu",
         "kestrel-gpu"
       ],
       "versions": [
+        {
+          "version": "14.2.0",
+          "full_name": "gcc/14.2.0",
+          "modulefile": "/nopt/gila/apps/gracehopper/modules/gcc/14.2.0.lua",
+          "is_default": false,
+          "help": "GCC compiler v14.2.0",
+          "parents": [],
+          "system": "gila-arm"
+        },
+        {
+          "version": "14.2.0",
+          "full_name": "gcc/14.2.0",
+          "modulefile": "/nopt/gila/apps/gila/modules/gcc/14.2.0.lua",
+          "is_default": false,
+          "help": "GCC compiler v14.2.0",
+          "parents": [],
+          "system": "gila-x86"
+        },
         {
           "version": "14.2.0",
           "full_name": "gcc/14.2.0",
@@ -5565,10 +6168,38 @@
       "family": null,
       "tags": [],
       "systems": [
+        "gila-arm",
+        "gila-x86",
         "kestrel-cpu",
         "kestrel-gpu"
       ],
       "versions": [
+        {
+          "version": "15.2",
+          "full_name": "gdb/15.2",
+          "modulefile": "/nopt/gila/apps/gracehopper/spack/modules/Core/25.05/gdb/15.2.lua",
+          "is_default": false,
+          "help": "GDB, the GNU Project debugger, allows you to see what is going on\n'inside' another program while it executes -- or what another program\nwas doing at the moment it crashed.",
+          "parents": [
+            [
+              "Core/25.05"
+            ]
+          ],
+          "system": "gila-arm"
+        },
+        {
+          "version": "15.2",
+          "full_name": "gdb/15.2",
+          "modulefile": "/nopt/gila/apps/gila/spack/modules/Core/25.05/gdb/15.2.lua",
+          "is_default": false,
+          "help": "GDB, the GNU Project debugger, allows you to see what is going on\n'inside' another program while it executes -- or what another program\nwas doing at the moment it crashed.",
+          "parents": [
+            [
+              "Core/25.05"
+            ]
+          ],
+          "system": "gila-x86"
+        },
         {
           "version": "16.2",
           "full_name": "gdb/16.2",
@@ -5761,10 +6392,38 @@
       "family": null,
       "tags": [],
       "systems": [
+        "gila-arm",
+        "gila-x86",
         "kestrel-cpu",
         "kestrel-gpu"
       ],
       "versions": [
+        {
+          "version": "2.47.0",
+          "full_name": "git/2.47.0",
+          "modulefile": "/nopt/gila/apps/gracehopper/spack/modules/Core/25.05/git/2.47.0.lua",
+          "is_default": false,
+          "help": "Git is a free and open source distributed version control system\ndesigned to handle everything from small to very large projects with\nspeed and efficiency.",
+          "parents": [
+            [
+              "Core/25.05"
+            ]
+          ],
+          "system": "gila-arm"
+        },
+        {
+          "version": "2.47.0",
+          "full_name": "git/2.47.0",
+          "modulefile": "/nopt/gila/apps/gila/spack/modules/Core/25.05/git/2.47.0.lua",
+          "is_default": false,
+          "help": "Git is a free and open source distributed version control system\ndesigned to handle everything from small to very large projects with\nspeed and efficiency.",
+          "parents": [
+            [
+              "Core/25.05"
+            ]
+          ],
+          "system": "gila-x86"
+        },
         {
           "version": "2.52.0",
           "full_name": "git/2.52.0",
@@ -6006,10 +6665,38 @@
       "family": null,
       "tags": [],
       "systems": [
+        "gila-arm",
+        "gila-x86",
         "kestrel-cpu",
         "kestrel-gpu"
       ],
       "versions": [
+        {
+          "version": "3.8.3",
+          "full_name": "gnutls/3.8.3",
+          "modulefile": "/nopt/gila/apps/gracehopper/spack/modules/Core/25.05/gnutls/3.8.3.lua",
+          "is_default": false,
+          "help": "GnuTLS is a secure communications library implementing the SSL, TLS and\nDTLS protocols and technologies around them. It provides a simple C\nlanguage application programming interface (API) to access the secure\ncommunications protocols as well as APIs to parse and write X.509, PKCS\n#12, OpenPGP and other required structures. It is aimed to be portable\nand efficient with focus on security and interoperability.",
+          "parents": [
+            [
+              "Core/25.05"
+            ]
+          ],
+          "system": "gila-arm"
+        },
+        {
+          "version": "3.8.3",
+          "full_name": "gnutls/3.8.3",
+          "modulefile": "/nopt/gila/apps/gila/spack/modules/Core/25.05/gnutls/3.8.3.lua",
+          "is_default": false,
+          "help": "GnuTLS is a secure communications library implementing the SSL, TLS and\nDTLS protocols and technologies around them. It provides a simple C\nlanguage application programming interface (API) to access the secure\ncommunications protocols as well as APIs to parse and write X.509, PKCS\n#12, OpenPGP and other required structures. It is aimed to be portable\nand efficient with focus on security and interoperability.",
+          "parents": [
+            [
+              "Core/25.05"
+            ]
+          ],
+          "system": "gila-x86"
+        },
         {
           "version": "3.8.10",
           "full_name": "gnutls/3.8.10",
@@ -6196,6 +6883,41 @@
       }
     },
     {
+      "name": "gzip",
+      "description": "GNU Gzip is a popular data compression program originally written by Jean-loup Gailly for the GNU project.",
+      "url": null,
+      "family": null,
+      "tags": [],
+      "systems": [
+        "gila-arm"
+      ],
+      "versions": [
+        {
+          "version": "1.13",
+          "full_name": "gzip/1.13",
+          "modulefile": "/nopt/gila/apps/gracehopper/spack/modules/Core/25.05/gzip/1.13.lua",
+          "is_default": false,
+          "help": "GNU Gzip is a popular data compression program originally written by\nJean-loup Gailly for the GNU project.",
+          "parents": [
+            [
+              "Core/25.05"
+            ]
+          ],
+          "system": "gila-arm"
+        }
+      ],
+      "category": "unclassified",
+      "category_color": {
+        "rgb": [
+          80,
+          80,
+          80
+        ],
+        "css": "rgb(80, 80, 80)",
+        "human": "dark grey"
+      }
+    },
+    {
       "name": "hdf5",
       "description": "HDF5 is a data model, library, and file format for storing and managing data. It supports an unlimited variety of datatypes, and is designed for flexible and efficient I/O and for high volume and complex data.",
       "url": null,
@@ -6231,6 +6953,41 @@
             ]
           ],
           "system": "kestrel-gpu"
+        }
+      ],
+      "category": "unclassified",
+      "category_color": {
+        "rgb": [
+          80,
+          80,
+          80
+        ],
+        "css": "rgb(80, 80, 80)",
+        "human": "dark grey"
+      }
+    },
+    {
+      "name": "hpcx",
+      "description": null,
+      "url": null,
+      "family": null,
+      "tags": [],
+      "systems": [
+        "gila-x86"
+      ],
+      "versions": [
+        {
+          "version": "2.26",
+          "full_name": "hpcx/2.26",
+          "modulefile": "/nopt/gila/apps/gila/apps_modules/25.05/hpcx/2.26.lua",
+          "is_default": false,
+          "help": "  NVIDIA HPC-X v2.26 \u2014 high-performance MPI/SHMEM toolkit\n  Built with: GCC, DOCA OFED, CUDA 13, for RHEL 9, x86_64\n\n  Prerequisite: cuda/13.1.1\n\n  Usage:\n    module use /nopt/nrel/apps/modules\n    module load hpcx/2.26\n",
+          "parents": [
+            [
+              "application/25.05"
+            ]
+          ],
+          "system": "gila-x86"
         }
       ],
       "category": "unclassified",
@@ -6300,10 +7057,38 @@
       "family": null,
       "tags": [],
       "systems": [
+        "gila-arm",
+        "gila-x86",
         "kestrel-cpu",
         "kestrel-gpu"
       ],
       "versions": [
+        {
+          "version": "3.3.0",
+          "full_name": "htop/3.3.0",
+          "modulefile": "/nopt/gila/apps/gracehopper/spack/modules/Core/25.05/htop/3.3.0.lua",
+          "is_default": false,
+          "help": "htop is an interactive text-mode process viewer for Unix systems.",
+          "parents": [
+            [
+              "Core/25.05"
+            ]
+          ],
+          "system": "gila-arm"
+        },
+        {
+          "version": "3.3.0",
+          "full_name": "htop/3.3.0",
+          "modulefile": "/nopt/gila/apps/gila/spack/modules/Core/25.05/htop/3.3.0.lua",
+          "is_default": false,
+          "help": "htop is an interactive text-mode process viewer for Unix systems.",
+          "parents": [
+            [
+              "Core/25.05"
+            ]
+          ],
+          "system": "gila-x86"
+        },
         {
           "version": "3.4.1",
           "full_name": "htop/3.4.1",
@@ -6473,10 +7258,38 @@
       "family": null,
       "tags": [],
       "systems": [
+        "gila-arm",
+        "gila-x86",
         "kestrel-cpu",
         "kestrel-gpu"
       ],
       "versions": [
+        {
+          "version": "7.1.1-39",
+          "full_name": "imagemagick/7.1.1-39",
+          "modulefile": "/nopt/gila/apps/gracehopper/spack/modules/Core/25.05/imagemagick/7.1.1-39.lua",
+          "is_default": false,
+          "help": "ImageMagick is a software suite to create, edit, compose, or convert\nbitmap images.",
+          "parents": [
+            [
+              "Core/25.05"
+            ]
+          ],
+          "system": "gila-arm"
+        },
+        {
+          "version": "7.1.1-39",
+          "full_name": "imagemagick/7.1.1-39",
+          "modulefile": "/nopt/gila/apps/gila/spack/modules/Core/25.05/imagemagick/7.1.1-39.lua",
+          "is_default": false,
+          "help": "ImageMagick is a software suite to create, edit, compose, or convert\nbitmap images.",
+          "parents": [
+            [
+              "Core/25.05"
+            ]
+          ],
+          "system": "gila-x86"
+        },
         {
           "version": "7.1.1-39",
           "full_name": "imagemagick/7.1.1-39",
@@ -6841,10 +7654,38 @@
       "family": null,
       "tags": [],
       "systems": [
+        "gila-arm",
+        "gila-x86",
         "kestrel-cpu",
         "kestrel-gpu"
       ],
       "versions": [
+        {
+          "version": "1.7.0",
+          "full_name": "jdftx/1.7.0",
+          "modulefile": "/nopt/gila/apps/gracehopper/apps_modules/25.05/jdftx/1.7.0.lua",
+          "is_default": false,
+          "help": "JDFTx\nThis module loads the gcc build targeted for Gila GPU GraceHopper nodes.\nReferences:\n  - https://jdftx.org/index.html\n",
+          "parents": [
+            [
+              "application/25.05"
+            ]
+          ],
+          "system": "gila-arm"
+        },
+        {
+          "version": "1.7.0",
+          "full_name": "jdftx/1.7.0",
+          "modulefile": "/nopt/gila/apps/gila/apps_modules/25.05/jdftx/1.7.0.lua",
+          "is_default": false,
+          "help": "JDFTx\nThis module loads the gcc build targeted for Gila GPU GraceHopper nodes.\nReferences:\n  - https://jdftx.org/index.html\n",
+          "parents": [
+            [
+              "application/25.05"
+            ]
+          ],
+          "system": "gila-x86"
+        },
         {
           "version": "1.7.0",
           "full_name": "jdftx/1.7.0",
@@ -7044,15 +7885,42 @@
     },
     {
       "name": "lammps",
-      "description": null,
+      "description": "LAMMPS stands for Large-scale Atomic/Molecular Massively Parallel Simulator.",
       "url": null,
       "family": null,
       "tags": [],
       "systems": [
+        "gila-x86",
         "kestrel-cpu",
         "kestrel-gpu"
       ],
       "versions": [
+        {
+          "version": "20250722.2",
+          "full_name": "lammps/20250722.2-gpu-mpi-omp",
+          "modulefile": "/nopt/gila/apps/gila/apps_modules/25.05/lammps/20250722.2-gpu-mpi-omp.lua",
+          "is_default": false,
+          "help": "LAMMPS stands for Large-scale Atomic/Molecular Massively Parallel\nSimulator.",
+          "parents": [
+            [
+              "application/25.05"
+            ]
+          ],
+          "system": "gila-x86"
+        },
+        {
+          "version": "22Jul2025-x86-gnu",
+          "full_name": "lammps/22Jul2025-x86-gnu",
+          "modulefile": "/nopt/gila/apps/gila/apps_modules/25.05/lammps/22Jul2025-x86-gnu.lua",
+          "is_default": false,
+          "help": "LAMMPS\nThis module loads the NVHPC build targeted for Gila x86 AMD CPU nodes.\nWebsite:\n  - https://docs.lammps.org/Manual.html\n",
+          "parents": [
+            [
+              "application/25.05"
+            ]
+          ],
+          "system": "gila-x86"
+        },
         {
           "version": "22Jul2025",
           "full_name": "lammps/22Jul2025",
@@ -7343,16 +8211,93 @@
       }
     },
     {
+      "name": "libtool",
+      "description": "libtool -- library building part of autotools.",
+      "url": null,
+      "family": null,
+      "tags": [],
+      "systems": [
+        "gila-arm",
+        "gila-x86"
+      ],
+      "versions": [
+        {
+          "version": "2.4.7",
+          "full_name": "libtool/2.4.7",
+          "modulefile": "/nopt/gila/apps/gracehopper/spack/modules/Core/25.05/libtool/2.4.7.lua",
+          "is_default": false,
+          "help": "libtool -- library building part of autotools.",
+          "parents": [
+            [
+              "Core/25.05"
+            ]
+          ],
+          "system": "gila-arm"
+        },
+        {
+          "version": "2.4.7",
+          "full_name": "libtool/2.4.7",
+          "modulefile": "/nopt/gila/apps/gila/spack/modules/Core/25.05/libtool/2.4.7.lua",
+          "is_default": false,
+          "help": "libtool -- library building part of autotools.",
+          "parents": [
+            [
+              "Core/25.05"
+            ]
+          ],
+          "system": "gila-x86"
+        }
+      ],
+      "category": "unclassified",
+      "category_color": {
+        "rgb": [
+          80,
+          80,
+          80
+        ],
+        "css": "rgb(80, 80, 80)",
+        "human": "dark grey"
+      }
+    },
+    {
       "name": "libxml2",
       "description": "Libxml2 is the XML C parser and toolkit developed for the Gnome project (but usable outside of the Gnome platform), it is free software available under the MIT License.",
       "url": null,
       "family": null,
       "tags": [],
       "systems": [
+        "gila-arm",
+        "gila-x86",
         "kestrel-cpu",
         "kestrel-gpu"
       ],
       "versions": [
+        {
+          "version": "2.13.4",
+          "full_name": "libxml2/2.13.4",
+          "modulefile": "/nopt/gila/apps/gracehopper/spack/modules/Core/25.05/libxml2/2.13.4.lua",
+          "is_default": false,
+          "help": "Libxml2 is the XML C parser and toolkit developed for the Gnome project\n(but usable outside of the Gnome platform), it is free software\navailable under the MIT License.",
+          "parents": [
+            [
+              "Core/25.05"
+            ]
+          ],
+          "system": "gila-arm"
+        },
+        {
+          "version": "2.13.4",
+          "full_name": "libxml2/2.13.4",
+          "modulefile": "/nopt/gila/apps/gila/spack/modules/Core/25.05/libxml2/2.13.4.lua",
+          "is_default": false,
+          "help": "Libxml2 is the XML C parser and toolkit developed for the Gnome project\n(but usable outside of the Gnome platform), it is free software\navailable under the MIT License.",
+          "parents": [
+            [
+              "Core/25.05"
+            ]
+          ],
+          "system": "gila-x86"
+        },
         {
           "version": "2.15.1",
           "full_name": "libxml2/2.15.1",
@@ -7392,16 +8337,88 @@
       }
     },
     {
+      "name": "likwid",
+      "description": "Likwid is a simple to install and use toolsuite of command line applications for performance oriented programmers. It works for Intel and AMD processors on the Linux operating system. This version uses the perf_event backend which reduces the feature set but allows user installs. See https://github.com/RRZE-HPC/likwid/wiki/TutorialLikwidPerf#feature-limitations for information.",
+      "url": null,
+      "family": null,
+      "tags": [],
+      "systems": [
+        "gila-arm",
+        "gila-x86"
+      ],
+      "versions": [
+        {
+          "version": "5.3.0",
+          "full_name": "likwid/5.3.0",
+          "modulefile": "/nopt/gila/apps/gracehopper/spack/modules/Core/25.05/likwid/5.3.0.lua",
+          "is_default": false,
+          "help": "Likwid is a simple to install and use toolsuite of command line\napplications for performance oriented programmers. It works for Intel\nand AMD processors on the Linux operating system. This version uses the\nperf_event backend which reduces the feature set but allows user\ninstalls. See https://github.com/RRZE-\nHPC/likwid/wiki/TutorialLikwidPerf#feature-limitations for information.",
+          "parents": [
+            [
+              "Core/25.05"
+            ]
+          ],
+          "system": "gila-arm"
+        },
+        {
+          "version": "5.3.0",
+          "full_name": "likwid/5.3.0-mpi",
+          "modulefile": "/nopt/gila/apps/gila/spack/modules/Core/25.05/likwid/5.3.0-mpi.lua",
+          "is_default": false,
+          "help": "Likwid is a simple to install and use toolsuite of command line\napplications for performance oriented programmers. It works for Intel\nand AMD processors on the Linux operating system. This version uses the\nperf_event backend which reduces the feature set but allows user\ninstalls. See https://github.com/RRZE-\nHPC/likwid/wiki/TutorialLikwidPerf#feature-limitations for information.",
+          "parents": [
+            [
+              "Core/25.05"
+            ]
+          ],
+          "system": "gila-x86"
+        },
+        {
+          "version": "5.3.0",
+          "full_name": "likwid/5.3.0",
+          "modulefile": "/nopt/gila/apps/gila/spack/modules/Core/25.05/likwid/5.3.0.lua",
+          "is_default": false,
+          "help": "Likwid is a simple to install and use toolsuite of command line\napplications for performance oriented programmers. It works for Intel\nand AMD processors on the Linux operating system. This version uses the\nperf_event backend which reduces the feature set but allows user\ninstalls. See https://github.com/RRZE-\nHPC/likwid/wiki/TutorialLikwidPerf#feature-limitations for information.",
+          "parents": [
+            [
+              "Core/25.05"
+            ]
+          ],
+          "system": "gila-x86"
+        }
+      ],
+      "category": "unclassified",
+      "category_color": {
+        "rgb": [
+          80,
+          80,
+          80
+        ],
+        "css": "rgb(80, 80, 80)",
+        "human": "dark grey"
+      }
+    },
+    {
       "name": "llvm",
       "description": null,
       "url": null,
       "family": null,
       "tags": [],
       "systems": [
+        "gila-arm",
         "kestrel-cpu",
         "kestrel-gpu"
       ],
       "versions": [
+        {
+          "version": "19.1.0",
+          "full_name": "llvm/19.1.0",
+          "modulefile": "/nopt/gila/apps/gracehopper/modules/llvm/19.1.0.lua",
+          "is_default": false,
+          "help": "LLVM v19.1.0 Projects: ['clang', 'lld', 'openmp', 'compiler-rt'] Runtimes: ['libcxx', 'libcxxabi', 'libunwind']",
+          "parents": [],
+          "system": "gila-arm"
+        },
         {
           "version": "19.1.0",
           "full_name": "llvm/19.1.0",
@@ -7433,16 +8450,93 @@
       }
     },
     {
+      "name": "m4",
+      "description": "GNU M4 is an implementation of the traditional Unix macro processor.",
+      "url": null,
+      "family": null,
+      "tags": [],
+      "systems": [
+        "gila-arm",
+        "gila-x86"
+      ],
+      "versions": [
+        {
+          "version": "1.4.19",
+          "full_name": "m4/1.4.19",
+          "modulefile": "/nopt/gila/apps/gracehopper/spack/modules/Core/25.05/m4/1.4.19.lua",
+          "is_default": false,
+          "help": "GNU M4 is an implementation of the traditional Unix macro processor.",
+          "parents": [
+            [
+              "Core/25.05"
+            ]
+          ],
+          "system": "gila-arm"
+        },
+        {
+          "version": "1.4.19",
+          "full_name": "m4/1.4.19",
+          "modulefile": "/nopt/gila/apps/gila/spack/modules/Core/25.05/m4/1.4.19.lua",
+          "is_default": false,
+          "help": "GNU M4 is an implementation of the traditional Unix macro processor.",
+          "parents": [
+            [
+              "Core/25.05"
+            ]
+          ],
+          "system": "gila-x86"
+        }
+      ],
+      "category": "unclassified",
+      "category_color": {
+        "rgb": [
+          80,
+          80,
+          80
+        ],
+        "css": "rgb(80, 80, 80)",
+        "human": "dark grey"
+      }
+    },
+    {
       "name": "makedepend",
       "description": "makedepend - create dependencies in makefiles.",
       "url": null,
       "family": null,
       "tags": [],
       "systems": [
+        "gila-arm",
+        "gila-x86",
         "kestrel-cpu",
         "kestrel-gpu"
       ],
       "versions": [
+        {
+          "version": "1.0.9",
+          "full_name": "makedepend/1.0.9",
+          "modulefile": "/nopt/gila/apps/gracehopper/spack/modules/Core/25.05/makedepend/1.0.9.lua",
+          "is_default": false,
+          "help": "makedepend - create dependencies in makefiles.",
+          "parents": [
+            [
+              "Core/25.05"
+            ]
+          ],
+          "system": "gila-arm"
+        },
+        {
+          "version": "1.0.9",
+          "full_name": "makedepend/1.0.9",
+          "modulefile": "/nopt/gila/apps/gila/spack/modules/Core/25.05/makedepend/1.0.9.lua",
+          "is_default": false,
+          "help": "makedepend - create dependencies in makefiles.",
+          "parents": [
+            [
+              "Core/25.05"
+            ]
+          ],
+          "system": "gila-x86"
+        },
         {
           "version": "1.0.9",
           "full_name": "makedepend/1.0.9",
@@ -7578,10 +8672,38 @@
       "family": null,
       "tags": [],
       "systems": [
+        "gila-arm",
+        "gila-x86",
         "kestrel-cpu",
         "kestrel-gpu"
       ],
       "versions": [
+        {
+          "version": "6.7.3",
+          "full_name": "mercurial/6.7.3",
+          "modulefile": "/nopt/gila/apps/gracehopper/spack/modules/Core/25.05/mercurial/6.7.3.lua",
+          "is_default": false,
+          "help": "Mercurial is a free, distributed source control management tool.",
+          "parents": [
+            [
+              "Core/25.05"
+            ]
+          ],
+          "system": "gila-arm"
+        },
+        {
+          "version": "6.7.3",
+          "full_name": "mercurial/6.7.3",
+          "modulefile": "/nopt/gila/apps/gila/spack/modules/Core/25.05/mercurial/6.7.3.lua",
+          "is_default": false,
+          "help": "Mercurial is a free, distributed source control management tool.",
+          "parents": [
+            [
+              "Core/25.05"
+            ]
+          ],
+          "system": "gila-x86"
+        },
         {
           "version": "7.1.2",
           "full_name": "mercurial/7.1.2",
@@ -7627,10 +8749,30 @@
       "family": null,
       "tags": [],
       "systems": [
+        "gila-arm",
+        "gila-x86",
         "kestrel-cpu",
         "kestrel-gpu"
       ],
       "versions": [
+        {
+          "version": "24.11.3-0",
+          "full_name": "miniforge3/24.11.3-0",
+          "modulefile": "/nopt/gila/apps/gracehopper/modules/miniforge3/24.11.3-0.lua",
+          "is_default": false,
+          "help": "The Miniforge Python distribution",
+          "parents": [],
+          "system": "gila-arm"
+        },
+        {
+          "version": "24.11.3-0",
+          "full_name": "miniforge3/24.11.3-0",
+          "modulefile": "/nopt/gila/apps/gila/modules/miniforge3/24.11.3-0.lua",
+          "is_default": false,
+          "help": "The Miniforge Python distribution",
+          "parents": [],
+          "system": "gila-x86"
+        },
         {
           "version": "26.1.1-3",
           "full_name": "miniforge3/26.1.1-3",
@@ -7668,9 +8810,23 @@
       "family": null,
       "tags": [],
       "systems": [
+        "gila-x86",
         "kestrel-gpu"
       ],
       "versions": [
+        {
+          "version": "4.1.15",
+          "full_name": "mstar/4.1.15",
+          "modulefile": "/nopt/gila/apps/gila/apps_modules/25.05/mstar/4.1.15.lua",
+          "is_default": false,
+          "help": "  M-Star CFD v4.1.15 \u2014 GPU-accelerated CFD solver (Oracle/RHEL 9 build)\n\n  Loads CUDA 13.1.1 and HPC-X 2.26 (OpenMPI) automatically.\n\n  License server: 5053@pwv11licsrv04.nrel.gov\n\n  Usage:\n    module use /nopt/nrel/apps/modulefiles\n    module load mstar/4.1.15\n",
+          "parents": [
+            [
+              "application/25.05"
+            ]
+          ],
+          "system": "gila-x86"
+        },
         {
           "version": "4.1.15",
           "full_name": "mstar/4.1.15",
@@ -7885,10 +9041,38 @@
       "family": null,
       "tags": [],
       "systems": [
+        "gila-arm",
+        "gila-x86",
         "kestrel-cpu",
         "kestrel-gpu"
       ],
       "versions": [
+        {
+          "version": "1.12.1",
+          "full_name": "ninja/1.12.1",
+          "modulefile": "/nopt/gila/apps/gracehopper/spack/modules/Core/25.05/ninja/1.12.1.lua",
+          "is_default": false,
+          "help": "Ninja is a small build system with a focus on speed. It differs from\nother build systems in two major respects: it is designed to have its\ninput files generated by a higher-level build system, and it is designed\nto run builds as fast as possible.",
+          "parents": [
+            [
+              "Core/25.05"
+            ]
+          ],
+          "system": "gila-arm"
+        },
+        {
+          "version": "1.12.1",
+          "full_name": "ninja/1.12.1",
+          "modulefile": "/nopt/gila/apps/gila/spack/modules/Core/25.05/ninja/1.12.1.lua",
+          "is_default": false,
+          "help": "Ninja is a small build system with a focus on speed. It differs from\nother build systems in two major respects: it is designed to have its\ninput files generated by a higher-level build system, and it is designed\nto run builds as fast as possible.",
+          "parents": [
+            [
+              "Core/25.05"
+            ]
+          ],
+          "system": "gila-x86"
+        },
         {
           "version": "1.13.0",
           "full_name": "ninja/1.13.0",
@@ -7999,14 +9183,40 @@
     },
     {
       "name": "nvhpc",
-      "description": null,
+      "description": "The NVIDIA HPC SDK is a comprehensive suite of compilers, libraries and tools essential to maximizing developer productivity and the performance and portability of HPC applications. The NVIDIA HPC SDK C, C++, and Fortran compilers support GPU acceleration of HPC modeling and simulation applications with standard C++ and Fortran, OpenACC directives, and CUDA. GPU-accelerated math libraries maximize performance on common HPC algorithms, and optimized communications libraries enable standards-based multi-GPU and scalable systems programming. Performance profiling and debugging tools simplify porting and optimization of HPC applications.",
       "url": null,
       "family": null,
-      "tags": [],
+      "tags": [
+        "Compiler"
+      ],
       "systems": [
+        "gila-arm",
+        "gila-x86",
         "kestrel-gpu"
       ],
       "versions": [
+        {
+          "version": "24.9",
+          "full_name": "nvhpc/24.9",
+          "modulefile": "/nopt/gila/apps/gracehopper/modules/nvhpc/24.9.lua",
+          "is_default": false,
+          "help": "NVIDIA HPC SDK 24.9\n",
+          "parents": [],
+          "system": "gila-arm"
+        },
+        {
+          "version": "24.9",
+          "full_name": "nvhpc/24.9",
+          "modulefile": "/nopt/gila/apps/gila/spack/modules/Core/25.05/nvhpc/24.9.lua",
+          "is_default": false,
+          "help": "The NVIDIA HPC SDK is a comprehensive suite of compilers, libraries and\ntools essential to maximizing developer productivity and the performance\nand portability of HPC applications. The NVIDIA HPC SDK C, C++, and\nFortran compilers support GPU acceleration of HPC modeling and\nsimulation applications with standard C++ and Fortran, OpenACC\ndirectives, and CUDA. GPU-accelerated math libraries maximize\nperformance on common HPC algorithms, and optimized communications\nlibraries enable standards-based multi-GPU and scalable systems\nprogramming. Performance profiling and debugging tools simplify porting\nand optimization of HPC applications.",
+          "parents": [
+            [
+              "Core/25.05"
+            ]
+          ],
+          "system": "gila-x86"
+        },
         {
           "version": "22.7",
           "full_name": "nvhpc/22.7",
@@ -8189,10 +9399,20 @@
       "family": null,
       "tags": [],
       "systems": [
+        "gila-x86",
         "kestrel-cpu",
         "kestrel-gpu"
       ],
       "versions": [
+        {
+          "version": "2025.1.3",
+          "full_name": "oneapi/2025.1.3",
+          "modulefile": "/nopt/gila/apps/gila/modules/oneapi/2025.1.3.lua",
+          "is_default": false,
+          "help": "Intel OneAPI v2025.1.3",
+          "parents": [],
+          "system": "gila-x86"
+        },
         {
           "version": "2025.3.1",
           "full_name": "oneapi/2025.3.1",
@@ -8388,9 +9608,36 @@
       "family": null,
       "tags": [],
       "systems": [
+        "gila-x86",
         "kestrel-cpu"
       ],
       "versions": [
+        {
+          "version": "11-gcc",
+          "full_name": "openfoam/11-gcc",
+          "modulefile": "/nopt/gila/apps/gila/apps_modules/25.05/openfoam/11-gcc.lua",
+          "is_default": true,
+          "help": " OpenFOAM is the free, open source CFD software developed primarily by OpenCFD Ltd since 2004. It has a large user base across most areas of engineering and science, from both commercial and academic organisations. OpenFOAM has an extensive range of features to solve anything from complex fluid flows involving chemical reactions, turbulence and heat transfer, to acoustics, solid mechanics and electromagnetics..",
+          "parents": [
+            [
+              "application/25.05"
+            ]
+          ],
+          "system": "gila-x86"
+        },
+        {
+          "version": "13-gcc",
+          "full_name": "openfoam/13-gcc",
+          "modulefile": "/nopt/gila/apps/gila/apps_modules/25.05/openfoam/13-gcc.lua",
+          "is_default": false,
+          "help": " OpenFOAM is the free, open source CFD software developed primarily by OpenCFD Ltd since 2004. It has a large user base across most areas of engineering and science, from both commercial and academic organisations. OpenFOAM has an extensive range of features to solve anything from complex fluid flows involving chemical reactions, turbulence and heat transfer, to acoustics, solid mechanics and electromagnetics.",
+          "parents": [
+            [
+              "application/25.05"
+            ]
+          ],
+          "system": "gila-x86"
+        },
         {
           "version": "13-craympich",
           "full_name": "openfoam/13-craympich",
@@ -8685,10 +9932,38 @@
       "family": null,
       "tags": [],
       "systems": [
+        "gila-arm",
+        "gila-x86",
         "kestrel-cpu",
         "kestrel-gpu"
       ],
       "versions": [
+        {
+          "version": "2.7.6",
+          "full_name": "patch/2.7.6",
+          "modulefile": "/nopt/gila/apps/gracehopper/spack/modules/Core/25.05/patch/2.7.6.lua",
+          "is_default": false,
+          "help": "Patch takes a patch file containing a difference listing produced by the\ndiff program and applies those differences to one or more original\nfiles, producing patched versions.",
+          "parents": [
+            [
+              "Core/25.05"
+            ]
+          ],
+          "system": "gila-arm"
+        },
+        {
+          "version": "2.7.6",
+          "full_name": "patch/2.7.6",
+          "modulefile": "/nopt/gila/apps/gila/spack/modules/Core/25.05/patch/2.7.6.lua",
+          "is_default": false,
+          "help": "Patch takes a patch file containing a difference listing produced by the\ndiff program and applies those differences to one or more original\nfiles, producing patched versions.",
+          "parents": [
+            [
+              "Core/25.05"
+            ]
+          ],
+          "system": "gila-x86"
+        },
         {
           "version": "2.8",
           "full_name": "patch/2.8",
@@ -8714,6 +9989,43 @@
             ]
           ],
           "system": "kestrel-gpu"
+        }
+      ],
+      "category": "unclassified",
+      "category_color": {
+        "rgb": [
+          80,
+          80,
+          80
+        ],
+        "css": "rgb(80, 80, 80)",
+        "human": "dark grey"
+      }
+    },
+    {
+      "name": "patchelf",
+      "description": "Utility for modifying ELF binaries",
+      "url": "https://github.com/NixOS/patchelf",
+      "family": null,
+      "tags": [
+        "Development Tools"
+      ],
+      "systems": [
+        "gila-x86"
+      ],
+      "versions": [
+        {
+          "version": "master",
+          "full_name": "patchelf/master",
+          "modulefile": "/nopt/gila/apps/gila/spack/modules/Core/25.05/patchelf/master.lua",
+          "is_default": false,
+          "help": "patchelf (master)\nUtility for modifying ELF executables and shared libraries.\n",
+          "parents": [
+            [
+              "Core/25.05"
+            ]
+          ],
+          "system": "gila-x86"
         }
       ],
       "category": "unclassified",
@@ -9134,6 +10446,55 @@
       }
     },
     {
+      "name": "perl",
+      "description": "Perl 5 is a highly capable, feature-rich programming language with over 27 years of development.",
+      "url": null,
+      "family": null,
+      "tags": [],
+      "systems": [
+        "gila-arm",
+        "gila-x86"
+      ],
+      "versions": [
+        {
+          "version": "5.40.0",
+          "full_name": "perl/5.40.0",
+          "modulefile": "/nopt/gila/apps/gracehopper/spack/modules/Core/25.05/perl/5.40.0.lua",
+          "is_default": false,
+          "help": "Perl 5 is a highly capable, feature-rich programming language with over\n27 years of development.",
+          "parents": [
+            [
+              "Core/25.05"
+            ]
+          ],
+          "system": "gila-arm"
+        },
+        {
+          "version": "5.40.0",
+          "full_name": "perl/5.40.0",
+          "modulefile": "/nopt/gila/apps/gila/spack/modules/Core/25.05/perl/5.40.0.lua",
+          "is_default": false,
+          "help": "Perl 5 is a highly capable, feature-rich programming language with over\n27 years of development.",
+          "parents": [
+            [
+              "Core/25.05"
+            ]
+          ],
+          "system": "gila-x86"
+        }
+      ],
+      "category": "unclassified",
+      "category_color": {
+        "rgb": [
+          80,
+          80,
+          80
+        ],
+        "css": "rgb(80, 80, 80)",
+        "human": "dark grey"
+      }
+    },
+    {
       "name": "petsc",
       "description": "PETSc 3.25.6 (CUDA 12.8.1 + Kokkos, HYPRE/SuperLU_dist/ParMETIS, H100)",
       "url": "https://petsc.org/",
@@ -9286,10 +10647,38 @@
       "family": null,
       "tags": [],
       "systems": [
+        "gila-arm",
+        "gila-x86",
         "kestrel-cpu",
         "kestrel-gpu"
       ],
       "versions": [
+        {
+          "version": "0.29.2",
+          "full_name": "pkg-config/0.29.2",
+          "modulefile": "/nopt/gila/apps/gracehopper/spack/modules/Core/25.05/pkg-config/0.29.2.lua",
+          "is_default": false,
+          "help": "pkg-config is a helper tool used when compiling applications and\nlibraries",
+          "parents": [
+            [
+              "Core/25.05"
+            ]
+          ],
+          "system": "gila-arm"
+        },
+        {
+          "version": "0.29.2",
+          "full_name": "pkg-config/0.29.2",
+          "modulefile": "/nopt/gila/apps/gila/spack/modules/Core/25.05/pkg-config/0.29.2.lua",
+          "is_default": false,
+          "help": "pkg-config is a helper tool used when compiling applications and\nlibraries",
+          "parents": [
+            [
+              "Core/25.05"
+            ]
+          ],
+          "system": "gila-x86"
+        },
         {
           "version": "0.29.2",
           "full_name": "pkg-config/0.29.2",
@@ -9850,10 +11239,38 @@
       "family": null,
       "tags": [],
       "systems": [
+        "gila-arm",
+        "gila-x86",
         "kestrel-cpu",
         "kestrel-gpu"
       ],
       "versions": [
+        {
+          "version": "3.13.0",
+          "full_name": "python/3.13.0",
+          "modulefile": "/nopt/gila/apps/gracehopper/spack/modules/Core/25.05/python/3.13.0.lua",
+          "is_default": false,
+          "help": "The Python programming language.",
+          "parents": [
+            [
+              "Core/25.05"
+            ]
+          ],
+          "system": "gila-arm"
+        },
+        {
+          "version": "3.13.0",
+          "full_name": "python/3.13.0",
+          "modulefile": "/nopt/gila/apps/gila/spack/modules/Core/25.05/python/3.13.0.lua",
+          "is_default": false,
+          "help": "The Python programming language.",
+          "parents": [
+            [
+              "Core/25.05"
+            ]
+          ],
+          "system": "gila-x86"
+        },
         {
           "version": "3.10.19",
           "full_name": "python/3.10.19",
@@ -10106,6 +11523,64 @@
       }
     },
     {
+      "name": "rocm",
+      "description": "ROCm",
+      "url": null,
+      "family": null,
+      "tags": [],
+      "systems": [
+        "gila-x86"
+      ],
+      "versions": [
+        {
+          "version": "7.0.0",
+          "full_name": "rocm/7.0.0",
+          "modulefile": "/nopt/gila/apps/gila/modules/rocm/7.0.0.lua",
+          "is_default": false,
+          "help": "Rocm",
+          "parents": [],
+          "system": "gila-x86"
+        },
+        {
+          "version": "7.1.0",
+          "full_name": "rocm/7.1.0",
+          "modulefile": "/nopt/gila/apps/gila/modules/rocm/7.1.0.lua",
+          "is_default": false,
+          "help": "Rocm",
+          "parents": [],
+          "system": "gila-x86"
+        },
+        {
+          "version": "7.2.0",
+          "full_name": "rocm/7.2.0",
+          "modulefile": "/nopt/gila/apps/gila/modules/rocm/7.2.0.lua",
+          "is_default": true,
+          "help": "ROCm",
+          "parents": [],
+          "system": "gila-x86"
+        },
+        {
+          "version": "7.2.4",
+          "full_name": "rocm/7.2.4",
+          "modulefile": "/nopt/gila/apps/gila/modules/rocm/7.2.4.lua",
+          "is_default": false,
+          "help": "ROCm",
+          "parents": [],
+          "system": "gila-x86"
+        }
+      ],
+      "category": "unclassified",
+      "category_color": {
+        "rgb": [
+          80,
+          80,
+          80
+        ],
+        "css": "rgb(80, 80, 80)",
+        "human": "dark grey"
+      }
+    },
+    {
       "name": "sanitizers4hpc",
       "description": null,
       "url": null,
@@ -10161,9 +11636,37 @@
       "family": null,
       "tags": [],
       "systems": [
+        "gila-arm",
+        "gila-x86",
         "kestrel-gpu"
       ],
       "versions": [
+        {
+          "version": "2.4.0",
+          "full_name": "stow/2.4.0",
+          "modulefile": "/nopt/gila/apps/gracehopper/spack/modules/Core/25.05/stow/2.4.0.lua",
+          "is_default": false,
+          "help": "GNU Stow: a symlink farm manager GNU Stow is a symlink farm manager\nwhich takes distinct packages of software and/or data located in\nseparate directories on the filesystem, and makes them appear to be\ninstalled in the same place.",
+          "parents": [
+            [
+              "Core/25.05"
+            ]
+          ],
+          "system": "gila-arm"
+        },
+        {
+          "version": "2.4.0",
+          "full_name": "stow/2.4.0",
+          "modulefile": "/nopt/gila/apps/gila/spack/modules/Core/25.05/stow/2.4.0.lua",
+          "is_default": false,
+          "help": "GNU Stow: a symlink farm manager GNU Stow is a symlink farm manager\nwhich takes distinct packages of software and/or data located in\nseparate directories on the filesystem, and makes them appear to be\ninstalled in the same place.",
+          "parents": [
+            [
+              "Core/25.05"
+            ]
+          ],
+          "system": "gila-x86"
+        },
         {
           "version": "2.4.1",
           "full_name": "stow/2.4.1",
@@ -10274,16 +11777,81 @@
       }
     },
     {
+      "name": "szip",
+      "description": "SZIP lossless data compression library",
+      "url": "https://support.hdfgroup.org/doc_resource/SZIP/",
+      "family": null,
+      "tags": [
+        "Compression Library"
+      ],
+      "systems": [
+        "gila-arm"
+      ],
+      "versions": [
+        {
+          "version": "2.1.1",
+          "full_name": "szip/2.1.1",
+          "modulefile": "/nopt/gila/apps/gracehopper/spack/modules/Core/25.05/szip/2.1.1.lua",
+          "is_default": false,
+          "help": null,
+          "parents": [
+            [
+              "Core/25.05"
+            ]
+          ],
+          "system": "gila-arm"
+        }
+      ],
+      "category": "unclassified",
+      "category_color": {
+        "rgb": [
+          80,
+          80,
+          80
+        ],
+        "css": "rgb(80, 80, 80)",
+        "human": "dark grey"
+      }
+    },
+    {
       "name": "tar",
       "description": "GNU Tar provides the ability to create tar archives, as well as various other kinds of manipulation.",
       "url": null,
       "family": null,
       "tags": [],
       "systems": [
+        "gila-arm",
+        "gila-x86",
         "kestrel-cpu",
         "kestrel-gpu"
       ],
       "versions": [
+        {
+          "version": "1.34",
+          "full_name": "tar/1.34",
+          "modulefile": "/nopt/gila/apps/gracehopper/spack/modules/Core/25.05/tar/1.34.lua",
+          "is_default": false,
+          "help": "GNU Tar provides the ability to create tar archives, as well as various\nother kinds of manipulation.",
+          "parents": [
+            [
+              "Core/25.05"
+            ]
+          ],
+          "system": "gila-arm"
+        },
+        {
+          "version": "1.34",
+          "full_name": "tar/1.34",
+          "modulefile": "/nopt/gila/apps/gila/spack/modules/Core/25.05/tar/1.34.lua",
+          "is_default": false,
+          "help": "GNU Tar provides the ability to create tar archives, as well as various\nother kinds of manipulation.",
+          "parents": [
+            [
+              "Core/25.05"
+            ]
+          ],
+          "system": "gila-x86"
+        },
         {
           "version": "1.35",
           "full_name": "tar/1.35",
@@ -10364,10 +11932,38 @@
       "family": null,
       "tags": [],
       "systems": [
+        "gila-arm",
+        "gila-x86",
         "kestrel-cpu",
         "kestrel-gpu"
       ],
       "versions": [
+        {
+          "version": "7.1",
+          "full_name": "texinfo/7.1",
+          "modulefile": "/nopt/gila/apps/gracehopper/spack/modules/Core/25.05/texinfo/7.1.lua",
+          "is_default": false,
+          "help": "Texinfo is the official documentation format of the GNU project. It was\ninvented by Richard Stallman and Bob Chassell many years ago, loosely\nbased on Brian Reid's Scribe and other formatting languages of the time.\nIt is used by many non-GNU projects as well.",
+          "parents": [
+            [
+              "Core/25.05"
+            ]
+          ],
+          "system": "gila-arm"
+        },
+        {
+          "version": "7.1",
+          "full_name": "texinfo/7.1",
+          "modulefile": "/nopt/gila/apps/gila/spack/modules/Core/25.05/texinfo/7.1.lua",
+          "is_default": false,
+          "help": "Texinfo is the official documentation format of the GNU project. It was\ninvented by Richard Stallman and Bob Chassell many years ago, loosely\nbased on Brian Reid's Scribe and other formatting languages of the time.\nIt is used by many non-GNU projects as well.",
+          "parents": [
+            [
+              "Core/25.05"
+            ]
+          ],
+          "system": "gila-x86"
+        },
         {
           "version": "7.2",
           "full_name": "texinfo/7.2",
@@ -10413,10 +12009,38 @@
       "family": null,
       "tags": [],
       "systems": [
+        "gila-arm",
+        "gila-x86",
         "kestrel-cpu",
         "kestrel-gpu"
       ],
       "versions": [
+        {
+          "version": "3.4",
+          "full_name": "tmux/3.4",
+          "modulefile": "/nopt/gila/apps/gracehopper/spack/modules/Core/25.05/tmux/3.4.lua",
+          "is_default": false,
+          "help": "Tmux is a terminal multiplexer. What is a terminal multiplexer? It lets\nyou switch easily between several programs in one terminal, detach them\n(they keep running in the background) and reattach them to a different\nterminal. And do a lot more.",
+          "parents": [
+            [
+              "Core/25.05"
+            ]
+          ],
+          "system": "gila-arm"
+        },
+        {
+          "version": "3.4",
+          "full_name": "tmux/3.4",
+          "modulefile": "/nopt/gila/apps/gila/spack/modules/Core/25.05/tmux/3.4.lua",
+          "is_default": false,
+          "help": "Tmux is a terminal multiplexer. What is a terminal multiplexer? It lets\nyou switch easily between several programs in one terminal, detach them\n(they keep running in the background) and reattach them to a different\nterminal. And do a lot more.",
+          "parents": [
+            [
+              "Core/25.05"
+            ]
+          ],
+          "system": "gila-x86"
+        },
         {
           "version": "3.6a",
           "full_name": "tmux/3.6a",
@@ -10442,6 +12066,55 @@
             ]
           ],
           "system": "kestrel-gpu"
+        }
+      ],
+      "category": "unclassified",
+      "category_color": {
+        "rgb": [
+          80,
+          80,
+          80
+        ],
+        "css": "rgb(80, 80, 80)",
+        "human": "dark grey"
+      }
+    },
+    {
+      "name": "unzip",
+      "description": "Unzip is a compression and file packaging/archive utility.",
+      "url": null,
+      "family": null,
+      "tags": [],
+      "systems": [
+        "gila-arm",
+        "gila-x86"
+      ],
+      "versions": [
+        {
+          "version": "6.0",
+          "full_name": "unzip/6.0",
+          "modulefile": "/nopt/gila/apps/gracehopper/spack/modules/Core/25.05/unzip/6.0.lua",
+          "is_default": false,
+          "help": "Unzip is a compression and file packaging/archive utility.",
+          "parents": [
+            [
+              "Core/25.05"
+            ]
+          ],
+          "system": "gila-arm"
+        },
+        {
+          "version": "6.0",
+          "full_name": "unzip/6.0",
+          "modulefile": "/nopt/gila/apps/gila/spack/modules/Core/25.05/unzip/6.0.lua",
+          "is_default": false,
+          "help": "Unzip is a compression and file packaging/archive utility.",
+          "parents": [
+            [
+              "Core/25.05"
+            ]
+          ],
+          "system": "gila-x86"
         }
       ],
       "category": "unclassified",
@@ -10628,6 +12301,111 @@
       }
     },
     {
+      "name": "vasp-gcc",
+      "description": "VASP is an ab-initio quantum mechanical calculations package.",
+      "url": null,
+      "family": null,
+      "tags": [],
+      "systems": [
+        "gila-x86"
+      ],
+      "versions": [
+        {
+          "version": "6.4.1",
+          "full_name": "vasp-gcc/6.4.1",
+          "modulefile": "/nopt/gila/apps/gila/apps_modules/25.05/vasp-gcc/6.4.1.lua",
+          "is_default": false,
+          "help": "Short description : VASP is an ab-initio quantum mechanical calculations package. ",
+          "parents": [
+            [
+              "application/25.05"
+            ]
+          ],
+          "system": "gila-x86"
+        }
+      ],
+      "category": "esm",
+      "category_color": {
+        "rgb": [
+          255,
+          0,
+          0
+        ],
+        "css": "rgb(255, 0, 0)",
+        "human": "red"
+      }
+    },
+    {
+      "name": "vasp-gpu-grace",
+      "description": "VASP is an ab-initio quantum mechanical calculations package.",
+      "url": null,
+      "family": null,
+      "tags": [],
+      "systems": [
+        "gila-arm"
+      ],
+      "versions": [
+        {
+          "version": "6.4.1",
+          "full_name": "vasp-gpu-grace/6.4.1",
+          "modulefile": "/nopt/gila/apps/gracehopper/apps_modules/25.05/vasp-gpu-grace/6.4.1.lua",
+          "is_default": false,
+          "help": "Short description : VASP is an ab-initio quantum mechanical calculations package. ",
+          "parents": [
+            [
+              "application/25.05"
+            ]
+          ],
+          "system": "gila-arm"
+        }
+      ],
+      "category": "esm",
+      "category_color": {
+        "rgb": [
+          255,
+          0,
+          0
+        ],
+        "css": "rgb(255, 0, 0)",
+        "human": "red"
+      }
+    },
+    {
+      "name": "vasp-intel",
+      "description": "VASP is an ab-initio quantum mechanical calculations package.",
+      "url": null,
+      "family": null,
+      "tags": [],
+      "systems": [
+        "gila-x86"
+      ],
+      "versions": [
+        {
+          "version": "6.4.1",
+          "full_name": "vasp-intel/6.4.1",
+          "modulefile": "/nopt/gila/apps/gila/apps_modules/25.05/vasp-intel/6.4.1.lua",
+          "is_default": false,
+          "help": "Short description : VASP is an ab-initio quantum mechanical calculations package. ",
+          "parents": [
+            [
+              "application/25.05"
+            ]
+          ],
+          "system": "gila-x86"
+        }
+      ],
+      "category": "esm",
+      "category_color": {
+        "rgb": [
+          255,
+          0,
+          0
+        ],
+        "css": "rgb(255, 0, 0)",
+        "human": "red"
+      }
+    },
+    {
       "name": "visit",
       "description": null,
       "url": null,
@@ -10786,6 +12564,55 @@
       }
     },
     {
+      "name": "wget",
+      "description": "GNU Wget is a free software package for retrieving files using HTTP, HTTPS and FTP, the most widely-used Internet protocols. It is a non-interactive commandline tool, so it may easily be called from scripts, cron jobs, terminals without X-Windows support, etc.",
+      "url": null,
+      "family": null,
+      "tags": [],
+      "systems": [
+        "gila-arm",
+        "gila-x86"
+      ],
+      "versions": [
+        {
+          "version": "1.24.5",
+          "full_name": "wget/1.24.5",
+          "modulefile": "/nopt/gila/apps/gracehopper/spack/modules/Core/25.05/wget/1.24.5.lua",
+          "is_default": false,
+          "help": "GNU Wget is a free software package for retrieving files using HTTP,\nHTTPS and FTP, the most widely-used Internet protocols. It is a non-\ninteractive commandline tool, so it may easily be called from scripts,\ncron jobs, terminals without X-Windows support, etc.",
+          "parents": [
+            [
+              "Core/25.05"
+            ]
+          ],
+          "system": "gila-arm"
+        },
+        {
+          "version": "1.24.5",
+          "full_name": "wget/1.24.5",
+          "modulefile": "/nopt/gila/apps/gila/spack/modules/Core/25.05/wget/1.24.5.lua",
+          "is_default": false,
+          "help": "GNU Wget is a free software package for retrieving files using HTTP,\nHTTPS and FTP, the most widely-used Internet protocols. It is a non-\ninteractive commandline tool, so it may easily be called from scripts,\ncron jobs, terminals without X-Windows support, etc.",
+          "parents": [
+            [
+              "Core/25.05"
+            ]
+          ],
+          "system": "gila-x86"
+        }
+      ],
+      "category": "unclassified",
+      "category_color": {
+        "rgb": [
+          80,
+          80,
+          80
+        ],
+        "css": "rgb(80, 80, 80)",
+        "human": "dark grey"
+      }
+    },
+    {
       "name": "wrf",
       "description": "WRF mesoscale numerical weather prediction system (dm+sm, async/parallel I/O). WPS 4.5 executables included.",
       "url": "https://www.mmm.ucar.edu/weather-research-and-forecasting-model",
@@ -10860,6 +12687,90 @@
       }
     },
     {
+      "name": "xfce-vnc",
+      "description": "XFCE desktop container (Apptainer) with VNC/noVNC and VirtualGL, 8x A100 nodes",
+      "url": null,
+      "family": null,
+      "tags": [],
+      "systems": [
+        "gila-arm",
+        "gila-x86"
+      ],
+      "versions": [
+        {
+          "version": "1.0",
+          "full_name": "xfce-vnc/1.0",
+          "modulefile": "/nopt/gila/apps/gracehopper/apps_modules/25.05/xfce-vnc/1.0.lua",
+          "is_default": false,
+          "help": "  XFCE remote desktop (TigerVNC + noVNC + VirtualGL) for Gila Grace Hopper nodes.\n\n  Usage (from gila-arm.hpc.nlr.gov):\n    module load xfce-vnc\n    cp $XFCE_VNC_SBATCH .\n    sbatch -A <account> xfce-desktop.sbatch\n    # once the job is running:\n    cat ~/.xfce-vnc/<jobid>/connection.txt\n\n  Run GPU-accelerated OpenGL apps inside the desktop with: vglrun <app>\n\n  Installing software:\n    Everything below is stored in xfce-vnc-data/aarch64/ inside the directory you submit\n    the desktop job from (override the xfce-vnc-data location with DESKTOP_DATA), not in $HOME.\n    Applications (inside the desktop, usable immediately, no root needed):\n      pixi global install <pkg>     conda-forge packages, e.g. paraview, gnuplot, ffmpeg\n      pixi global list / remove <pkg>\n      Run OpenGL apps on the GPU with vglrun, e.g.  vglrun paraview\n    Python (inside the desktop):  pip install --user <pkg>   or   python3 -m venv <dir>\n    System packages (on the login node, from the same directory, then restart the job):\n      xfce-vnc-install apt <package> [...]\n      xfce-vnc-install shell        # fakeroot shell to build/install by hand\n",
+          "parents": [
+            [
+              "application/25.05"
+            ]
+          ],
+          "system": "gila-arm"
+        },
+        {
+          "version": "1.0",
+          "full_name": "xfce-vnc/1.0",
+          "modulefile": "/nopt/gila/apps/gila/apps_modules/25.05/xfce-vnc/1.0.lua",
+          "is_default": false,
+          "help": "  XFCE remote desktop (TigerVNC + noVNC + VirtualGL) on a whole 8x A100-80GB node\n  (partition gpu-intel-a100-80g), for interactive GPU / machine learning work.\n\n  Usage (from gila.hpc.nlr.gov):\n    module load application/25.05 xfce-vnc\n    cp $XFCE_VNC_SBATCH .\n    sbatch -A <account> xfce-desktop-a100.sbatch\n    # once the job is running:\n    cat ~/.xfce-vnc/<jobid>/connection.txt\n\n  Run GPU-accelerated OpenGL apps inside the desktop with: vglrun <app>\n\n  Multi-GPU notes:\n    GPUs 0-1, 2-3, 4-5 and 6-7 are NVLink pairs (~185 GB/s all-reduce); traffic between\n    pairs goes over PCIe (~9 GB/s). For 2-GPU training pin to a pair, e.g.\n      CUDA_VISIBLE_DEVICES=0,1 torchrun --standalone --nproc_per_node=2 train.py\n    Independent single-GPU runs (one per GPU) are not affected.\n\n  Installing software:\n    Everything below is stored in xfce-vnc-data/x86_64/ inside the directory you submit\n    the desktop job from (override the xfce-vnc-data location with DESKTOP_DATA), not in $HOME.\n    Applications (inside the desktop, usable immediately, no root needed):\n      pixi global install <pkg>     conda-forge packages, e.g. paraview, gnuplot, ffmpeg\n      pixi global list / remove <pkg>\n      Run OpenGL apps on the GPU with vglrun, e.g.  vglrun paraview\n    Python (inside the desktop):  pip install --user <pkg>   or   python3 -m venv <dir>\n      e.g.  pip install --user torch\n    System packages (on the login node, from the same directory, then restart the job):\n      xfce-vnc-install apt <package> [...]\n      xfce-vnc-install shell        # fakeroot shell to build/install by hand\n",
+          "parents": [
+            [
+              "application/25.05"
+            ]
+          ],
+          "system": "gila-x86"
+        }
+      ],
+      "category": "unclassified",
+      "category_color": {
+        "rgb": [
+          80,
+          80,
+          80
+        ],
+        "css": "rgb(80, 80, 80)",
+        "human": "dark grey"
+      }
+    },
+    {
+      "name": "xpmem",
+      "description": "XPMEM is a Linux kernel module that enables a process to map the memory of another process into its virtual address space.",
+      "url": null,
+      "family": null,
+      "tags": [],
+      "systems": [
+        "gila-x86"
+      ],
+      "versions": [
+        {
+          "version": "master",
+          "full_name": "xpmem/master",
+          "modulefile": "/nopt/gila/apps/gila/spack/modules/Core/25.05/xpmem/master.lua",
+          "is_default": false,
+          "help": "XPMEM is a Linux kernel module that enables a process to map the memory\nof another process into its virtual address space.",
+          "parents": [
+            [
+              "Core/25.05"
+            ]
+          ],
+          "system": "gila-x86"
+        }
+      ],
+      "category": "unclassified",
+      "category_color": {
+        "rgb": [
+          80,
+          80,
+          80
+        ],
+        "css": "rgb(80, 80, 80)",
+        "human": "dark grey"
+      }
+    },
+    {
       "name": "xpressmp",
       "description": null,
       "url": null,
@@ -10930,6 +12841,55 @@
             ]
           ],
           "system": "kestrel-gpu"
+        }
+      ],
+      "category": "unclassified",
+      "category_color": {
+        "rgb": [
+          80,
+          80,
+          80
+        ],
+        "css": "rgb(80, 80, 80)",
+        "human": "dark grey"
+      }
+    },
+    {
+      "name": "zlib",
+      "description": "A free, general-purpose, legally unencumbered lossless data-compression library.",
+      "url": null,
+      "family": null,
+      "tags": [],
+      "systems": [
+        "gila-arm",
+        "gila-x86"
+      ],
+      "versions": [
+        {
+          "version": "1.3.1",
+          "full_name": "zlib/1.3.1",
+          "modulefile": "/nopt/gila/apps/gracehopper/spack/modules/Core/25.05/zlib/1.3.1.lua",
+          "is_default": false,
+          "help": "A free, general-purpose, legally unencumbered lossless data-compression\nlibrary.",
+          "parents": [
+            [
+              "Core/25.05"
+            ]
+          ],
+          "system": "gila-arm"
+        },
+        {
+          "version": "1.3.1",
+          "full_name": "zlib/1.3.1",
+          "modulefile": "/nopt/gila/apps/gila/spack/modules/Core/25.05/zlib/1.3.1.lua",
+          "is_default": false,
+          "help": "A free, general-purpose, legally unencumbered lossless data-compression\nlibrary.",
+          "parents": [
+            [
+              "Core/25.05"
+            ]
+          ],
+          "system": "gila-x86"
         }
       ],
       "category": "unclassified",
