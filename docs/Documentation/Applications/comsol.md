@@ -5,10 +5,10 @@ parent: Applications
 
 # COMSOL Multiphysics 
 
-COMSOL Multiphysics is a versatile finite element analysis and simulation package. The COMSOL graphical user interface (GUI) environment is supported primarily for building and solving small models while operation in batch mode allows users to scale their models to larger, higher-fidelity studies. Currently, we host three floating network licenses and a number of additional modules. Three COMSOL versions are available on Kestrel, they are 6.2, 6.3 and 6.4 (default).
+COMSOL Multiphysics is a versatile finite element analysis and simulation package. The COMSOL graphical user interface (GUI) environment is supported primarily for building and solving small models while operation in batch mode allows users to scale their models to larger, higher-fidelity studies. Currently, we host three floating network licenses and a number of additional modules. The default COMSOL versions on Kestrel is 6.4.
 
 !!! note
-     By default, COMSOL will create a hidden directory, `.comsol`, in your home directory to save the preference files, recovery files, and temporary files. Since `/home` directories are limited to 50GB, we included new wrappers for the 6.3 and 6.4 versions to force COMSOL to create a directory named `comsol_prefs` in your `/scratch` directory. 
+     By default, COMSOL will create a hidden directory, `.comsol`, in your home directory to save the preference files, recovery files, and temporary files. Since `/home` directories are limited to 50GB, we included new wrapper to force COMSOL to create a directory named `comsol_prefs` in your `/scratch` directory. 
 
 ## Building a COMSOL Model
 Extensive documentation is available in the menu: **Help > Documentation**. For beginners, it is highly recommended to follow the steps in *Introduction to COMSOL Multiphysics* found in **Help > Documentation**.
@@ -127,9 +127,6 @@ To configure a COMSOL job with multiple MPI ranks, required for any job where th
     module list
     echo " "
 
-    export SLURM_MPI_TYPE=pmi2
-    export OMP_NUM_THREADS=13
-
     inputfile=$SLURM_SUBMIT_DIR/myinputfile.mph
     outputfile=$SLURM_SUBMIT_DIR/myoutputfilename
     logfile=$SLURM_SUBMIT_DIR/mylogfilename
@@ -151,7 +148,8 @@ In COMSOL Multiphysics®, GPU acceleration can significantly increase performanc
      #SBATCH --time=00:20:00
      #SBATCH --gres=gpu:1  # request 1 gpu per node, each gpu has 80 Gb of memory
      #SBATCH --mem-per-cpu=2G # requested memory per CPU core
-     #SBATCH --ntasks-per-node=30
+     #SBATCH --ntasks-per-node=64
+     #SBATCH --cpus-per-task=1
      #SBATCH --nodes=2
      #SBATCH --account=<allocation handle> 
      #SBATCH --output=comsol-%j.out
