@@ -42,7 +42,7 @@ module load openmpi/5.0.3
 module load cp2k/2025.2-gpu-plumed
 ```
 
-As of 10/26/2026 the GPU versions are build using OpenMPI and must be launched using mpirun instead of srun.  
+As of 10/26/2026, the GPU versions are build using OpenMPI and must be launched using mpirun instead of srun.  
 
 The primary executable is `cp2k.psmp`.  There are other utilities which are in the same directory as `cp2k.psmp`.  These can be seen by running the command:
 
