@@ -146,7 +146,7 @@ In an interactive session on a compute node we ran
 picenv envinteractive
 ```
 
-Finally we ran the following batch script
+Finally, we ran the following batch script
 
 ```
 #!/bin/bash
