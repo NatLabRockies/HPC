@@ -1398,7 +1398,7 @@ srun --tasks-per-node=4 ./jacobi 46000 46000 5 nvidia
 
 ## mpi/openacc/nvidia/nvidiaopenmpi
 
-As discussed above this is a somewhat contrived example.  If does, in fact combine MPI and OpenACC but the MPI does almost nothing.  At the MPI level it is embarrassingly parallel and each MPI task does the same calculation which is enhanced via OpenACC.  MPI starts the tasks and reports a summary of timings.  However, MPI combined with OpenACC is a important paradigm.  The GPU version of VASP can combine MPI and OpenACC.
+As discussed above this is a somewhat contrived example.  It does, in fact, combine MPI and OpenACC, but the MPI does almost nothing.  At the MPI level it is embarrassingly parallel and each MPI task does the same calculation which is enhanced via OpenACC.  MPI starts the tasks and reports a summary of timings.  However, MPI combined with OpenACC is a important paradigm.  The GPU version of VASP can combine MPI and OpenACC.
 
 Here we load nvhpc.  The module does not have the path for MPI. We need to find it and add it to our path.  
 
