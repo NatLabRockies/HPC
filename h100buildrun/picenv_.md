@@ -137,7 +137,6 @@ We see that loading the module added /nopt/nlr/apps/kestrel-cpu/gcc/14.2.0/lib64
 
 If you run using a batch scheduler such as slurm you can see the differences in environments from the login node, and interactive session, and a batch session.  
 
-We ran 
 On the login node we ran
 ```
 picenv envlogin
