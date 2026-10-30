@@ -12,15 +12,16 @@ The following examples are generic templates that NLR HPC users can adapt for th
 !!! note
     Be aware that `--mem` in Slurm ALWAYS refers to CPU, not GPU, memory. You are automatically given all of the per-device GPU memory in a Slurm job.
 
-??? example "Kestrel"
+??? example "Kestrel (4xH100 node example)"
     ```bash
     #!/bin/bash 
     #SBATCH --account=<allocation>
     #SBATCH --time=01:00:00
     #SBATCH --mem=80G
-    #SBATCH --gpus=1
+    #SBATCH --gpus=4
     #SBATCH --nodes=1
-    #SBATCH --ntasks-per-node=32
+    #SBATCH --ntasks-per-node=1
+    #SBATCH --cpus-per-task=32
     #SBATCH --output=%j-%x.log
 
     # don't forget to submit this from a GPU login node!
@@ -30,41 +31,63 @@ The following examples are generic templates that NLR HPC users can adapt for th
     <GPU-enabled code to run>
     ```
 
-??? example "Swift"
+??? example "Gila (1xGH200 [Grace Hopper] node - NVIDIA)"
+    Note that this job must be submitted from the `arm` login node accessed via `ssh <username>@gila-arm.hpc.nlr.gov`.
     ```bash
     #!/bin/bash
     #SBATCH --account=<allocation>
-    #SBATCH --partition=gpu
+    #SBATCH --partition=gh
     #SBATCH --time=01:00:00
-    #SBATCH --mem=250G
-    #SBATCH --gpus=1
+    #SBATCH --mem=0
     #SBATCH --nodes=1
-    #SBATCH --ntasks-per-node=24
+    #SBATCH --gres=gpu:1
+    #SBATCH --ntasks-per-node=1
+    #SBATCH --cpus-per-task=72
     #SBATCH --output=%j-%x.log
 
     <GPU-enabled code to run>
     ```
 
-??? example "Vermilion"
+??? example "Gila (8xA100 node - NVIDIA)"
+    Note that this job must be submitted from the `x86_64` login node accessed via `ssh <username>@gila.hpc.nlr.gov`.
     ```bash
     #!/bin/bash
     #SBATCH --account=<allocation>
-    #SBATCH --partition=gpu
+    #SBATCH --partition=gpu-intel-a100-80g # note there is also gpu-intel-a100-40g
     #SBATCH --time=01:00:00
     #SBATCH --mem=0
     #SBATCH --nodes=1
-    #SBATCH --ntasks-per-node=30
+    #SBATCH --gres=gpu:8
+    #SBATCH --ntasks-per-node=1
+    #SBATCH --cpus-per-task=5
     #SBATCH --output=%j-%x.log
-    #SBATCH --exclusive
 
-    # Note that you do not have to explicitly request a GPU on Vermilion 
-    # with `#SBATCH --gpus=1` or `#SBATCH --gres=gpu:1`.
+    <GPU-enabled code to run>
+    ```
+
+??? example "Gila (1xMI250 node - AMD)"
+    Note that this job must be submitted from the `x86_64` login node accessed via `ssh <username>@gila.hpc.nlr.gov`.
+    ```bash
+    #!/bin/bash
+    #SBATCH --account=<allocation>
+    #SBATCH --partition=gpu-amd-mi250 # note there is also gpu-amd-mi210
+    #SBATCH --time=01:00:00
+    #SBATCH --mem=0
+    #SBATCH --nodes=1
+    #SBATCH --gres=gpu:1
+    #SBATCH --ntasks-per-node=1
+    #SBATCH --cpus-per-task=48
+    #SBATCH --output=%j-%x.log
+
     <GPU-enabled code to run>
     ```
 
 ### Checking the GPU device(s)
 
-On Kestrel, Swift, and Vermilion, you can use the `nvidia-smi` utility to query various aspects of the GPU device(s) as your job runs. It is a helpful tool to quickly determine whether your code is exercising the GPU itself. Note that although `nvidia-smi` is a single-node application, it will return information on every GPU device available on the node from which it is launched (i.e., up to 4 devices on Kestrel or Swift).
+On Kestrel and Gila, you can use the `nvidia-smi` utility on nodes with NVIDIA GPUs to query various aspects of the GPU device(s) as your job runs. It is a helpful tool to quickly determine whether your code is exercising the GPU itself. Note that although `nvidia-smi` is a single-node application, it will return information on every GPU device available on the node from which it is launched (i.e., up to 4 devices on Kestrel, or 8 on Gila, depending on the node type).
+
+!!! note
+    On Gila's AMD GPU partitions (`gpu-amd-mi250` and `gpu-amd-mi210`), users should instead run `rocm-smi` to obtain similar information as `nvidia-smi`. Note that `rocm-smi` is only available after running `module load rocm`. For brevity, the remainder of this page focuses on NVIDIA-based examples, but the following discussion is still relevant when considering codes running on AMD GPUs using ROCm instead of CUDA.
 
 To illustrate how to use this utility, suppose you (`HPC-USER`) want to interactively run a Python script named `gpu_code.py` you wrote out of your /scratch directory on Kestrel that does some calculations on a single GPU device from a custom [conda/mamba environment](../../Environment/Customization/conda.md) (`my-cuda-env`). As the example code chunks below demonstrate, you can submit an interactive debug job with a GPU device attached, launch the script, and then query the GPU hardware utilization in a separate terminal session connected to that compute node. 
 
@@ -82,9 +105,9 @@ From there, launch a new terminal session, connect to Kestrel, and `ssh` into th
 ```
 [HPC-USER@kl5 ~] GPU $ ssh x3100c0s21b0n0
 [HPC-USER@x3100c0s21b0n0 ~] GPU $ nvidia-smi
-Mon Mar 24 16:42:36 2025
+Fri Oct 30 16:08:02 2026
 +-----------------------------------------------------------------------------------------+
-| NVIDIA-SMI 550.54.15              Driver Version: 550.54.15      CUDA Version: 12.4     |
+| NVIDIA-SMI 595.58.03              Driver Version: 595.58.03      CUDA Version: 13.2     |
 |-----------------------------------------+------------------------+----------------------+
 | GPU  Name                 Persistence-M | Bus-Id          Disp.A | Volatile Uncorr. ECC |
 | Fan  Temp   Perf          Pwr:Usage/Cap |           Memory-Usage | GPU-Util  Compute M. |
@@ -104,10 +127,10 @@ Mon Mar 24 16:42:36 2025
 +-----------------------------------------------------------------------------------------+
 ```
 
-Please reach out to [HPC-Help@nlr.gov](mailto:HPC-Help@nlr.gov) if you would like assistance with profiling your multi-node GPU jobs in a similar manner.
-
 !!! note
     **Importantly**, if your target process is running but does *not* show up in the `nvidia-smi` output, that indicates your code cannot recognize the GPU device(s), likely due to software problems or user error. Always feel free to submit a ticket with [HPC-Help@nlr.gov](mailto:HPC-Help@nlr.gov) if something does not look right!
+
+Although it is outside the scope of this documentation page, NLR HPC users are encouraged to familiarize themselves with GPU profiling tools available from NVIDIA [such as Nsight](https://developer.nvidia.com/nsight-systems) if understanding kernel-level GPU performance is a high priority. Please reach out to [HPC-Help@nlr.gov](mailto:HPC-Help@nlr.gov) if you would like assistance with profiling your GPU jobs in this manner.
 
 ### GPU-relevant environment variables
 
@@ -151,20 +174,20 @@ This example is written assuming you have access to Kestrel, but it should be ab
 
 #### Install `numba` from Anaconda
 
-The `numba` package is easily installable through Anaconda/mamba. For any GPU-enabled application, the biggest concern during installation is whether the application version matches the GPU drivers. At the time this page was written, the GPU drivers on Kestrel reflect `CUDA 12.4`, and so we must ensure that our version of numba can work with that. In conda, we can control this by explicitly passing the corresponding `cuda-version=CUDA_VERSION` from conda-forge and asking for a `cuda-toolkit` from the `nvidia/label/cuda-CUDA_VERSION` channel. When we do this, we will force a compatible version of `numba` to install into the `$CONDA_ENVIRONMENT` we define (which is in /scratch to save space). We will also install `numpy` to work with numeric data, as well as `pandas` for data manipulation tasks:
+The `numba` package is easily installable through Anaconda/mamba. For any GPU-enabled application, the biggest concern during installation is whether the application version matches the GPU drivers. At the time this page was written, the GPU drivers on Kestrel reflect `cuda/13.2`, and so we must ensure that our version of numba can work with that. In conda, we can control this by explicitly passing the corresponding `cuda-version=CUDA_VERSION` from conda-forge and asking for a `cuda-toolkit` from the `nvidia/label/cuda-CUDA_VERSION` channel. When we do this, we will force a compatible version of `numba` to install into the `$CONDA_ENVIRONMENT` we define (which is in /scratch to save space). We will also install `numpy` to work with numeric data, as well as `pandas` for data manipulation tasks:
 
 !!! note
     It is best to create this environment on a node with at least one available NVIDIA GPU. On any such node, you can run the command `nvidia-smi` to display the current GPU driver version (as well as any running GPU processes).
 
 ```bash
-ml mamba
-CONDA_ENVIRONMENT=/scratch/$USER/.conda-envs/numba-cuda124
+ml miniforge3
+CONDA_ENVIRONMENT=/scratch/$USER/.conda-envs/numba-cuda132
 mamba create --prefix=$CONDA_ENVIRONMENT \
   conda-forge::numba \
   conda-forge::numpy \
   conda-forge::pandas \
-  conda-forge::cuda-version=12.4 \
-  nvidia/label/cuda-12.4.0::cuda-toolkit \
+  conda-forge::cuda-version=13.2 \
+  nvidia/label/cuda-13.2.0::cuda-toolkit \
   --yes
 conda activate $CONDA_ENVIRONMENT
 ```
