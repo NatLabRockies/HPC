@@ -1447,7 +1447,7 @@ We first build cpu.C using PrgEnv-gnu.
 
 We next build the GPU version using nvhpc-stdalone which gives us access to Cuda and the libraries. For our compile/link line we need to provide the path to the include files and library.
 
-Next we run these two examples.  For the CPU version we run using 32 threads.  For the GPU version we run on each of the GPUs in turn.  
+Next we run these two examples.  For the CPU version, we run using 32 threads.  For the GPU version, we run on each of the GPUs in turn.  
 
 For the Intel version we link against their MKL library.
 
