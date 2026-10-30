@@ -135,7 +135,7 @@ mlgcc b'/nopt/nlr/apps/kestrel-cpu/gcc/14.2.0/lib64:/nopt/slurm/latest/lib::'
 ```
 We see that loading the module added /nopt/nlr/apps/kestrel-cpu/gcc/14.2.0/lib64 to LD_LIBRARY_PATH.
 
-If you run using a batch scheduler such as slurm you can see the differences in environments from the login node, and interactive session, and a batch session.  
+If you run using a batch scheduler such as slurm, you can see the differences in environments from the login node, an interactive session, and a batch session.  
 
 On the login node we ran
 ```
