@@ -141,7 +141,7 @@ On the login node we ran
 ```
 picenv envlogin
 ```
-In and interactive session on a compute node we ran
+In an interactive session on a compute node we ran
 ```
 picenv envinteractive
 ```
