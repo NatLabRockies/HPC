@@ -18,6 +18,7 @@ The following are packages that the NLR Computational Science Center supports:
 | [CLP](./idaes_solvers.md#clp) | Open-source linear program solver |
 | [COMSOL](./comsol.md)      | Multiphysics simulation environment | 
 | [Converge](./converge.md) | HPC CFD+, focused on engine modeling and simulation |
+| [CP2K](./cp2k.md) | Quantum chemistry and solid state physics software package |
 | [Couenne](./idaes_solvers.md#couenne) | Open-source mixed integer nonlinear programming (MINLP) global optimization solver |
 | [FEniCS](./fenics.md) | Solving partial differential equations by the finite element method | 
 | [GAMS](./gams.md) | High-level modeling system for mathematical programming and optimization | 
