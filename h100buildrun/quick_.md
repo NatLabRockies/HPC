@@ -1,4 +1,4 @@
-The slurm script below *quick* which does a build of C and Fortran MPI hello world.  The script shows that to get a MPI program to build with the standard Programing environments PrgEnv-{cray,intel,gnu}.  These environments build using Cray's MPI and the various back end compilers.  The script also builds for Intel MPI with Intel backend compilers and MPICH using gcc backends. By default the script will not run the C versions of the example.  You can enable running C by commenting out the line:
+The slurm script below *quick* which does a build of C and Fortran MPI hello world.  The script shows that to get a MPI program to build with the standard Programing environments PrgEnv-{cray,intel,gnu}.  These environments build using Cray's MPI and the various back end compilers.  The script also builds for Intel MPI with Intel backend compilers and MPICH using gcc backends. By default, the script will not run the C versions of the example.  You can enable running C by commenting out the line:
 ```
 false ; TF=$?
 ```
