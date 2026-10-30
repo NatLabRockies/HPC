@@ -124,7 +124,7 @@ Once this finishes, you can invoke the container with `apptainer exec simple_pyt
 /usr/bin/python3
 ```
 
-However, the `apt-get install python3` command in the Dockerfile should have installed the most up-to-date Python3 library from Ubuntu's package manager, which is 3.10.12 at the time this is written. By contrast, the Python3 library installed on the host is older (version 3.6.8). In this way, we can confirm that the `python3` executed with `apptainer exec ...` is indeed originating from `simple_python3.sif`:
+However, the `apt-get install python3` command in the Dockerfile should have installed the most up-to-date Python3 library from Ubuntu's package manager, which is 3.14.4 at the time this is written. By contrast, the Python3 library installed on the host is older (version 3.6.8). In this way, we can confirm that the `python3` executed with `apptainer exec ...` is indeed originating from `simple_python3.sif`:
 
 ```
 # host Python3
@@ -133,15 +133,16 @@ Python 3.6.8
 
 # container Python3
 [USERNAME@COMPUTE_NODE USERNAME]$ apptainer exec simple_python3.sif python3 --version
-Python 3.10.12
+Python 3.14.4
 ```
 
 For more specific information on and best practices for using Apptainer on NLR's HPC systems, please refer to its [dedicated documentation page](./apptainer.md).
 
-#### 5. A more involved Dockerfile example (CUDA 12.4)
+#### 5. A more involved Dockerfile example (CUDA 13.2)
 
-For an example of an image you can build to provide everything needed for CUDA v.12.4, please refer to this [Dockerfile](https://github.com/NatLabRockies/HPC/blob/master/docker-examples/cuda-12.4/Dockerfile).
+For an example of an image you can build to provide everything needed for CUDA v.13.2, please refer to this [Dockerfile](https://github.com/NatLabRockies/HPC/blob/master/docker-examples/cuda-13.2/Dockerfile).
 
 ### Using Apptainer as build alternatives to Docker
 
 Given Docker's popularity, support, and its widespread compatibility with other container runtimes, it is recommended to start your containerization journey with the steps outlined in the previous section. However, there could be rare cases in which you need to directly build an image with [Apptainer](https://apptainer.org/docs/user/main/definition_files.html). Instead of "Dockerfiles", these container runtimes use "Definition Files" for image building that have a similar, yet distinct format. Please refer to the respective link for more information. We also provide an [Apptainer image build example](./apptainer.md#create-ubuntu-based-image-with-mpi-support) in our documentation, which can be remotely built via the [Singularity Container Service](https://cloud.sylabs.io/) from Sylabs, the developer of Apptainer.
+x
