@@ -1,5 +1,4 @@
 ## Ansys
-The current Ansys license is an unlimited license that covers all Ansys products, with no restrictions on quantities. However, since Ansys is unable to provide a license file that includes all products in unlimited quantities, we have requested licenses based on our anticipated needs. You can check the available licenses on Kestrel using the command `lmstat.ansys`. If the module you need is not listed, please submit a ticket by emailing [HPC-Help@nlr.gov](mailto:HPC-Help@nlr.gov) so that we can request an updated license to include the specific module you require.
 
 The main workflow that we support has two stages. The first is interactive graphical usage, e.g., for interactively building meshes or visualizing boundary geometry. For this, Ansys should be run on a [FastX desktop](../Viz_Analytics/virtualgl_fastx.md). The second stage is batch (i.e., non-interactive) parallel processing, which should be run on compute nodes via a Slurm job script. Of course, if you have Ansys input from another location ready to run in batch mode, the first stage is not needed. We unfortunately cannot support running parallel jobs on the DAV nodes, nor launching parallel jobs from interactive sessions on compute nodes.
 
@@ -28,7 +27,7 @@ module load ansys/<version>
 vglrun runwb2
 ```
 
-where `<version>` will be replaced with an Ansys version/release e.g., `2025R1`. Press `tab` to auto-suggest all available versions. If no version is specified, it will load the default version which is 2025R1 at this moment. Because FastX desktop sessions are supported from DAV nodes shared between multiple HPC users, limits are placed on how much memory and compute resources can be consumed by a single user/job. For this reason, it is recommended that the GUI be primarily used to define the problem and run small-scale tests to validate its operation before moving the model to a compute node for larger-scale runs.
+where `<version>` will be replaced with an Ansys version/release e.g., `2026R1`. Press `tab` to auto-suggest all available versions. If no version is specified, it will load the default version which is 2026R1 at this moment. Because FastX desktop sessions are supported from DAV nodes shared between multiple HPC users, limits are placed on how much memory and compute resources can be consumed by a single user/job. For this reason, it is recommended that the GUI be primarily used to define the problem and run small-scale tests to validate its operation before moving the model to a compute node for larger-scale runs.
 
 For jobs that require both large-scale compute resources and GUI interactivity simultaneously, there is partial support for running the GUI from an X-enabled shell on a compute node.
 
@@ -186,10 +185,10 @@ unset PRTE_MCA_plm_slurm_args
 machines=$(srun hostname | sort | uniq -c | awk '{print $2 ":" $1}' | paste -s -
 d ":" -)
 
-ansys251 -dis -mpi intelmpi2018 -machines $machines -i inputfilename.
+ansys261 -dis -mpi intelmpi2021 -machines $machines -i inputfilename.
 dat -o joboutput.out
 ```
-In the slurm script, `ansys251` starts the Ansys mechanical module, `-dis` enables distributed-memory parallel processing, `-mpi` specifies the mpi to be used (intelmpi2018 or openmpi), `-machine` specifies the host names, `-i` is used to specify the job input file, and `-o` is used to specify the job output file.
+In the slurm script, `ansys261` starts the Ansys mechanical module, `-dis` enables distributed-memory parallel processing, `-mpi` specifies the mpi to be used (intelmpi2021 or openmpi), `-machine` specifies the host names, `-i` is used to specify the job input file, and `-o` is used to specify the job output file.
 
 #### GPU Acceleration
 Ansys Mechanical supports GPU acceleration in which GPUs are used to assist the CPUs in solving parts of the simulation — it’s still mostly a CPU-based solver, but the GPU helps offload some of the heavy linear algebra (like matrix operations). In situations where the analysis type is not supported by the GPU accelerator capability, the solution will continue but GPU acceleration will not be used.
@@ -223,7 +222,7 @@ machines=$(srun hostname | sort | uniq -c | awk '{print $2 ":" $1}' | paste -s -
 input_file=test_mech.inp
 output_file=test_mech_GPGPU.out
 
-ansys251 -dis -mpi intelmpi2021 -acc nvidia -na 2 -machines $machines -i $input_file -o $output_file
+ansys261 -dis -mpi intelmpi2021 -acc nvidia -na 2 -machines $machines -i $input_file -o $output_file
 
 ```
 
