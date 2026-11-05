@@ -145,4 +145,3 @@ For an example of an image you can build to provide everything needed for CUDA v
 ### Using Apptainer as build alternatives to Docker
 
 Given Docker's popularity, support, and its widespread compatibility with other container runtimes, it is recommended to start your containerization journey with the steps outlined in the previous section. However, there could be rare cases in which you need to directly build an image with [Apptainer](https://apptainer.org/docs/user/main/definition_files.html). Instead of "Dockerfiles", these container runtimes use "Definition Files" for image building that have a similar, yet distinct format. Please refer to the respective link for more information. We also provide an [Apptainer image build example](./apptainer.md#create-ubuntu-based-image-with-mpi-support) in our documentation, which can be remotely built via the [Singularity Container Service](https://cloud.sylabs.io/) from Sylabs, the developer of Apptainer.
-x
