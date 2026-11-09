@@ -6,6 +6,9 @@ Modules typically just set environment variables that one might traditionally do
 
 For system specific information on environments and modules, please visit the [Systems section](../Systems/index.md).
 
+!!! tip "Browse all modules"
+    See the [Module Index](../module_index.md) for a searchable, categorized listing of every module installed on the system.
+
 ## Common Module Commands
 The ```module``` command accepts parameters that enable users to inquire about and change the module environment. Most of the basic functionality can be accessed through the following commands.
 
