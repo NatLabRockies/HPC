@@ -24,8 +24,10 @@ Learn about the MATLAB software versions and licenses available for use.
 ## Additional Resources
 
 If you're an NLR user, on GitHub view [MATLAB presentations and code
-examples](https://github.nrel.gov/hpc-apps/dist-matlab).
+examples](https://github.nrel.gov/hpc-apps/dist-matlab). 
 
-For all users, see a summary PowerPoint deck on the [MATLAB Compiler, MATLAB
+Also available for NLR users are [slides from the most recent MATLAB tutorial](https://nrel.sharepoint.com/:p:/r/sites/ComputationalSciencesTutorials/Shared%20Documents/HPC%20User%20Community/Slides/6%20-%20Applications%20of%20HPC/Getting%20Started%20with%20Matlab%20on%20Kestrel.pptx?d=w99b3765334284ba390b9ff5af3545231&csf=1&web=1&e=HlwfZw).
+
+<!--For all users, see a summary PowerPoint deck on the [MATLAB Compiler, MATLAB
 Coder, and MATLAB Engine for
-Python](https://www.nlr.gov/hpc/matlab_compiler_coder_python.pptx).
+Python](https://www.nlr.gov/hpc/matlab_compiler_coder_python.pptx).-->

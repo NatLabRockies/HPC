@@ -4,7 +4,7 @@
 
 ## Versions
 
-The latest version available on NLR HPC systems is R2023a.
+The latest version available on NLR HPC systems is R2025a.
 
 ## Licenses
 
