@@ -16,7 +16,7 @@ code on NLR HPC systems.
 For more extensive examples of PCT usage and code examples, see the [MathWorks
 documentation](https://www.mathworks.com/products/parallel-computing.html).
 
-## Configuration in MATLAB R2023a
+## Configuration in MATLAB R2025a
 
 Configuration of the PCT is done most easily through the interactive
 GUI. However, the opening of parallel pools can be significantly slower in
@@ -28,7 +28,7 @@ To configure your local parallel settings, start an interactive MATLAB session
 with X11 forwarding (see [Running Interactive Jobs on
 Kestrel](../../Slurm/interactive_jobs.md) and [Environment
 Modules on the Kestrel System](../../Systems/Kestrel/Environments/index.md)). Open MATLAB
-R2023a and do the following:
+R2025a and do the following:
 
 1. Under the Home tab, go to Parallel > Parallel Preferences.
 2. In the Parallel Pool box, set the "Preferred number of workers in a parallel
@@ -98,7 +98,7 @@ To run the script on a compute node, create the file helloWorld.sb:
 
     # load modules
     module purge
-    module load matlab/R2023a
+    module load matlab
 
     # define an environment variable for the MATLAB script and output
     BASE_MFILE_NAME=helloWorld
@@ -223,7 +223,7 @@ Finally, create the batch script stiffODE.sb:
 
     # load modules
     module purge
-    module load matlab/R2023a
+    module load matlab
 
     # define environment variables for MATLAB script and output
     BASE_MFILE_NAME=stiffODE
