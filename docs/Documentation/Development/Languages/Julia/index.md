@@ -13,20 +13,13 @@ This section contains demos (in the form of scripts and notebooks) and how-to gu
 
 ## Available modules
 
-| Kestrel (CPU) | Kestrel (GPU) |
-|:-------------:| :------------:| 
-| julia/1.7.2 ||
-| julia/1.8.5-generic-linux ||
-| julia/1.10.0-gcc ||
-|| julia/1.10.4 |
-| julia/1.11.1-oneapi ||
-|| julia/1.11.4 |
-| julia/1.12.1  | julia/1.12.1 |
-
+```
+module load julia/1.12.6
+```
 
 !!! Bug "Julia 1.9.x does not work well on Sapphire Rapids"
 
-    We advise against installing and using Julia 1.9.x on Kestrel as packages can fail to precompile and result in a segmentation fault. This is a known issue with Julia 1.9.x on Sapphire Rapids processors, possibly due to an LLVM issue. Julia 1.10 will be installed as a module once a stable release is available. Until then, please use Julia 1.7 or 1.8.
+    We advise against installing and using Julia 1.9.x on Kestrel as packages can fail to precompile and result in a segmentation fault. This is a known issue with Julia 1.9.x on Sapphire Rapids processors, possibly due to an LLVM issue.
 
 
 
