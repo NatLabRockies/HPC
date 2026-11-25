@@ -13,6 +13,8 @@ This section contains demos (in the form of scripts and notebooks) and how-to gu
 
 ## Available modules
 
+Currently Julia 1.12.6 is available in the module `julia/1.12.6` on Kestrel's CPU nodes. Load the module using,
+
 ```
 module load julia/1.12.6
 ```
