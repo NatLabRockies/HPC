@@ -83,6 +83,7 @@ nav:
           #   - Blank Template: Documentation/Applications/Templates/applications_template.md
           - Documentation/Applications/index.md
           - AlphaFold:  Documentation/Applications/alphafold.md
+          - Amber:      Documentation/Applications/amber.md
           - ANSYS CFD:  Documentation/Applications/ansys.md
           - CONVERGE CFD:  Documentation/Applications/converge.md
           - CP2K: Documentation/Applications/cp2k.md
@@ -107,6 +108,7 @@ nav:
           - NAMD:       Documentation/Applications/namd.md
           - OpenFAST/FAST.Farm: Documentation/Applications/openfast.md
           - OpenFOAM: Documentation/Applications/openfoam.md
+          - PFLOTRAN:   Documentation/Applications/pflotran.md
           - PLEXOS:
             - Documentation/Applications/Plexos/index.md
             - Setting Up: Documentation/Applications/Plexos/setup_plexos.md
