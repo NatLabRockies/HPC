@@ -76,7 +76,7 @@ For large size jobs, which may have extensive I/O for reading and writing scratc
 A large number of example Q-Chem input examples are available in `/nopt/nrel/apps/q-chem/<version>/samples`.
 
 ## Running BrianQC
-BrianQC is the GPU version of Q-Chem and can perform Q-Chem calculations on GPUs, which is significantly faster for some larger ab initio jobs. BrianQC uses the same input file as Q-Chem. Below is a sample slurm script for BrianQC, which should be submitted on the GPU login nodes of Kestrel. If running on Swift, please also add "#SBATCH -p gpu" to the header of this script.
+BrianQC is the GPU version of Q-Chem and can perform Q-Chem calculations on GPUs, which is significantly faster for some larger ab initio jobs. BrianQC uses the same input file as Q-Chem. Below is a sample slurm script for BrianQC, which should be submitted on the GPU login nodes of Kestrel.
 ```
  	#!/bin/bash
 	#SBATCH --job-name=my_qchem_job
