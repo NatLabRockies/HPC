@@ -42,9 +42,6 @@ nav:
           - Running on Gila: Documentation/Systems/Gila/running.md
           - Modules: Documentation/Systems/Gila/modules.md
           - Filesystems: Documentation/Systems/Gila/filesystem.md
-        # - Vermilion:
-        #   - Documentation/Systems/Vermilion/index.md
-        #   - Documentation/Systems/Vermilion/running.md
       - Slurm Job Scheduling:
         - Documentation/Slurm/index.md
         - Monitor and Control Commands: Documentation/Slurm/monitor_and_control.md
