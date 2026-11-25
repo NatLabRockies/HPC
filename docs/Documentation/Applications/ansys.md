@@ -44,7 +44,7 @@ where `<version>` will be replaced with an Ansys version/release e.g., `2026R1`.
 
 For jobs that require both large-scale compute resources and GUI interactivity simultaneously, there is partial support for running the GUI from an X-enabled shell on a compute node.
 
-To do so, you can follow one of the following ways:
+To do so, you can follow one of the following methods:
 
 1. Submit your interactive job and wait to obtain a node. For example:
    ```
