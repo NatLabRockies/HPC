@@ -51,15 +51,24 @@ Next, create a job script. Below are example job scripts for the available NLR s
 
 	Put job example here
 
+??? example "Vermillion"
+
+	Put job example here
+
+??? example "Swift"
+
+	Put job example here
+
+
 Save the submit file as bgw.in, and submit with the command:
 
 `sbatch bgw.in`
 
 ## Supported Versions
 
-| Kestrel    |
-|:----------:|
-| 2.0, 3.0   |
+| Kestrel    | Swift | Vermillion |
+|:----------:|:-----:|:----------:|
+| 2.0, 3.0   | 0.0.0 | 0.0.0      |
 
 ## Advanced
 
@@ -192,6 +201,10 @@ Then, follow the build instructions in the "building" drop-downs below for the c
 	make cleanall
 	make all
 	```
+
+??? example "Building on Swift"
+
+	TODO: add Swift build instructions
 
 ## Troubleshooting
 
