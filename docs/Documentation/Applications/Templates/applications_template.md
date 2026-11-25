@@ -58,18 +58,6 @@ Include a section on how to run the job, e.g., with job script examples or comma
 
 	```
 
-??? example "Vermillion"
-
-	If the submit script for Vermillion differs from Kestrel, then include a Vermillion example script here.
-	If the submit script does not differ, then remove this section (starting from the `??? example "Vermillion"` line)
-
-
-??? example "Swift"
-
-	If the submit script for Swift differs from Kestrel, then include a Swift  example script here.
-	If the submit script does not differ, then remove this section (starting from the `??? example "Swift"` line)
-
-
 ??? example "Template"
 	
 	Here's a template of a collapsible example.
@@ -87,9 +75,9 @@ Include instructions on how to submit the job script
 
 ## Supported Versions
 
-| Kestrel | Swift | Vermillion |
-|:-------:|:-----:|:----------:|
-| 0.0.0   | 0.0.0 | 0.0.0      |
+| Kestrel |
+|:-------:|
+| 0.0.0   |
 
 ## Advanced
 
@@ -130,15 +118,6 @@ Be sure to include where the user can download the source code
 	make all
 	```
 	
-??? example "Building on Vermillion"
-
-	information on how to build on Vermillion
-
-??? example "Building on Swift"
-
-	information on how to build on Swift
-
-
 ## Troubleshooting
 
 Include known problems and workarounds here, if applicable

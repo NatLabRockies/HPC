@@ -11,12 +11,12 @@ Users can run PLEXOS models on NLR's computing clusters. However, users need to 
 
 ## Available Modules
 
-| Kestrel (CPU only) | Swift           | Vermilion |
-|:----------------:|:---------------:|:---------:|
-| plexos/9.000R09  | plexos/9.000R09 ||
-| plexos/9.200R06  |||
-| plexos/11.000R01 |||
-| plexos/11.000R04 |||
+| Kestrel (CPU only) |
+|:----------------:|
+| plexos/9.000R09  |
+| plexos/9.200R06  |
+| plexos/11.000R01 |
+| plexos/11.000R04 |
 
 
 !!! info

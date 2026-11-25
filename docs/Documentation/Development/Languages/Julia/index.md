@@ -13,16 +13,15 @@ This section contains demos (in the form of scripts and notebooks) and how-to gu
 
 ## Available modules
 
-| Swift              | Vermilion  | Kestrel (CPU) | Kestrel (GPU) |
-|:------------------:|:----------:|:-------------:| :------------:| 
-|julia/1.6.2-ocsfign ||||
-|julia/1.7.2-gdp7a25 |julia/1.7.2 | julia/1.7.2 ||
-|                    |            | julia/1.8.5-generic-linux ||
-|                    |            | julia/1.10.0-gcc ||
-|                    |            || julia/1.10.4 |
-|                    |            | julia/1.11.1-oneapi ||
-|                    |            || julia/1.11.4 |
-|                    |            | julia/1.12.1  | julia/1.12.1 |
+| Kestrel (CPU) | Kestrel (GPU) |
+|:-------------:| :------------:| 
+| julia/1.7.2 ||
+| julia/1.8.5-generic-linux ||
+| julia/1.10.0-gcc ||
+|| julia/1.10.4 |
+| julia/1.11.1-oneapi ||
+|| julia/1.11.4 |
+| julia/1.12.1  | julia/1.12.1 |
 
 
 !!! Bug "Julia 1.9.x does not work well on Sapphire Rapids"

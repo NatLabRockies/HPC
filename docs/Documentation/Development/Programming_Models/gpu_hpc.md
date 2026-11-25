@@ -4,7 +4,7 @@ This page documents how NLR HPC users can utilize GPUs, from submitting the righ
 
 ### Example scripts
 
-The following examples are generic templates that NLR HPC users can adapt for their own GPU job scripts for a given system. Be sure to replace `<allocation>` with the name of your HPC allocation. Note that Kestrel and Swift's GPU partitions have sharable nodes, allowing for multiple jobs to run on one node simultaneously. Since there are four GPU cards on each node on these systems, each node can theoretically accommodate four GPU-driven jobs at once. As such, example scripts for those systems are tailored for requesting one-quarter of a node by default. Although Vermilion's GPUs are technically "shared" in the sense that multiple (CPU) jobs can run on one node, there is only one GPU per node. As such the Vermilion example requests the entire node. Please refer to the [system-specific pages](../../Systems/index.md) for more information on the GPUs available on each cluster and how AUs are charged accordingly.
+The following examples are generic templates that NLR HPC users can adapt for their own GPU job scripts for a given system. Be sure to replace `<allocation>` with the name of your HPC allocation. Note that Kestrel's GPU partitions have sharable nodes, allowing for multiple jobs to run on one node simultaneously. Since there are four GPU cards on each node on this system, each node can theoretically accommodate four GPU-driven jobs at once. As such, example scripts for Kestrel are tailored for requesting one-quarter of a node by default. Please refer to the [system-specific pages](../../Systems/index.md) for more information on the GPUs available on each cluster and how AUs are charged accordingly.
 
 !!! note
     When launching a GPU job on Kestrel, be sure to do so from [one of its dedicated GPU login nodes](../../Systems/Kestrel/index.md#accessing-kestrel).
@@ -162,7 +162,7 @@ Without even considering the characteristics of the algorithm itself, one of the
 
 ### Ways to compile CUDA code
 
-CUDA is a low-level API distributed by NVIDIA that allows applications to parallelize on NVIDIA GPUs, such as the H100s available on Kestrel or the A100s on Swift. Because of this, any GPU-driven code gets compiled into a *CUDA kernel*, which is essentially a *function* translated to machine code for the GPU. There are two CUDA-aware compilers available from NVIDIA: [`nvcc`](https://docs.nvidia.com/cuda/cuda-compiler-driver-nvcc/), a CUDA analog to the more generic `cc`, and [`nvrtc`](https://docs.nvidia.com/cuda/nvrtc/index.html), which is NVIDIA's runtime compiler for "just-in-time" (JIT) compilation.
+CUDA is a low-level API distributed by NVIDIA that allows applications to parallelize on NVIDIA GPUs, such as the H100s available on Kestrel. Because of this, any GPU-driven code gets compiled into a *CUDA kernel*, which is essentially a *function* translated to machine code for the GPU. There are two CUDA-aware compilers available from NVIDIA: [`nvcc`](https://docs.nvidia.com/cuda/cuda-compiler-driver-nvcc/), a CUDA analog to the more generic `cc`, and [`nvrtc`](https://docs.nvidia.com/cuda/nvrtc/index.html), which is NVIDIA's runtime compiler for "just-in-time" (JIT) compilation.
 
 See [this page](../../Systems/Kestrel/Environments/gpubuildandrun.md) for specific GPU code compilation examples on Kestrel, which include both CUDA and OpenAcc (an open-source alternative) implementations.
 

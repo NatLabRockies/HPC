@@ -44,13 +44,13 @@ Non-default locations of this file may be set through the `OMPI_TMPDIR` environm
 
 ### Supported Versions
 
-|Kestrel                   | Swift          | Vermilion |
-|:------------------------:|:--------------:|:----------------:|
-|openmpi/4.1.6-gcc  (CPU)  |openmpi/4.1.1-6vr2flz |openmpi/4.1.4-gcc |
-|openmpi/4.1.6-intel(CPU)  |||  
-|openmpi/5.0.1-gcc  (CPU)  |||
-|openmpi/5.0.3-gcc  (CPU)  ||| 
-|openmpi/4.1.6-gcc (GPU)   |||
+|Kestrel                   |
+|:------------------------:|
+|openmpi/4.1.6-gcc  (CPU)  |
+|openmpi/4.1.6-intel(CPU)  |  
+|openmpi/5.0.1-gcc  (CPU)  |
+|openmpi/5.0.3-gcc  (CPU)  | 
+|openmpi/4.1.6-gcc (GPU)   |
 
 ## IntelMPI
 **Documentation:** [IntelMPI](https://www.intel.com/content/www/us/en/developer/tools/oneapi/mpi-library.html)
@@ -61,12 +61,12 @@ Intel's MPI library enables tight interoperability with its processors and softw
 
 ### Supported Versions
 
-|Kestrel                          | Swift          | Vermilion |
-|--------------------------------:|:--------------:|:----------------:|
-|intel-oneapi-mpi/2021.10.0-intel (CPU) |intel-oneapi-mpi/2021.3.0-hcp2lkf  |intel-oneapi-mpi/2021.7.1-intel |   
-|intel-oneapi-mpi/2021.11.0-intel (CPU) |||   
-|intel-oneapi-mpi/2021.12.1-intel (CPU) |||
-|intel-oneapi-mpi/2021.13.0-intel (GPU) |||
+|Kestrel                          |
+|--------------------------------:|
+|intel-oneapi-mpi/2021.10.0-intel (CPU) |   
+|intel-oneapi-mpi/2021.11.0-intel (CPU) |   
+|intel-oneapi-mpi/2021.12.1-intel (CPU) |
+|intel-oneapi-mpi/2021.13.0-intel (GPU) |
 
 
 ## MPICH
@@ -77,11 +77,11 @@ MPICH and its derivatives form the most widely used implementations of MPI in th
 
 ### Supported Versions
 
-|Kestrel                          | Swift          | Vermilion |
-|--------------------------------:|:--------------:|:----------------:|
-|mpich/4.1-gcc   (CPU)                 |mpich/3.4.2-h2s5tru | mpich/4.0.2-gcc  |   
-|mpich/4.1-intel (CPU)                 | || 
-|mpich/4.1-gcc (GPU)                   |||
+|Kestrel                          |
+|--------------------------------:|
+|mpich/4.1-gcc   (CPU)                 |   
+|mpich/4.1-intel (CPU)                 | 
+|mpich/4.1-gcc (GPU)                   |
 
 ## Running MPI Jobs on Kestrel GPUs
 
