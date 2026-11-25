@@ -33,14 +33,14 @@ documentation](https://www.gurobi.com/documentation/).
 
 ## Available Modules
 
-| Kestrel (CPU & GPU nodes)        | Swift           |
-|:---------------:|:---------------:|
-| gurobi/12.0.3   ||
-| gurobi/12.0.0   ||
-| gurobi/11.0.2   ||
-| gurobi/10.0.2   ||
-| gurobi/10.0.1   ||
-| gurobi/9.5.1    | gurobi/9.5.1    |
+| Kestrel (CPU & GPU nodes)        |
+|:---------------:|
+| gurobi/12.0.3   |
+| gurobi/12.0.0   |
+| gurobi/11.0.2   |
+| gurobi/10.0.2   |
+| gurobi/10.0.1   |
+| gurobi/9.5.1    |
 
 !!! tip
     You can check how many Gurobi licenses are available for use by running the following command

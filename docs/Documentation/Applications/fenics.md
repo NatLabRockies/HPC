@@ -55,61 +55,13 @@ conda create -n myfenics -c conda-forge fenics-dolfinx
 
     ```
 
-??? example "Vermilion"
-
-    ```slurm
-    #!/bin/bash
-
-    # This test file is designed to run the Poisson demo on one node with a 4 cores
-
-    #SBATCH --time=01:00:00
-    #SBATCH --nodes=1
-    #SBATCH --ntasks-per-node=4
-    #SBATCH --partition=standard
-    #SBATCH --account=
-
-    module purge
-    module load anaconda3
-
-    # This is to prevent FEniCS from unnecessarily attempting to multi-thread
-    export OMP_NUM_THREADS=1
-
-    cd /scratch/USERNAME/poisson_demo/
-    srun -n 4 python poisson_demo.py
-
-    ```
-
-??? example "Swift"
-
-    ```slurm
-    #!/bin/bash
-
-    # This test file is designed to run the Poisson demo on one node with a 4 cores
-
-    #SBATCH --time=01:00:00
-    #SBATCH --nodes=1
-    #SBATCH --ntasks-per-node=4
-    #SBATCH --partition=standard
-    #SBATCH --account=
-
-    module purge
-    module load conda
-
-    # This is to prevent FEniCS from unnecessarily attempting to multi-thread
-    export OMP_NUM_THREADS=1
-
-    cd /home/USERNAME/poisson_demo/
-    srun -n 4 python poisson_demo.py
-
-    ```
-
-To run this script, first download the Poisson demo [ here ](https://fenicsproject.org/olddocs/dolfin/2019.1.0/python/demos/poisson/demo_poisson.py.html) and place it in a folder titled "poisson_demo" in your scratch directory (home for Swift). Next, replace "USERNAME" in the script with your username. Then save the script as "demo_script.sh" and submit it with `sbatch demo_script.sh`. This demo is only supported by FEniCS 2019.1.0 and not FEniCSx. 
+To run this script, first download the Poisson demo [ here ](https://fenicsproject.org/olddocs/dolfin/2019.1.0/python/demos/poisson/demo_poisson.py.html) and place it in a folder titled "poisson_demo" in your scratch directory. Next, replace "USERNAME" in the script with your username. Then save the script as "demo_script.sh" and submit it with `sbatch demo_script.sh`. This demo is only supported by FEniCS 2019.1.0 and not FEniCSx. 
 
 ## Supported Versions
 
-| Kestrel | Vermilion | Swift |
-|:-------:|:----------:|:-----:|
-| 2019.1.0 | 2019.1.0 | 2019.1.0 |
+| Kestrel |
+|:-------:|
+| 2019.1.0 |
 
 
 []: # (TODO: add spack build)

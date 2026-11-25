@@ -10,14 +10,14 @@ title: Help and Support
 [HPC-Requests@nlr.gov](mailto:HPC-Requests@nlr.gov) - Email for HPC questions related to allocation requests and to request increases/decreases to allocation units or storage. 
 
 ## Microsoft Teams
-Each system has a Microsoft Teams channel where users can collaborate and post questions. The Swift and Vermilion Team chats are one of the primary ways we communicate announcements and status updates for these systems. 
+Each system has a Microsoft Teams channel where users can collaborate and post questions. The Team chats are one of the primary ways we communicate announcements and status updates for these systems. 
 
 We update the team channel members annually based on HPC project members. However, if we missed you and you would like to join, please use the following instructions:
 
 ??? note "Internal Users (NLR)"
     1. In Teams, click on the "Teams" icon in the far left navigation bar.
     1. Click "Join or create a team" in the lower left corner.
-    1. In the "Search teams" bar in the upper far right corner, type the name of the channel you need to join (e.g., "Vermilion" or "Swift") and hit return.
+    1. In the "Search teams" bar in the upper far right corner, type the name of the channel you need to join and hit return.
     1. Click Join.
 
 ??? note "External Users (Non-NLR)"

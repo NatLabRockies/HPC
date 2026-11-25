@@ -36,11 +36,11 @@ NLR also offers build and module support for additional functionalities such as 
 ## Supported Versions
 NLR offers modules for VASP 5 and VASP 6 on CPUs as well as GPUs on certain systems. See table below for current availability, as well as system specific documentation for more details on running different builds.
 
-|             |    Kestrel    |     Swift     |   Vermilion   |
-| ----------- | ------------- | ------------- | ------------- |
-| VASP 5      |       X       |               |       X       |
-| VASP 6      |       X       |       X       |       X       |
-| VASP 6 GPU  |       X       |       X       |       X       |
+|             |    Kestrel    |
+| ----------- | ------------- |
+| VASP 5      |       X       |
+| VASP 6      |       X       |
+| VASP 6 GPU  |       X       |
 
 
 ## VASP on Kestrel
@@ -310,170 +310,6 @@ Sample Makefiles for VASP can be found on Kestrel at `/nopt/nlr/apps/kestrel-cpu
     export VASP_PATH=/PATH/TO/YOUR/BUILD/bin
 
     srun ${VASP_PATH}/vasp_std &> out
-    ```
-
-## VASP on Swift
-
-#### CPU
-??? example "Sample job script: Swift - VASP 6 CPU (Intel MPI)"
-    
-    ```
-    #!/bin/bash
-    #SBATCH --job-name="benchmark"
-    #SBATCH --account=myaccount
-    #SBATCH --time=4:00:00
-    #SBATCH --ntasks-per-node=64
-    #SBATCH --nodes=1
-
-    #Set --exclusive if you would like to prevent any other jobs from running on the same nodes (including your own)
-    #You will be charged for the full node regardless of the fraction of CPUs/node used
-    #SBATCH --exclusive
-
-    module purge
-
-    #Load Intel MPI VASP build and necessary modules
-    ml vaspintel 
-    ml slurm/21-08-1-1-o2xw5ti 
-    ml gcc/9.4.0-v7mri5d 
-    ml intel-oneapi-compilers/2021.3.0-piz2usr 
-    ml intel-oneapi-mpi/2021.3.0-hcp2lkf 
-    ml intel-oneapi-mkl/2021.3.0-giz47h4
-
-    srun -n 64 vasp_std &> out
-    ```
-
-??? example "Sample job script: Swift - VASP 6 CPU (Open MPI)"
-  
-    ```
-    #!/bin/bash
-    #SBATCH --job-name="benchmark"
-    #SBATCH --account=myaccount
-    #SBATCH --time=4:00:00
-    #SBATCH --ntasks-per-node=64
-    #SBATCH --nodes=1
-
-    #Set --exclusive if you would like to prevent any other jobs from running on the same nodes (including your own)
-    #You will be charged for the full node regardless of the fraction of CPUs/node used
-    #SBATCH --exclusive
-
-    module purge
-
-    #Load OpenMPI VASP build and necessary modules
-    ml vasp 
-    ml slurm/21-08-1-1-o2xw5ti 
-    ml openmpi/4.1.1-6vr2flz
-
-    srun -n 64 vasp_std &> out
-    ```
-
-??? example "Sample job script: Swift - run multiple jobs on the same node(s)"
-  
-    The following script launches two instances of ```srun vasp_std``` on the same node using an array job. Each job will be constricted to 32 cores on the node. 
-    ```
-    #!/bin/bash
-    #SBATCH --job-name="benchmark"
-    #SBATCH --account=myaccount
-    #SBATCH --time=4:00:00
-    #SBATCH --ntasks-per-node=32
-    #SBATCH --nodes=1
-
-    #Set --exclusive=user if you would like to prevent anyone else from running on the same nodes as you
-    #You will be charged for the full node regardless of the fraction of CPUs/node used
-    #SBATCH --exclusive=user
-
-    #Set how many jobs you would like to run at the same time as an array job
-    #In this example, an array of 2 jobs will be run at the same time. This script will be run once for each job.
-    #SBATCH --array=1-2
-
-    #The SLURM_ARRAY_TASK_ID variable can be used to modify the parameters of the distinct jobs in the array.
-    #In the case of array=1-2, the first job will have SLURM_ARRAY_TASK_ID=1, and the second will have SLURM_ARRAY_TASK_ID=2.
-    #For example, you could assign different input files to runs 1 and 2 by storing them in directories input_1 and input_2 and using the following code:
-
-    mkdir run_${SLURM_ARRAY_TASK_ID}
-    cd run_${SLURM_ARRAY_TASK_ID}
-    cp ../input_${SLURM_ARRAY_TASK_ID}/POSCAR .
-    cp ../input_${SLURM_ARRAY_TASK_ID}/POTCAR .
-    cp ../input_${SLURM_ARRAY_TASK_ID}/INCAR .
-    cp ../input_${SLURM_ARRAY_TASK_ID}/KPOINTS .
-
-    #Now load vasp and run the job...
-
-    module purge
-
-    #Load Intel MPI VASP build and necessary modules
-    ml vaspintel 
-    ml slurm/21-08-1-1-o2xw5ti 
-    ml gcc/9.4.0-v7mri5d 
-    ml intel-oneapi-compilers/2021.3.0-piz2usr 
-    ml intel-oneapi-mpi/2021.3.0-hcp2lkf 
-    ml intel-oneapi-mkl/2021.3.0-giz47h4
-
-    srun -n 32 vasp_std &> out
-    ```
-??? example "Sample job script: Swift - run a single job on a node shared with other users"
-
-    The following script launches ```srun vasp_std``` on only 32 cores on a single node. The other 32 cores remain open for other users to use. You will only be charged for half of the node hours. 
-
-    ```
-    #!/bin/bash
-    #SBATCH --job-name="benchmark"
-    #SBATCH --account=myaccount
-    #SBATCH --time=4:00:00
-    #SBATCH --ntasks-per-node=32
-    #SBATCH --nodes=1
-
-    #To make sure that you are only being charged for the CPUs your job is using, set mem=2GB*CPUs/node
-    #--mem sets the memory used per node
-    #SBATCH --mem=64G
-
-    module purge
-
-    #Load Intel MPI VASP build and necessary modules
-    ml vaspintel 
-    ml slurm/21-08-1-1-o2xw5ti 
-    ml gcc/9.4.0-v7mri5d 
-    ml intel-oneapi-compilers/2021.3.0-piz2usr 
-    ml intel-oneapi-mpi/2021.3.0-hcp2lkf 
-    ml intel-oneapi-mkl/2021.3.0-giz47h4
-
-    srun -n 32 vasp_std &> out
-    ```
-
-??? note "Performance Notes"
-    The Intel MPI builds are recommended over the Open MPI builds as they exhibit fastest performance.
-
-    Use at most 64 cores/node. On Swift, each node has 64 physical cores, and each core is subdivided into two virtual cores in a process that is identical to hyperthreading. Because of this, up to 128 cores can be requested from a single Swift node, but each core will only represent half of a physical core. 
-
-    On Swift, VASP is most efficiently run on partially full nodes. 
-
-    Multiple jobs can run on the same nodes on Swift. If you are only using a fraction of a node, other users' jobs could be assigned to the rest of the node, which might deteriorate the performance. Setting "#SBATCH --exclusive" in your run script prevents other users from using the same node as you, but you will be charged the full 5AUs/node, regardless of the number of CPUs/node you are using. 
-
-#### GPU
-
-??? example "Sample job script: Swift - VASP 6 GPU (OpenACC)"
-    ```
-    #!/bin/bash
-    #SBATCH --nodes=1
-    #SBATCH --partition=gpu
-    #SBATCH --gres=gpu:4
-    #SBATCH --gpu-bind=map_gpu:0,1,2,3
-    #SBATCH --exclusive
-    #SBATCH --time=1:00:00
-    #SBATCH --account=<your-account-name>
-    #SBATCH --job-name=<your-job-name>
-
-    #Load environment and openACC VASP module:
-    module purge
-    . /nopt/nrel/apps/env.sh
-    module use /nopt/nrel/apps/modules
-    module load vasp/openacc
-
-    # Note: environment will soon become default and the module will be able to be loaded with
-    # module purge
-    # module load vasp/openacc
-
-    #Launch vasp using mpirun
-    mpirun -npernode 4 vasp_std &> out
     ```
 
 ## VASP on Gila
